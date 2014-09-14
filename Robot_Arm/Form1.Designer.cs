@@ -49,6 +49,11 @@
             this.videoSourcePlayer1 = new AForge.Controls.VideoSourcePlayer();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Video = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Servo1_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo2_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo3_Trackbar)).BeginInit();
@@ -59,12 +64,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.Video.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // Servo1_Trackbar
             // 
             this.Servo1_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo1_Trackbar.Location = new System.Drawing.Point(13, 134);
+            this.Servo1_Trackbar.Location = new System.Drawing.Point(30, 152);
             this.Servo1_Trackbar.Maximum = 180;
             this.Servo1_Trackbar.Name = "Servo1_Trackbar";
             this.Servo1_Trackbar.Size = new System.Drawing.Size(302, 45);
@@ -77,7 +86,7 @@
             // Servo2_Trackbar
             // 
             this.Servo2_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo2_Trackbar.Location = new System.Drawing.Point(13, 205);
+            this.Servo2_Trackbar.Location = new System.Drawing.Point(30, 223);
             this.Servo2_Trackbar.Maximum = 160;
             this.Servo2_Trackbar.Minimum = 20;
             this.Servo2_Trackbar.Name = "Servo2_Trackbar";
@@ -92,7 +101,7 @@
             // 
             this.Controller_Checkbox.AutoSize = true;
             this.Controller_Checkbox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Controller_Checkbox.Location = new System.Drawing.Point(12, 9);
+            this.Controller_Checkbox.Location = new System.Drawing.Point(561, 1);
             this.Controller_Checkbox.Name = "Controller_Checkbox";
             this.Controller_Checkbox.Size = new System.Drawing.Size(145, 23);
             this.Controller_Checkbox.TabIndex = 2;
@@ -104,7 +113,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 112);
+            this.label1.Location = new System.Drawing.Point(27, 130);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 19);
             this.label1.TabIndex = 3;
@@ -114,7 +123,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 183);
+            this.label2.Location = new System.Drawing.Point(28, 201);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 19);
             this.label2.TabIndex = 3;
@@ -123,7 +132,7 @@
             // Servo3_Trackbar
             // 
             this.Servo3_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo3_Trackbar.Location = new System.Drawing.Point(12, 281);
+            this.Servo3_Trackbar.Location = new System.Drawing.Point(29, 299);
             this.Servo3_Trackbar.Maximum = 160;
             this.Servo3_Trackbar.Minimum = 42;
             this.Servo3_Trackbar.Name = "Servo3_Trackbar";
@@ -137,7 +146,7 @@
             // Servo4_Trackbar
             // 
             this.Servo4_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo4_Trackbar.Location = new System.Drawing.Point(12, 355);
+            this.Servo4_Trackbar.Location = new System.Drawing.Point(29, 373);
             this.Servo4_Trackbar.Maximum = 90;
             this.Servo4_Trackbar.Minimum = 30;
             this.Servo4_Trackbar.Name = "Servo4_Trackbar";
@@ -152,7 +161,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 259);
+            this.label3.Location = new System.Drawing.Point(27, 277);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 19);
             this.label3.TabIndex = 3;
@@ -162,7 +171,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 333);
+            this.label4.Location = new System.Drawing.Point(27, 351);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 19);
             this.label4.TabIndex = 3;
@@ -170,7 +179,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(263, 114);
+            this.numericUpDown1.Location = new System.Drawing.Point(280, 132);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             69,
             0,
@@ -182,7 +191,7 @@
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(52, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(52, 26);
             this.numericUpDown1.TabIndex = 4;
             this.numericUpDown1.Value = new decimal(new int[] {
             11,
@@ -193,7 +202,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(263, 185);
+            this.numericUpDown2.Location = new System.Drawing.Point(280, 203);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             69,
             0,
@@ -205,7 +214,7 @@
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(52, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(52, 26);
             this.numericUpDown2.TabIndex = 4;
             this.numericUpDown2.Value = new decimal(new int[] {
             26,
@@ -216,7 +225,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(263, 261);
+            this.numericUpDown3.Location = new System.Drawing.Point(280, 279);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             69,
             0,
@@ -228,7 +237,7 @@
             0,
             0});
             this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(52, 20);
+            this.numericUpDown3.Size = new System.Drawing.Size(52, 26);
             this.numericUpDown3.TabIndex = 4;
             this.numericUpDown3.Value = new decimal(new int[] {
             30,
@@ -239,7 +248,7 @@
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(263, 335);
+            this.numericUpDown4.Location = new System.Drawing.Point(280, 353);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             69,
             0,
@@ -251,7 +260,7 @@
             0,
             0});
             this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(52, 20);
+            this.numericUpDown4.Size = new System.Drawing.Size(52, 26);
             this.numericUpDown4.TabIndex = 4;
             this.numericUpDown4.Value = new decimal(new int[] {
             8,
@@ -268,7 +277,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(11, 35);
+            this.label5.Location = new System.Drawing.Point(28, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(162, 19);
             this.label5.TabIndex = 3;
@@ -277,7 +286,7 @@
             // trackBar1
             // 
             this.trackBar1.BackColor = System.Drawing.SystemColors.Window;
-            this.trackBar1.Location = new System.Drawing.Point(12, 61);
+            this.trackBar1.Location = new System.Drawing.Point(29, 79);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Minimum = 20;
             this.trackBar1.Name = "trackBar1";
@@ -292,7 +301,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(160, 9);
+            this.checkBox1.Location = new System.Drawing.Point(371, 1);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(163, 23);
             this.checkBox1.TabIndex = 2;
@@ -304,7 +313,7 @@
             // 
             this.videoSourcePlayer1.BackColor = System.Drawing.SystemColors.Window;
             this.videoSourcePlayer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.videoSourcePlayer1.Location = new System.Drawing.Point(335, 35);
+            this.videoSourcePlayer1.Location = new System.Drawing.Point(22, 81);
             this.videoSourcePlayer1.Name = "videoSourcePlayer1";
             this.videoSourcePlayer1.Size = new System.Drawing.Size(430, 365);
             this.videoSourcePlayer1.TabIndex = 5;
@@ -315,7 +324,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(342, 9);
+            this.label6.Location = new System.Drawing.Point(18, 44);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(81, 19);
             this.label6.TabIndex = 3;
@@ -323,12 +332,83 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(782, 35);
+            this.pictureBox1.Location = new System.Drawing.Point(481, 80);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(430, 366);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.Video);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(1, -2);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(981, 540);
+            this.tabControl1.TabIndex = 7;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Gray;
+            this.tabPage1.Controls.Add(this.pictureBox2);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.numericUpDown4);
+            this.tabPage1.Controls.Add(this.Servo1_Trackbar);
+            this.tabPage1.Controls.Add(this.numericUpDown3);
+            this.tabPage1.Controls.Add(this.Servo2_Trackbar);
+            this.tabPage1.Controls.Add(this.numericUpDown2);
+            this.tabPage1.Controls.Add(this.Servo3_Trackbar);
+            this.tabPage1.Controls.Add(this.numericUpDown1);
+            this.tabPage1.Controls.Add(this.Servo4_Trackbar);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.trackBar1);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(973, 508);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Servos & Joystick";
+            // 
+            // Video
+            // 
+            this.Video.BackColor = System.Drawing.Color.Gray;
+            this.Video.Controls.Add(this.pictureBox1);
+            this.Video.Controls.Add(this.videoSourcePlayer1);
+            this.Video.Controls.Add(this.label6);
+            this.Video.Location = new System.Drawing.Point(4, 28);
+            this.Video.Name = "Video";
+            this.Video.Padding = new System.Windows.Forms.Padding(3);
+            this.Video.Size = new System.Drawing.Size(973, 508);
+            this.Video.TabIndex = 1;
+            this.Video.Text = "Video";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.Gray;
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(973, 508);
+            this.tabPage2.TabIndex = 2;
+            this.tabPage2.Text = "Speech";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::Robot_Arm.Properties.Resources.gm_xboxcw_wht_ci;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(366, 76);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(459, 342);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
             // 
             // Form1
             // 
@@ -336,26 +416,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1217, 416);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.videoSourcePlayer1);
-            this.Controls.Add(this.numericUpDown4);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(984, 538);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.Controller_Checkbox);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.Servo4_Trackbar);
-            this.Controls.Add(this.Servo3_Trackbar);
-            this.Controls.Add(this.Servo2_Trackbar);
-            this.Controls.Add(this.Servo1_Trackbar);
+            this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Arduino Control";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -370,6 +434,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.Video.ResumeLayout(false);
+            this.Video.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -397,6 +467,11 @@
         private AForge.Controls.VideoSourcePlayer videoSourcePlayer1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TabPage Video;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 

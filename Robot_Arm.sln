@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm", "Robot_Arm\Robot_Arm.csproj", "{A854491A-F1C4-4311-BD91-96328068D0D1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Application", "Robot_Arm\Robot_Arm.Application.csproj", "{A854491A-F1C4-4311-BD91-96328068D0D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.SpeechRecognition", "Robot_Arm.SpeechRecognition\Robot_Arm.SpeechRecognition.csproj", "{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{A854491A-F1C4-4311-BD91-96328068D0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A854491A-F1C4-4311-BD91-96328068D0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A854491A-F1C4-4311-BD91-96328068D0D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
