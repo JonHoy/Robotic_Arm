@@ -12,11 +12,33 @@ namespace Robot_Arm.SpeechRecognition
     {
         public Base()
         {
-            myGrammar = new DictationGrammar();
             mySpeechEngine = new SpeechRecognitionEngine();
             mySpeechDictionary = new SpeechDictionary();
+            mySpeaker = new SpeechSynthesizer();
+            mySpeechEngine.UnloadAllGrammars();
+            GrammarBuilder builder = new GrammarBuilder();
+            List<string[]> WordList = mySpeechDictionary.GetPhraseList();
+            for (int i = 0; i < WordList.Count; i++)
+            {
+                builder.Append(new Choices(WordList[i]));
+            }
+            myGrammar = new Grammar(builder);
+            mySpeechEngine.LoadGrammar(myGrammar);
+            mySpeechEngine.SetInputToDefaultAudioDevice();
         }
-        
+        // Main method used to turn speech into a string
+        public string GetPhrase()
+        {
+            RecognitionResult Result = mySpeechEngine.Recognize();
+            string Phrase = Result.Text;
+            return Phrase;
+        }
+
+        public void Speak(string SpeechString)
+        {
+            mySpeaker.Speak(SpeechString);
+        }
+
         // take a large phrase and decompose it into a string array of sub phrases
         // ie Phrase = "Pick up the Red Ball"
         // PhraseList = {{"Get", "Find", "Pick up", "Grab"} , {"the", "a"} , {"Green", "Blue" , "Red"} , {"Ball", "Block", "Cube"}}
@@ -31,9 +53,10 @@ namespace Robot_Arm.SpeechRecognition
                 string[] CurrentChoices = PhraseList[i];
                 for (int j = 0; j < CurrentChoices.Length; j++)
                 {
-                    if (Phrase.Contains(CompareString))
+                    string TempCompareString = CompareString + CurrentChoices[j];
+                    if (Phrase.Contains(TempCompareString))
                     {
-                        CompareString = CompareString + CurrentChoices[j];
+                        CompareString = TempCompareString + " ";
                         DecodedPhrase[i] = CurrentChoices[j];
                         break;
                     }
@@ -41,17 +64,20 @@ namespace Robot_Arm.SpeechRecognition
             }
             return DecodedPhrase;
         }
-
-        private DictationGrammar myGrammar;
+        public SpeechSynthesizer mySpeaker;
+        private Grammar myGrammar;
         private SpeechRecognitionEngine mySpeechEngine;
         private SpeechDictionary mySpeechDictionary;
-        
+        private GrammarBuilder builder;
     }
     public class SpeechDictionary
     {
         public SpeechDictionary()
         { 
             // Now define each color with an  rgb value (This allows the translation of colors to physical numbers the computer understands
+            Colors = new Dictionary<string, byte[]>();
+            Actions = new Dictionary<string,byte>();
+            Objects = new Dictionary<string, byte>();
             Colors.Add("Red", new byte[]{237, 28, 36});
             Colors.Add("Green", new byte[] { 34, 177, 36 });
             Colors.Add("Blue", new byte[] { 232, 28, 28 });
