@@ -217,6 +217,11 @@ namespace Robot_Arm
             }
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //private void Servo4_Trackbar_Scroll(object sender, EventArgs e)
         //{
 

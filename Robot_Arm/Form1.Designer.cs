@@ -48,12 +48,21 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.videoSourcePlayer1 = new AForge.Controls.VideoSourcePlayer();
             this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.Video = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.listBox4 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.Servo1_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo2_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo3_Trackbar)).BeginInit();
@@ -63,20 +72,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.Video.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // Servo1_Trackbar
             // 
             this.Servo1_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo1_Trackbar.Location = new System.Drawing.Point(30, 152);
+            this.Servo1_Trackbar.Location = new System.Drawing.Point(60, 154);
             this.Servo1_Trackbar.Maximum = 180;
             this.Servo1_Trackbar.Name = "Servo1_Trackbar";
-            this.Servo1_Trackbar.Size = new System.Drawing.Size(302, 45);
+            this.Servo1_Trackbar.Size = new System.Drawing.Size(212, 45);
             this.Servo1_Trackbar.TabIndex = 0;
             this.Servo1_Trackbar.Tag = "";
             this.Servo1_Trackbar.TickFrequency = 5;
@@ -86,11 +97,11 @@
             // Servo2_Trackbar
             // 
             this.Servo2_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo2_Trackbar.Location = new System.Drawing.Point(30, 223);
+            this.Servo2_Trackbar.Location = new System.Drawing.Point(60, 225);
             this.Servo2_Trackbar.Maximum = 160;
             this.Servo2_Trackbar.Minimum = 20;
             this.Servo2_Trackbar.Name = "Servo2_Trackbar";
-            this.Servo2_Trackbar.Size = new System.Drawing.Size(302, 45);
+            this.Servo2_Trackbar.Size = new System.Drawing.Size(212, 45);
             this.Servo2_Trackbar.TabIndex = 1;
             this.Servo2_Trackbar.Tag = "";
             this.Servo2_Trackbar.TickFrequency = 5;
@@ -113,7 +124,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 130);
+            this.label1.Location = new System.Drawing.Point(57, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 19);
             this.label1.TabIndex = 3;
@@ -123,7 +134,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(28, 201);
+            this.label2.Location = new System.Drawing.Point(58, 203);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 19);
             this.label2.TabIndex = 3;
@@ -132,11 +143,11 @@
             // Servo3_Trackbar
             // 
             this.Servo3_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo3_Trackbar.Location = new System.Drawing.Point(29, 299);
+            this.Servo3_Trackbar.Location = new System.Drawing.Point(59, 301);
             this.Servo3_Trackbar.Maximum = 160;
             this.Servo3_Trackbar.Minimum = 42;
             this.Servo3_Trackbar.Name = "Servo3_Trackbar";
-            this.Servo3_Trackbar.Size = new System.Drawing.Size(303, 45);
+            this.Servo3_Trackbar.Size = new System.Drawing.Size(213, 45);
             this.Servo3_Trackbar.TabIndex = 1;
             this.Servo3_Trackbar.Tag = "";
             this.Servo3_Trackbar.TickFrequency = 5;
@@ -146,11 +157,11 @@
             // Servo4_Trackbar
             // 
             this.Servo4_Trackbar.BackColor = System.Drawing.SystemColors.Window;
-            this.Servo4_Trackbar.Location = new System.Drawing.Point(29, 373);
+            this.Servo4_Trackbar.Location = new System.Drawing.Point(59, 375);
             this.Servo4_Trackbar.Maximum = 90;
             this.Servo4_Trackbar.Minimum = 30;
             this.Servo4_Trackbar.Name = "Servo4_Trackbar";
-            this.Servo4_Trackbar.Size = new System.Drawing.Size(303, 45);
+            this.Servo4_Trackbar.Size = new System.Drawing.Size(213, 45);
             this.Servo4_Trackbar.TabIndex = 1;
             this.Servo4_Trackbar.Tag = "";
             this.Servo4_Trackbar.TickFrequency = 5;
@@ -161,7 +172,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(27, 277);
+            this.label3.Location = new System.Drawing.Point(57, 279);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 19);
             this.label3.TabIndex = 3;
@@ -171,7 +182,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(27, 351);
+            this.label4.Location = new System.Drawing.Point(57, 353);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 19);
             this.label4.TabIndex = 3;
@@ -179,7 +190,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(280, 132);
+            this.numericUpDown1.Location = new System.Drawing.Point(385, 125);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             69,
             0,
@@ -202,7 +213,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(280, 203);
+            this.numericUpDown2.Location = new System.Drawing.Point(385, 196);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             69,
             0,
@@ -225,7 +236,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(280, 279);
+            this.numericUpDown3.Location = new System.Drawing.Point(385, 271);
             this.numericUpDown3.Maximum = new decimal(new int[] {
             69,
             0,
@@ -248,7 +259,7 @@
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(280, 353);
+            this.numericUpDown4.Location = new System.Drawing.Point(385, 346);
             this.numericUpDown4.Maximum = new decimal(new int[] {
             69,
             0,
@@ -277,20 +288,21 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 53);
+            this.label5.Location = new System.Drawing.Point(58, 55);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(162, 19);
+            this.label5.Size = new System.Drawing.Size(189, 19);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Stick Sensitivity";
+            this.label5.Text = "Joystick Sensitivity";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // trackBar1
             // 
             this.trackBar1.BackColor = System.Drawing.SystemColors.Window;
-            this.trackBar1.Location = new System.Drawing.Point(29, 79);
+            this.trackBar1.Location = new System.Drawing.Point(59, 81);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Minimum = 20;
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(303, 45);
+            this.trackBar1.Size = new System.Drawing.Size(378, 45);
             this.trackBar1.TabIndex = 1;
             this.trackBar1.Tag = "";
             this.trackBar1.TickFrequency = 10;
@@ -330,15 +342,6 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Camera 1";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(481, 80);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(430, 366);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Video);
@@ -350,31 +353,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(981, 540);
             this.tabControl1.TabIndex = 7;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.Gray;
-            this.tabPage1.Controls.Add(this.pictureBox2);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.numericUpDown4);
-            this.tabPage1.Controls.Add(this.Servo1_Trackbar);
-            this.tabPage1.Controls.Add(this.numericUpDown3);
-            this.tabPage1.Controls.Add(this.Servo2_Trackbar);
-            this.tabPage1.Controls.Add(this.numericUpDown2);
-            this.tabPage1.Controls.Add(this.Servo3_Trackbar);
-            this.tabPage1.Controls.Add(this.numericUpDown1);
-            this.tabPage1.Controls.Add(this.Servo4_Trackbar);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.trackBar1);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(973, 508);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Servos & Joystick";
             // 
             // Video
             // 
@@ -392,6 +370,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Gray;
+            this.tabPage2.Controls.Add(this.pictureBox3);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -399,16 +378,181 @@
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Speech";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.Gray;
+            this.tabPage1.Controls.Add(this.listBox4);
+            this.tabPage1.Controls.Add(this.listBox3);
+            this.tabPage1.Controls.Add(this.listBox2);
+            this.tabPage1.Controls.Add(this.listBox1);
+            this.tabPage1.Controls.Add(this.pictureBox2);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.numericUpDown4);
+            this.tabPage1.Controls.Add(this.Servo1_Trackbar);
+            this.tabPage1.Controls.Add(this.numericUpDown3);
+            this.tabPage1.Controls.Add(this.Servo2_Trackbar);
+            this.tabPage1.Controls.Add(this.numericUpDown2);
+            this.tabPage1.Controls.Add(this.Servo3_Trackbar);
+            this.tabPage1.Controls.Add(this.numericUpDown1);
+            this.tabPage1.Controls.Add(this.Servo4_Trackbar);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.trackBar1);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(973, 508);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Servos & Joystick";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(325, 127);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 19);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Pin #";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(325, 198);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 19);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Pin #";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(325, 273);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 19);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Pin #";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(325, 348);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(54, 19);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Pin #";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(481, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(430, 366);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::Robot_Arm.Properties.Resources.MeteorMic_xlarge;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(659, 68);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(273, 375);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 6;
+            this.pictureBox3.TabStop = false;
+            // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::Robot_Arm.Properties.Resources.gm_xboxcw_wht_ci;
+            this.pictureBox2.BackgroundImage = global::Robot_Arm.Properties.Resources.Controller_Modified;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(366, 76);
+            this.pictureBox2.Location = new System.Drawing.Point(508, 78);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(459, 342);
+            this.pictureBox2.Size = new System.Drawing.Size(459, 339);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 19;
+            this.listBox1.Items.AddRange(new object[] {
+            "Left Thumb +X",
+            "Left Thumb -X",
+            "Left Thumb +Y",
+            "Left Thumb -Y",
+            "Right Thumb +X",
+            "Right Thumb -X",
+            "Right Thumb +Y",
+            "Right Thumb -Y"});
+            this.listBox1.Location = new System.Drawing.Point(278, 157);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(159, 23);
+            this.listBox1.TabIndex = 6;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 19;
+            this.listBox2.Items.AddRange(new object[] {
+            "Left Thumb +X",
+            "Left Thumb -X",
+            "Left Thumb +Y",
+            "Left Thumb -Y",
+            "Right Thumb +X",
+            "Right Thumb -X",
+            "Right Thumb +Y",
+            "Right Thumb -Y"});
+            this.listBox2.Location = new System.Drawing.Point(278, 228);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(159, 23);
+            this.listBox2.TabIndex = 6;
+            // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 19;
+            this.listBox3.Items.AddRange(new object[] {
+            "Left Thumb +X",
+            "Left Thumb -X",
+            "Left Thumb +Y",
+            "Left Thumb -Y",
+            "Right Thumb +X",
+            "Right Thumb -X",
+            "Right Thumb +Y",
+            "Right Thumb -Y"});
+            this.listBox3.Location = new System.Drawing.Point(278, 303);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(159, 23);
+            this.listBox3.TabIndex = 6;
+            // 
+            // listBox4
+            // 
+            this.listBox4.FormattingEnabled = true;
+            this.listBox4.ItemHeight = 19;
+            this.listBox4.Items.AddRange(new object[] {
+            "Left Thumb +X",
+            "Left Thumb -X",
+            "Left Thumb +Y",
+            "Left Thumb -Y",
+            "Right Thumb +X",
+            "Right Thumb -X",
+            "Right Thumb +Y",
+            "Right Thumb -Y"});
+            this.listBox4.Location = new System.Drawing.Point(278, 378);
+            this.listBox4.Name = "listBox4";
+            this.listBox4.Size = new System.Drawing.Size(159, 23);
+            this.listBox4.TabIndex = 6;
             // 
             // Form1
             // 
@@ -433,12 +577,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.Video.ResumeLayout(false);
             this.Video.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -472,6 +618,15 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TabPage Video;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.ListBox listBox3;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 
