@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Tests", "Robot_Ar
 		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C} = {4BFFAD55-54B5-4D5E-851B-AE5F4122819C}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Video", "Robot_Arm.Video\Robot_Arm.Video.csproj", "{36B5015E-6EB2-4AC3-A003-77B772755AAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Navigation", "Robot_Arm.Navigation\Robot_Arm.Navigation.csproj", "{9CCA42D5-3875-4664-AB16-7782E830BB49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{614F9DE2-DFF7-46EF-A82A-5731731C14B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{614F9DE2-DFF7-46EF-A82A-5731731C14B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{614F9DE2-DFF7-46EF-A82A-5731731C14B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B5015E-6EB2-4AC3-A003-77B772755AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B5015E-6EB2-4AC3-A003-77B772755AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B5015E-6EB2-4AC3-A003-77B772755AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B5015E-6EB2-4AC3-A003-77B772755AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CCA42D5-3875-4664-AB16-7782E830BB49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CCA42D5-3875-4664-AB16-7782E830BB49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CCA42D5-3875-4664-AB16-7782E830BB49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CCA42D5-3875-4664-AB16-7782E830BB49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

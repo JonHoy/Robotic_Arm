@@ -21,9 +21,9 @@ using Robot_Arm.SpeechRecognition;
 
 namespace Robot_Arm.GUI
 {
-    unsafe public partial class Form1 : Form
+    unsafe public partial class MainGUI : Form
     {
-        public Form1()
+        public MainGUI()
         {
             InitializeComponent();
         }

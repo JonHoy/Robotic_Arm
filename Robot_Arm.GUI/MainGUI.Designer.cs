@@ -1,6 +1,6 @@
 ﻿namespace Robot_Arm.GUI
 {
-    partial class Form1
+    partial class MainGUI
     {
         /// <summary>
         /// Required designer variable.
