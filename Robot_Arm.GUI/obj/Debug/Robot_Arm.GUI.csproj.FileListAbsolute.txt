@@ -53,8 +53,8 @@ C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\SharpDX.x
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\SharpDX.XInput.xml
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\AForge.Math.xml
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.csprojResolveAssemblyReference.cache
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.Form1.resources
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.Properties.Resources.resources
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.csproj.GenerateResource.Cache
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.exe
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.pdb
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.MainGUI.resources

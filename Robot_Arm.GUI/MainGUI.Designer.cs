@@ -300,7 +300,6 @@
             this.label5.Size = new System.Drawing.Size(189, 19);
             this.label5.TabIndex = 3;
             this.label5.Text = "Joystick Sensitivity";
-            
             // 
             // trackBar1
             // 
@@ -589,7 +588,7 @@
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             // 
-            // Form1
+            // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -599,7 +598,7 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.Controller_Checkbox);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "MainGUI";
             this.Text = "Arduino Control";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);

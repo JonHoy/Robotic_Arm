@@ -32,7 +32,6 @@ namespace Robot_Arm.GUI
         private Controller myController;
         private List<Servo> myServos;
         private int RefreshRate_HZ = 10;
-
         private void Form1_Load(object sender, EventArgs e)
         {
             string[] ports = SerialPort.GetPortNames();
