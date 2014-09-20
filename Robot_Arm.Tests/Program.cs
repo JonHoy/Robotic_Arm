@@ -23,6 +23,8 @@ namespace Robot_Arm.Tests
                 Console.WriteLine(ParsedString[iPhrase]);
                 RobotSpeech.Speak(ParsedString[iPhrase]);
             }
+
+            Console.WriteLine("Video Tests... ");
         }
     }
 }
