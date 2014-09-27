@@ -26,10 +26,10 @@ namespace Robot_Arm.Tests
             string[] ParsedString = RobotSpeech.DecodePhrase(Phrase);
             for (int iPhrase = 0; iPhrase < ParsedString.Length; iPhrase++)
             {
-                Console.Write("SubPhrase #{0}", iPhrase + 1);
+                Console.Write("SubPhrase #{0}   ", iPhrase + 1);
                 Console.WriteLine(ParsedString[iPhrase]);
                 RobotSpeech.Speak(ParsedString[iPhrase]);
-            }
+            } 
 
             Console.WriteLine("Video Tests... ");
         }

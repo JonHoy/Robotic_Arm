@@ -12,12 +12,10 @@ using System.Diagnostics;
 using SharpDX.XInput; // api for the xbox controller
 using ArduinoClass; // arduino api
 using System.Timers;
-using AForge.Video; // webcam api
-using AForge.Video.DirectShow;
 using System.Runtime.InteropServices;
 using System.Speech;
-using AForge.Imaging.Filters;
 using Robot_Arm.SpeechRecognition;
+//using Robot_Arm.
 
 namespace Robot_Arm.GUI
 {
@@ -27,7 +25,7 @@ namespace Robot_Arm.GUI
         {
             InitializeComponent();
         }
-        private VideoCaptureDevice myCamera;
+        //private VideoCaptureDevice myCamera;
         private Arduino myArduino;
         private Controller myController;
         private List<Servo> myServos;
@@ -63,25 +61,7 @@ namespace Robot_Arm.GUI
             {
                 throw new Exception("Unable to connect to the controller");
             }
-            try
-            {
-                FilterInfoCollection videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-                if (videoDevices.Count == 0)
-                {
-                    throw new Exception("No Cameras detected");
-                }
-
-                myCamera = new VideoCaptureDevice(videoDevices[0].MonikerString);
-                VideoCapabilities[] CameraCapabilities = myCamera.VideoCapabilities;
-                myCamera.VideoResolution = CameraCapabilities[6];
-                videoSourcePlayer1.VideoSource = myCamera;
-                videoSourcePlayer1.Start();
-                myCamera.NewFrame += new NewFrameEventHandler(camera1_NewFrame);
-            }
-            catch (Exception)
-            {
-                throw new Exception("Unable to connect to one or more of the cameras");
-            }            
+                     
             
             myServos = new List<Servo>(4);
             myServos.Insert(0, new Servo(ref myArduino, (int)numericUpDown1.Value, (int)Servo1_Trackbar.Maximum, (int)Servo1_Trackbar.Minimum));
@@ -198,24 +178,6 @@ namespace Robot_Arm.GUI
             }
         }
 
-        private void camera1_NewFrame(object sender, NewFrameEventArgs eventArgs)
-        {
-            try
-            {
-                Bitmap bitmap = eventArgs.Frame;
-                ImageProcess ProcessObject = new ImageProcess((Bitmap)bitmap.Clone());
-                ProcessObject.Segment_Colors();
-
-                        
-            
-                pictureBox1.Image = (Bitmap)ProcessObject.myBitmap.Clone();
-            }
-            catch (Exception)
-            {
-                
-                throw;
-            }
-        }
 
 
     }
