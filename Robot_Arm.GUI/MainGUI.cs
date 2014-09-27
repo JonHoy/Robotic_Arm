@@ -129,7 +129,6 @@ namespace Robot_Arm.GUI
                 {
                     Servo.Detach(); // detach each servo when exiting the program
                 }
-                videoSourcePlayer1.Stop();
             }
             catch (Exception){ }
         }

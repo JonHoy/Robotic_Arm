@@ -1,5 +1,0 @@
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Video\bin\Debug\Robot_Arm.Video.dll
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Video\bin\Debug\Robot_Arm.Video.pdb
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Video\obj\Debug\Robot_Arm.Video.csprojResolveAssemblyReference.cache
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Video\obj\Debug\Robot_Arm.Video.dll
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Video\obj\Debug\Robot_Arm.Video.pdb

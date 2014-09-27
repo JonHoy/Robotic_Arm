@@ -49,7 +49,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.videoSourcePlayer1 = new AForge.Controls.VideoSourcePlayer();
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Video = new System.Windows.Forms.TabPage();
@@ -329,14 +328,6 @@
             // 
             // videoSourcePlayer1
             // 
-            this.videoSourcePlayer1.BackColor = System.Drawing.SystemColors.Window;
-            this.videoSourcePlayer1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.videoSourcePlayer1.Location = new System.Drawing.Point(22, 81);
-            this.videoSourcePlayer1.Name = "videoSourcePlayer1";
-            this.videoSourcePlayer1.Size = new System.Drawing.Size(430, 365);
-            this.videoSourcePlayer1.TabIndex = 5;
-            this.videoSourcePlayer1.Text = "videoSourcePlayer1";
-            this.videoSourcePlayer1.VideoSource = null;
             // 
             // label6
             // 
@@ -365,7 +356,6 @@
             // 
             this.Video.BackColor = System.Drawing.Color.Gray;
             this.Video.Controls.Add(this.pictureBox1);
-            this.Video.Controls.Add(this.videoSourcePlayer1);
             this.Video.Controls.Add(this.label6);
             this.Video.Location = new System.Drawing.Point(4, 28);
             this.Video.Name = "Video";
@@ -646,7 +636,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private AForge.Controls.VideoSourcePlayer videoSourcePlayer1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabControl tabControl1;

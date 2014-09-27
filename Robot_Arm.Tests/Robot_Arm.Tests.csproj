@@ -55,6 +55,10 @@
       <Project>{a854491a-f1c4-4311-bd91-96328068d0d1}</Project>
       <Name>Robot_Arm.GUI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Robot_Arm.Navigation\Robot_Arm.Navigation.csproj">
+      <Project>{9cca42d5-3875-4664-ab16-7782e830bb49}</Project>
+      <Name>Robot_Arm.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Robot_Arm.SpeechRecognition\Robot_Arm.SpeechRecognition.csproj">
       <Project>{4bffad55-54b5-4d5e-851b-ae5f4122819c}</Project>
       <Name>Robot_Arm.SpeechRecognition</Name>
