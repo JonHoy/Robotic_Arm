@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Robot_Arm.SpeechRecognition;
+using System.Speech.Recognition;
+using System.Drawing;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Robot_Arm.Tests
 {
@@ -15,7 +18,11 @@ namespace Robot_Arm.Tests
             Console.WriteLine("");
             Base RobotSpeech = new Base();
             Console.WriteLine("Start Talking...");
-            string Phrase = RobotSpeech.GetPhrase();
+            RecognitionResult Result = RobotSpeech.GetPhrase();
+            Int16[] Data = Base.GetAudioData(Result);
+            Chart TestChart = new Chart();
+            //TestChart.
+            string Phrase = Result.Text;
             string[] ParsedString = RobotSpeech.DecodePhrase(Phrase);
             for (int iPhrase = 0; iPhrase < ParsedString.Length; iPhrase++)
             {

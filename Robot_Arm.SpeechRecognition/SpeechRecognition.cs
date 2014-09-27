@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
+using System.IO;
 
 namespace Robot_Arm.SpeechRecognition
 {
@@ -27,11 +28,20 @@ namespace Robot_Arm.SpeechRecognition
             mySpeechEngine.SetInputToDefaultAudioDevice();
         }
         // Main method used to turn speech into a string
-        public string GetPhrase()
+        public RecognitionResult GetPhrase()
         {
             RecognitionResult Result = mySpeechEngine.Recognize();
-            string Phrase = Result.Text;
-            return Phrase;
+            return Result;
+        }
+
+        public static Int16[] GetAudioData(RecognitionResult Result)
+        {
+            MemoryStream Stream = new MemoryStream();
+            Result.Audio.WriteToAudioStream(Stream);
+            Byte[] ByteData = Stream.ToArray();
+            Int16[] AudioData = new Int16[ByteData.Length/2];
+            Buffer.BlockCopy(ByteData, 0, AudioData, 0, ByteData.Length);
+            return AudioData;
         }
 
         public void Speak(string SpeechString)
