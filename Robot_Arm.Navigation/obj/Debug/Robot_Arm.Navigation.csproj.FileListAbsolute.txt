@@ -1,0 +1,5 @@
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Navigation\bin\Debug\Robot_Arm.Navigation.dll
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Navigation\bin\Debug\Robot_Arm.Navigation.pdb
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Navigation\obj\Debug\Robot_Arm.Navigation.dll
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Navigation\obj\Debug\Robot_Arm.Navigation.pdb
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.Navigation\obj\Debug\Robot_Arm.Navigation.csprojResolveAssemblyReference.cache

@@ -32,6 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Emgu.CV, Version=2.9.0.1922, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util, Version=2.9.0.1922, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Speech" />
@@ -62,6 +73,10 @@
     <ProjectReference Include="..\Robot_Arm.SpeechRecognition\Robot_Arm.SpeechRecognition.csproj">
       <Project>{4bffad55-54b5-4d5e-851b-ae5f4122819c}</Project>
       <Name>Robot_Arm.SpeechRecognition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Robot_Arm.Video\Robot_Arm.Video.csproj">
+      <Project>{36b5015e-6eb2-4ac3-a003-77b772755aad}</Project>
+      <Name>Robot_Arm.Video</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
