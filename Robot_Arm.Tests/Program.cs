@@ -13,13 +13,15 @@ using System.Threading;
 using Robot_Arm.SpeechRecognition;
 using Robot_Arm.Video;
 using System.Windows.Forms;
+using System.Diagnostics;
+using Emgu.CV.Structure;
 
 namespace Robot_Arm.Tests
 {
     class Program
     {
         private static Image<Emgu.CV.Structure.Bgr, byte> Photo;
-        private static Image<Emgu.CV.Structure.Bgr, byte> NewPhoto;
+        private static Image<Emgu.CV.Structure.Hsv, float> NewPhoto;
         static void Main(string[] args)
         {
             //Console.WriteLine("Speech Tests...");
@@ -45,26 +47,33 @@ namespace Robot_Arm.Tests
             try
             {
                 ImageViewer viewer = new ImageViewer(); //create an image viewer
-                ImageViewer viewer2 = new ImageViewer();
+                //PictureBox viewer2 = new PictureBox();
+
+                
                 //viewer.Visible = true; //show the image viewer
                 //viewer2.Visible = true;
-                Capture capture = new Capture(0); //create a camera captue
+                Capture capture = new Capture(); //create a camera captue
                 Thread.Sleep(1000);
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, (double) 1280);
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, (double) 720);
-                Thread.Sleep(1000);
+
+                //System.Drawing.Bitmap;
                 Application.Idle += new EventHandler(delegate(object sender, EventArgs e)
                 {  //run this until application closed (close button click on image viewer)
+                    Stopwatch Timer = new Stopwatch();
                     Photo = capture.QueryFrame(); //draw the image obtained from camera
-                    viewer.Image = Photo;
-                    short[,] SelectedColors = Colors.SegmentColors(Photo);
-                    NewPhoto = Colors.ReColorPhoto(SelectedColors);
-                    bool[,] BW = Colors.GenerateBW(ref SelectedColors, "Green");
+
+                    Timer.Start();
+                    Image<Hsv, float> Photo_HSV = Photo.Convert<Hsv, float>();
+                    short[,] SelectedColors = Colors.SegmentColors(Photo_HSV);
+                    bool[,] BW = Colors.GenerateBW(ref SelectedColors, "White");
                     BlobFinder ImageBlobs = new BlobFinder(BW);
-                    viewer2.Image = NewPhoto;
+                    Timer.Stop();
+                    ImageBlobs.DrawBlobOutline(Photo.Bitmap);
+                    viewer.Image = Photo;
+                    Console.WriteLine("Time to Process Frame {0} ms, Blobs Found: {1}", Timer.ElapsedMilliseconds, ImageBlobs.Blobs.Length);
                 });
                 viewer.ShowDialog();
-                viewer2.ShowDialog();
+                
+                
 
             }
             catch (Exception ex)

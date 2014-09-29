@@ -271,7 +271,11 @@ namespace Robot_Arm.Video
                 myRectangles[i] = new Rectangle(x, y, width, height);
 			}
             Pen myPen = new Pen(Color.Red);
-            myGraphics.DrawRectangles(myPen, myRectangles);
+            if (myRectangles.Length > 0)
+            {
+                myGraphics.DrawRectangles(myPen, myRectangles);    
+            }
+            
         }
         
         public void RemoveSmallBlobs(int minPixelCount)
