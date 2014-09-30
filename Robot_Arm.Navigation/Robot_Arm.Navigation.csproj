@@ -30,8 +30,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Arduino">
+      <HintPath>..\..\Arduino_Interface_CSharp\bin\Debug\Arduino.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV">
+      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.CV.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI">
+      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.Util">
+      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.Util.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,8 +52,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Base.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Robot_Arm.SpeechRecognition\Robot_Arm.SpeechRecognition.csproj">
+      <Project>{4bffad55-54b5-4d5e-851b-ae5f4122819c}</Project>
+      <Name>Robot_Arm.SpeechRecognition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Robot_Arm.Video\Robot_Arm.Video.csproj">
+      <Project>{36b5015e-6eb2-4ac3-a003-77b772755aad}</Project>
+      <Name>Robot_Arm.Video</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

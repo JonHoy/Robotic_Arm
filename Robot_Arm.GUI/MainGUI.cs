@@ -19,7 +19,7 @@ using Robot_Arm.SpeechRecognition;
 
 namespace Robot_Arm.GUI
 {
-    unsafe public partial class MainGUI : Form
+    public partial class MainGUI : Form
     {
         public MainGUI()
         {
@@ -175,6 +175,44 @@ namespace Robot_Arm.GUI
                 NewAngle = Math.Min(myTrackbar.Maximum, NewAngle); // bound the angle between the physical limits of the servo
                 myTrackbar.Value = NewAngle;
             }
+        }
+
+        private void AD_Timer_Tick(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                ushort Val = myArduino.AnalogRead(i);
+                string PinNumber = "Analog " + i.ToString();
+                this.chart1.Series[PinNumber].Points.AddY((double)Val);
+            }
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                string PinNumber = "Analog " + i.ToString();
+                this.chart1.Series.Add(PinNumber);
+                this.chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            }
+
+
+            this.AD_Timer.Start();
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            this.AD_Timer.Stop();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            this.chart1.Series.Clear();
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
         }
 
 

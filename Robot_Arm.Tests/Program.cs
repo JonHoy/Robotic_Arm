@@ -21,7 +21,6 @@ namespace Robot_Arm.Tests
     class Program
     {
         private static Image<Emgu.CV.Structure.Bgr, byte> Photo;
-        private static Image<Emgu.CV.Structure.Hsv, float> NewPhoto;
         static void Main(string[] args)
         {
             //Console.WriteLine("Speech Tests...");
@@ -44,32 +43,51 @@ namespace Robot_Arm.Tests
             Console.WriteLine("Video Tests... ");
 
             ColorClassification Colors = new ColorClassification();
+            SpeechDictionary myWords = new SpeechDictionary();
             try
             {
                 ImageViewer viewer = new ImageViewer(); //create an image viewer
-                //PictureBox viewer2 = new PictureBox();
-
-                
-                //viewer.Visible = true; //show the image viewer
-                //viewer2.Visible = true;
-                Capture capture = new Capture(); //create a camera captue
-                Thread.Sleep(1000);
-
-                //System.Drawing.Bitmap;
+                Capture capture = new Capture(); //create a camera capture
                 Application.Idle += new EventHandler(delegate(object sender, EventArgs e)
                 {  //run this until application closed (close button click on image viewer)
                     Stopwatch Timer = new Stopwatch();
                     Photo = capture.QueryFrame(); //draw the image obtained from camera
-
                     Timer.Start();
-                    Image<Hsv, float> Photo_HSV = Photo.Convert<Hsv, float>();
-                    short[,] SelectedColors = Colors.SegmentColors(Photo_HSV);
-                    bool[,] BW = Colors.GenerateBW(ref SelectedColors, "White");
-                    BlobFinder ImageBlobs = new BlobFinder(BW);
+                    //Image<Bgr, byte> NewPhoto = Photo.Convert<Bgr, byte>();
+
+                    //Image<Gray, byte> grayFrame = Photo.Convert<Gray, byte>();
+                    //Image<Gray, Byte> smallGrayFrame = grayFrame.PyrDown();
+                    //Image<Gray, Byte> smoothedGrayFrame = smallGrayFrame.PyrUp();
+                    //Image<Gray, Byte> cannyFrame = smoothedGrayFrame.Canny(100, 60);
+                    //cannyFrame._Dilate(3);
+
+                    //short[,] SelectedColors = Colors.SegmentColors(NewPhoto);
+                    //NewPhoto = Colors.ReColorPhoto(ref SelectedColors);
+                    //string[] MatchStrings = myWords.GetColorStrings("Orange");
+                    //bool[,] BW_FromColor = Colors.GenerateBW(ref SelectedColors, MatchStrings);
+
+                    //Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);
+                    //BW_GrayImg._Dilate(5);
+                    //BW_FromColor = BlobFinder.BW_Converter(BW_GrayImg);
+                    //BlobFinder Blobs_FromColor = new BlobFinder(BW_FromColor);
+                    //BlobFinder Blobs_FromEdges = new BlobFinder(cannyFrame);
+                    //bool[,] BW_1 = Blobs_FromColor.FillBlobBoundingBox();
+                    //bool[,] BW_2 = Blobs_FromEdges.FillBlobBoundingBox();
+
+
+                    //bool[,] BW_Composite = BlobFinder.AND(ref BW_1, ref  BW_2);
+                    //BlobFinder ImageBlobs = new BlobFinder(BW_Composite);
+                    //bool[,] BW_Filled = ImageBlobs.FillBlobBoundingBox();
+                    //BlobFinder ImageBlobsFilled = new BlobFinder(BW_Filled);
+                    //ImageBlobsFilled.RemoveSmallBlobs(200);
+
+                    string[] MatchStrings = myWords.GetColorStrings("Orange");
+                    ColorObjectRecognizer myColorObjectRecognizer = new ColorObjectRecognizer(MatchStrings, Photo.Convert<Bgr, Byte>());
+                    //myColor
                     Timer.Stop();
-                    ImageBlobs.DrawBlobOutline(Photo.Bitmap);
-                    viewer.Image = Photo;
-                    Console.WriteLine("Time to Process Frame {0} ms, Blobs Found: {1}", Timer.ElapsedMilliseconds, ImageBlobs.Blobs.Length);
+                    //ImageBlobsFilled.DrawBlobOutline(Photo.Bitmap);
+                    viewer.Image = myColorObjectRecognizer.Photo;
+                    //Console.WriteLine("Time to Process Frame {0} ms, Blobs Found: {1}", Timer.ElapsedMilliseconds, ImageBlobsFilled.Blobs.Length);
                 });
                 viewer.ShowDialog();
                 

@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Drawing;
+using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace Robot_Arm.Video
 {
@@ -19,9 +21,59 @@ namespace Robot_Arm.Video
         public Blob[] Blobs {get; private set;}
         public int[,] AssignedBlob {get; private set;}
 
+        public BlobFinder(Image<Gray, Byte> GrayFrame)
+        {
+            BW = BW_Converter(GrayFrame);
+            makeBlobs();
+        }
+
+        public static bool[,] BW_Converter(Image<Gray, Byte> GrayFrame)
+        {
+            byte[, ,] ByteData = GrayFrame.Data;
+            int Rows = ByteData.GetLength(0);
+            int Cols = ByteData.GetLength(1);
+            bool[,] BW_Out = new bool[Rows, Cols];
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Cols; j++)
+                {
+                    if (ByteData[i, j, 0] == 255)
+                    {
+                        BW_Out[i, j] = true;
+                    }
+                }
+            }
+            return BW_Out;
+        }
+
+        public static Image<Gray, Byte> Gray_Converter(ref bool[,] BW_In)
+        {
+            int Rows = BW_In.GetLength(0);
+            int Cols = BW_In.GetLength(1);
+            byte[, ,] FrameData = new byte[Rows, Cols, 1];
+            
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Cols; j++)
+                {
+                    if (BW_In[i,j])
+                    {
+                        FrameData[i, j, 0] = 255;
+                    }
+                }
+            }
+            Image<Gray, Byte> GrayFrame_Out = new Image<Gray, byte>(FrameData);
+            return GrayFrame_Out;
+        }
+
         public BlobFinder(bool[,] BW)
         {
             this.BW = BW;
+            makeBlobs();
+        }
+        // take a BW image and generate an array of blob objects from it
+        private void makeBlobs()
+        {
             // Turns a Black and White Image to a bunch of blobs
             Get_1D_Blobs(); // turn the image to 1d blobs
             MatchBlobs(); // start lining up the 1d blobs and if they connect give them the same blob#
@@ -29,15 +81,17 @@ namespace Robot_Arm.Video
             FixBlobs(); // check to make sure the algorithm worked completely (if not, recursively use it until it does)
             ConsolidateBlobs(); // merge all the blob objects with the same blob number
         }
-
+        // create 1D line blob objects
         private void Get_1D_Blobs()
         {
             this.Blobs = new Blob[BW.Length];
             BlobCount = 0;
             Blobs[0] = new Blob();
-            for (int j = 0; j < BW.GetLength(1); j++)
+            int Cols = BW.GetLength(1);
+            int Rows = BW.GetLength(0);
+            for (int j = 0; j < Cols; j++)
             {
-                for (int i = 0; i < BW.GetLength(0); i++)
+                for (int i = 0; i < Rows; i++)
                 {
                     if (BW[i,j])
                     {
@@ -63,10 +117,11 @@ namespace Robot_Arm.Video
             this.Blobs = BlobsResize;
             
         }
-
+        // assign the blob number on image where a blob is present
         private void Assign_Blobs() {
             this.AssignedBlob = new int[BW.GetLength(0), BW.GetLength(1)];
-            for (int iBlob = 0; iBlob < Blobs.Length; iBlob++)
+            int NumBlobs = Blobs.Length;
+            for (int iBlob = 0; iBlob < NumBlobs; iBlob++)
             {
                 for (int i = Blobs[iBlob].Ymin; i <= Blobs[iBlob].Ymax; i++)
                 {
@@ -77,7 +132,7 @@ namespace Robot_Arm.Video
                 }
             }
         }
-
+        // match up connected 1d blobs and assign them the same blob number
         private void MatchBlobs()
         {
             if (BlobCount > 0)
@@ -152,7 +207,7 @@ namespace Robot_Arm.Video
             
  
         }
-
+        // remove redundant blobs so that only unique blob objects remain
         private void ConsolidateBlobs()
         {
             if (Blobs.Length <= 1)
@@ -205,7 +260,7 @@ namespace Robot_Arm.Video
                 }
             }       
         }
-
+        // helper function to determine if two line blobs are touching each other
         static public bool Overlap(int x1, int x2, int xp1, int xp2)
         {
             if (xp1 > x2 || x1 > xp2)
@@ -214,15 +269,17 @@ namespace Robot_Arm.Video
             }
             return true;
         }
-
+        // subroutine used to iteratively correct any mistakes made by the blob matchign algorithm
         private void FixBlobs() //
         {
             bool PassFail = true;
             int RemoveNumber = 0;
             int ReplaceNumber = 0;
-            for (int iCol = this.AssignedBlob.GetLength(1) - 1; iCol > 0; iCol--)
+            int ColStart = this.AssignedBlob.GetLength(1) - 1;
+            int Rows = this.AssignedBlob.GetLength(0);
+            for (int iCol = ColStart; iCol > 0; iCol--)
             {
-                for (int iRow = 1; iRow < this.AssignedBlob.GetLength(0); iRow++)
+                for (int iRow = 1; iRow < Rows; iRow++)
                 {
                     int ValLeft = this.AssignedBlob[iRow, iCol - 1];
                     int ValRight = this.AssignedBlob[iRow, iCol];
@@ -247,7 +304,7 @@ namespace Robot_Arm.Video
             }
             return;
         }
-
+        // replaces blobs with the remove number with the replace number
         private void ReplaceBlobs(int RemoveNumber, int ReplaceNumber)
         {
             // "RemoveNumber" is the blob number that will be replaced with "ReplaceNumber"
@@ -257,7 +314,7 @@ namespace Robot_Arm.Video
                 this.Blobs[ReplaceIndices[iReplace]].BlobNumber = ReplaceNumber;
             }
         }
-
+        // draw the bounding box of the blob objects onto the host image
         public void DrawBlobOutline(Image HostImage)
         {
             Graphics myGraphics = Graphics.FromImage(HostImage);
@@ -277,15 +334,61 @@ namespace Robot_Arm.Video
             }
             
         }
-        
+        // remove blobs with a given criteria
         public void RemoveSmallBlobs(int minPixelCount)
         {
             Blobs = Array.FindAll(Blobs, (Blob x) => x.PixelCount > minPixelCount);
             this.BlobCount = Blobs.Length;
         }
+        // fill in the blob bounding box with true values
+        public bool [,] FillBlobBoundingBox()
+        {
+            bool [,] BW_Filled = new bool[BW.GetLength(0),BW.GetLength(1)];
+            for (int iBlob = 0; iBlob < Blobs.Length; iBlob++)
+            {
+                int Xmin = Blobs[iBlob].Xmin;
+                int Ymin = Blobs[iBlob].Ymin;
+                int Xmax = Blobs[iBlob].Xmax;
+                int Ymax = Blobs[iBlob].Ymax;
+                for (int i = Ymin; i <= Ymax ; i++)
+                {
+                    for (int j = Xmin; j <= Xmax; j++)
+                    {
+                        BW_Filled[i, j] = true;
+                    }
+                }
+            }
+            return BW_Filled;
+        }
+
+        // takes the AND operation of two input BW images
+        public static bool[,] AND(ref bool[,] BW_1, ref bool[,] BW_2)
+        {
+            
+            if ((BW_1.GetLength(0) != BW_2.GetLength(0))
+                || (BW_1.GetLength(1) != BW_2.GetLength(1))
+                )
+            {
+                throw new Exception("BW_1 and BW_2 have to be the same size");
+            }
+            int Rows = BW_1.GetLength(0);
+            int Cols = BW_1.GetLength(1);
+            bool[,] BW_Out = new bool[Rows, Cols];
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Cols; j++)
+                {
+                    if (BW_1[i,j] && BW_2[i,j])
+                    {
+                        BW_Out[i, j] = true;
+                    }
+                }
+            }
+            return BW_Out;
+        }
 
     }
-
+    // blob class
     public class Blob
     {
         public int BlobNumber = 0;

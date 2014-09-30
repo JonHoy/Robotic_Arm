@@ -28,9 +28,8 @@ C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm\obj\Debug\Robot_Arm.GUI
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm\obj\Debug\Robot_Arm.GUI.csproj.GenerateResource.Cache
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm\obj\Debug\Robot_Arm.GUI.exe
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm\obj\Debug\Robot_Arm.GUI.pdb
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Robot_Arm.GUI.exe.config
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Robot_Arm.GUI.exe
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Robot_Arm.GUI.pdb
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Robot_Arm.GUI.exe.config
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Arduino.dll
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Emgu.CV.dll
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Emgu.CV.UI.dll
@@ -49,3 +48,4 @@ C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.csproj.GenerateResource.Cache
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.exe
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.pdb
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\bin\Debug\Robot_Arm.GUI.pdb

@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Servo1_Trackbar = new System.Windows.Forms.TrackBar();
             this.Servo2_Trackbar = new System.Windows.Forms.TrackBar();
             this.Controller_Checkbox = new System.Windows.Forms.CheckBox();
@@ -66,7 +65,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Navigation = new System.Windows.Forms.TabPage();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.startButton = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.AD_Timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Servo1_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo2_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo3_Trackbar)).BeginInit();
@@ -165,7 +168,6 @@
             this.Servo4_Trackbar.BackColor = System.Drawing.SystemColors.Window;
             this.Servo4_Trackbar.Location = new System.Drawing.Point(59, 375);
             this.Servo4_Trackbar.Maximum = 90;
-            this.Servo4_Trackbar.Minimum = 30;
             this.Servo4_Trackbar.Name = "Servo4_Trackbar";
             this.Servo4_Trackbar.Size = new System.Drawing.Size(213, 45);
             this.Servo4_Trackbar.TabIndex = 1;
@@ -325,9 +327,6 @@
             this.checkBox1.Text = "Autonomous Mode";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.Controller_Checkbox_CheckedChanged);
-            // 
-            // videoSourcePlayer1
-            // 
             // 
             // label6
             // 
@@ -554,6 +553,9 @@
             // Navigation
             // 
             this.Navigation.BackColor = System.Drawing.Color.Gray;
+            this.Navigation.Controls.Add(this.clearButton);
+            this.Navigation.Controls.Add(this.stopButton);
+            this.Navigation.Controls.Add(this.startButton);
             this.Navigation.Controls.Add(this.chart1);
             this.Navigation.Location = new System.Drawing.Point(4, 28);
             this.Navigation.Name = "Navigation";
@@ -561,6 +563,36 @@
             this.Navigation.Size = new System.Drawing.Size(973, 508);
             this.Navigation.TabIndex = 3;
             this.Navigation.Text = "Navigation";
+            // 
+            // clearButton
+            // 
+            this.clearButton.Location = new System.Drawing.Point(487, 120);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(75, 29);
+            this.clearButton.TabIndex = 1;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // stopButton
+            // 
+            this.stopButton.Location = new System.Drawing.Point(487, 67);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(75, 26);
+            this.stopButton.TabIndex = 1;
+            this.stopButton.Text = "Stop";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
+            // startButton
+            // 
+            this.startButton.Location = new System.Drawing.Point(487, 16);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(75, 34);
+            this.startButton.TabIndex = 1;
+            this.startButton.Text = "Start";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
             // chart1
             // 
@@ -570,13 +602,15 @@
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(23, 16);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(412, 382);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            // 
+            // AD_Timer
+            // 
+            this.AD_Timer.Interval = 200;
+            this.AD_Timer.Tick += new System.EventHandler(this.AD_Timer_Tick);
             // 
             // MainGUI
             // 
@@ -654,6 +688,10 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TabPage Navigation;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Timer AD_Timer;
     }
 }
 
