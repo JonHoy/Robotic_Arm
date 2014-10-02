@@ -128,9 +128,17 @@
     <None Include="Resources\MeteorMic-xlarge.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Robot_Arm.Navigation\Robot_Arm.Navigation.csproj">
+      <Project>{9cca42d5-3875-4664-ab16-7782e830bb49}</Project>
+      <Name>Robot_Arm.Navigation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Robot_Arm.SpeechRecognition\Robot_Arm.SpeechRecognition.csproj">
       <Project>{4bffad55-54b5-4d5e-851b-ae5f4122819c}</Project>
       <Name>Robot_Arm.SpeechRecognition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Robot_Arm.Video\Robot_Arm.Video.csproj">
+      <Project>{36b5015e-6eb2-4ac3-a003-77b772755aad}</Project>
+      <Name>Robot_Arm.Video</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

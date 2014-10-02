@@ -66,7 +66,7 @@ namespace Robot_Arm.Navigation
             yTableLookup = tempyTableLookup;
 
         }
-
+        // Gets theta1 and theta2 given a target x and y value
         public void GetTheta(double x_Target, double y_Target, out double theta1, out double theta2)
         {
             theta1 = double.NaN;

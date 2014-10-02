@@ -15,6 +15,8 @@ using System.Timers;
 using System.Runtime.InteropServices;
 using System.Speech;
 using Robot_Arm.SpeechRecognition;
+using Robot_Arm.Video;
+using Robot_Arm.Navigation;
 //using Robot_Arm.
 
 namespace Robot_Arm.GUI
@@ -26,6 +28,7 @@ namespace Robot_Arm.GUI
             InitializeComponent();
         }
         //private VideoCaptureDevice myCamera;
+        private AngleCalculator myAngleCalculator;
         private Arduino myArduino;
         private Controller myController;
         private List<Servo> myServos;
@@ -61,8 +64,9 @@ namespace Robot_Arm.GUI
             {
                 throw new Exception("Unable to connect to the controller");
             }
-                     
-            
+
+            myAngleCalculator = new AngleCalculator();
+
             myServos = new List<Servo>(4);
             myServos.Insert(0, new Servo(ref myArduino, (int)numericUpDown1.Value, (int)Servo1_Trackbar.Maximum, (int)Servo1_Trackbar.Minimum));
             myServos.Insert(1, new Servo(ref myArduino, (int)numericUpDown2.Value, (int)Servo2_Trackbar.Maximum, (int)Servo2_Trackbar.Minimum));
@@ -213,6 +217,25 @@ namespace Robot_Arm.GUI
         private void chart1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void yTrackbar_ValueChanged(object sender, EventArgs e)
+        {
+            xTrackbar_ValueChanged(sender, e);
+        }
+
+        private void xTrackbar_ValueChanged(object sender, EventArgs e)
+        {
+            double y_Target = (double) yTrackbar.Value / 10.0;
+            double x_Target = (double)yTrackbar.Value / 10.0;
+            var theta1 = double.NaN;
+            var theta2 = double.NaN;
+            myAngleCalculator.GetTheta(x_Target, y_Target, out theta1, out theta2);
+            if (!double.IsNaN(theta1) && !double.IsNaN(theta2))
+            {
+                Servo2_Trackbar.Value = (int)theta1;
+                Servo3_Trackbar.Value = (int)theta2;    
+            }
         }
 
 

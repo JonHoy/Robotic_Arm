@@ -54,6 +54,7 @@ namespace Robot_Arm.Tests
             {
                 ImageViewer viewer = new ImageViewer(); //create an image viewer
                 Capture capture = new Capture(); //create a camera capture
+                Thread.Sleep(2000);
                 Application.Idle += new EventHandler(delegate(object sender, EventArgs e)
                 {  //run this until application closed (close button click on image viewer)
                     
