@@ -23,15 +23,16 @@ namespace Robot_Arm.Video
 
             // Perform Edge Detection
             Image<Gray, byte> grayFrame = Frame.Convert<Gray, byte>();
+            
             Image<Gray, Byte> smallGrayFrame = grayFrame.PyrDown();
             Image<Gray, Byte> smoothedGrayFrame = smallGrayFrame.PyrUp();
-            smoothedGrayFrame.SmoothGaussian(5);
             Image<Gray, Byte> cannyFrame = smoothedGrayFrame.Canny(100, 60);
             cannyFrame._Dilate(2); // use canny edge detection to determine object outlines
             BlobFinder Blobs_FromEdges = new BlobFinder(cannyFrame);
             bool[,] BW_2 = Blobs_FromEdges.BW;
 
             // Perform Color Detection
+            Frame._SmoothGaussian(5);
             short[,] SelectedColors = ColorClassifier.SegmentColors(Frame);
             bool[,] BW_FromColor = ColorClassifier.GenerateBW(ref SelectedColors, ColorsToLookFor);
             Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);

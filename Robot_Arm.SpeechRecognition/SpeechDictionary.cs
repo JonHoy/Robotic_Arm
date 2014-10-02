@@ -24,7 +24,7 @@ namespace Robot_Arm.SpeechRecognition
             Colors.Add("White", new Color[] {Color.White});
             Colors.Add("Yellow", new Color[] {Color.Yellow, Color.LightYellow});
             Colors.Add("Purple", new Color[] {Color.Purple, Color.MediumPurple});
-            Colors.Add("Orange", new Color[] {Color.Orange, Color.DarkOrange, Color.OrangeRed});
+            Colors.Add("Orange", new Color[] { Color.Orange, Color.DarkOrange, Color.OrangeRed, Color.PeachPuff});
             Colors.Add("Brown", new Color[] {Color.Brown, Color.Tan, Color.Moccasin});
             Colors.Add("Gray", new Color[] {Color.Gray, Color.LightGray, Color.DarkGray});
             Colors.Add("Pink", new Color[] { Color.Pink, Color.HotPink, Color.LightPink, Color.DeepPink});

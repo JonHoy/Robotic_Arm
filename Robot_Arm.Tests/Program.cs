@@ -12,6 +12,7 @@ using Emgu.CV.VideoSurveillance;
 using System.Threading;
 using Robot_Arm.SpeechRecognition;
 using Robot_Arm.Video;
+using Robot_Arm.Navigation;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Emgu.CV.Structure;
@@ -23,22 +24,27 @@ namespace Robot_Arm.Tests
         private static Image<Emgu.CV.Structure.Bgr, byte> Photo;
         static void Main(string[] args)
         {
-            //Console.WriteLine("Speech Tests...");
-            //Console.WriteLine("");
-            //Base RobotSpeech = new Base();
-            //Console.WriteLine("Start Talking...");
-            //RecognitionResult Result = RobotSpeech.GetPhrase();
-            //Int16[] Data = Base.GetAudioData(Result);
-            //Chart TestChart = new Chart();
-            ////TestChart.
-            //string Phrase = Result.Text;
-            //string[] ParsedString = RobotSpeech.DecodePhrase(Phrase);
-            //for (int iPhrase = 0; iPhrase < ParsedString.Length; iPhrase++)
-            //{
-            //    Console.Write("SubPhrase #{0}   ", iPhrase + 1);
-            //    Console.WriteLine(ParsedString[iPhrase]);
-            //    RobotSpeech.Speak(ParsedString[iPhrase]);
-            //} 
+            Stopwatch Timer = new Stopwatch();
+
+            // Navigation Tests
+
+            var mySolver = new AngleCalculator();
+            var Theta1 = double.NaN;
+            var Theta2 = double.NaN;
+            
+            double x_Target = 8;
+            double y_Target = -4;
+            Timer.Start();
+            mySolver.GetTheta(x_Target, y_Target, out Theta1, out Theta2);
+            Timer.Stop();
+
+            Console.WriteLine("Solve Time {0} sec", (double) Timer.ElapsedTicks / (double) Stopwatch.Frequency);
+            Console.WriteLine("Theta 1: {0} deg", Theta1);
+            Console.WriteLine("Theta 2: {0} deg", Theta2);
+
+            Console.WriteLine("Error_X = {0}", 4.06 * Math.Cos(Theta1 * Math.PI/180.0) + 5.7 * Math.Cos((Theta2 + Theta1) * Math.PI/180.0) - x_Target);
+            Console.WriteLine("Error_Y = {0}", 4.06 * Math.Sin(Theta1 * Math.PI/180.0) + 5.7 * Math.Sin((Theta2 + Theta1) * Math.PI/180.0) - y_Target);
+
 
             Console.WriteLine("Video Tests... ");
 
@@ -50,37 +56,9 @@ namespace Robot_Arm.Tests
                 Capture capture = new Capture(); //create a camera capture
                 Application.Idle += new EventHandler(delegate(object sender, EventArgs e)
                 {  //run this until application closed (close button click on image viewer)
-                    Stopwatch Timer = new Stopwatch();
+                    
                     Photo = capture.QueryFrame(); //draw the image obtained from camera
                     Timer.Start();
-                    //Image<Bgr, byte> NewPhoto = Photo.Convert<Bgr, byte>();
-
-                    //Image<Gray, byte> grayFrame = Photo.Convert<Gray, byte>();
-                    //Image<Gray, Byte> smallGrayFrame = grayFrame.PyrDown();
-                    //Image<Gray, Byte> smoothedGrayFrame = smallGrayFrame.PyrUp();
-                    //Image<Gray, Byte> cannyFrame = smoothedGrayFrame.Canny(100, 60);
-                    //cannyFrame._Dilate(3);
-
-                    //short[,] SelectedColors = Colors.SegmentColors(NewPhoto);
-                    //NewPhoto = Colors.ReColorPhoto(ref SelectedColors);
-                    //string[] MatchStrings = myWords.GetColorStrings("Orange");
-                    //bool[,] BW_FromColor = Colors.GenerateBW(ref SelectedColors, MatchStrings);
-
-                    //Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);
-                    //BW_GrayImg._Dilate(5);
-                    //BW_FromColor = BlobFinder.BW_Converter(BW_GrayImg);
-                    //BlobFinder Blobs_FromColor = new BlobFinder(BW_FromColor);
-                    //BlobFinder Blobs_FromEdges = new BlobFinder(cannyFrame);
-                    //bool[,] BW_1 = Blobs_FromColor.FillBlobBoundingBox();
-                    //bool[,] BW_2 = Blobs_FromEdges.FillBlobBoundingBox();
-
-
-                    //bool[,] BW_Composite = BlobFinder.AND(ref BW_1, ref  BW_2);
-                    //BlobFinder ImageBlobs = new BlobFinder(BW_Composite);
-                    //bool[,] BW_Filled = ImageBlobs.FillBlobBoundingBox();
-                    //BlobFinder ImageBlobsFilled = new BlobFinder(BW_Filled);
-                    //ImageBlobsFilled.RemoveSmallBlobs(200);
-
                     string[] MatchStrings = myWords.GetColorStrings("Orange");
                     ColorObjectRecognizer myColorObjectRecognizer = new ColorObjectRecognizer(MatchStrings, Photo.Convert<Bgr, Byte>());
                     //myColor
