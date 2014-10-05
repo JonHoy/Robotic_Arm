@@ -1,8 +1,4 @@
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\Robot_Arm.SpeechRecognition.dll
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\Robot_Arm.SpeechRecognition.pdb
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\NAudio.dll
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\NAudio.WindowsMediaFormat.dll
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\NAudio.xml
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.csprojResolveAssemblyReference.cache
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.dll
 C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.pdb

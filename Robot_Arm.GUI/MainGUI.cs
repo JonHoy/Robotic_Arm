@@ -17,6 +17,9 @@ using System.Speech;
 using Robot_Arm.SpeechRecognition;
 using Robot_Arm.Video;
 using Robot_Arm.Navigation;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.UI;
 //using Robot_Arm.
 
 namespace Robot_Arm.GUI
@@ -31,10 +34,17 @@ namespace Robot_Arm.GUI
         private AngleCalculator myAngleCalculator;
         private Arduino myArduino;
         private Controller myController;
+        private Capture myCamera;
         private List<Servo> myServos;
         private int RefreshRate_HZ = 10;
+        private SpeechDictionary myWords;
+        private string[] MatchStrings;
+       
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            myWords = new SpeechDictionary();
+            MatchStrings = myWords.GetColorStrings("Orange");
             string[] ports = SerialPort.GetPortNames();
             foreach (string port in ports)
             {
@@ -65,21 +75,28 @@ namespace Robot_Arm.GUI
                 throw new Exception("Unable to connect to the controller");
             }
 
-            myAngleCalculator = new AngleCalculator();
+            try
+            {
+                myCamera = new Capture();
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+            
+            myAngleCalculator = new AngleCalculator((int)Servo2_Trackbar.Minimum, (int)Servo2_Trackbar.Maximum, (int)Servo3_Trackbar.Minimum - 180, (int)Servo3_Trackbar.Maximum - 180);
 
             myServos = new List<Servo>(4);
             myServos.Insert(0, new Servo(ref myArduino, (int)numericUpDown1.Value, (int)Servo1_Trackbar.Maximum, (int)Servo1_Trackbar.Minimum));
             myServos.Insert(1, new Servo(ref myArduino, (int)numericUpDown2.Value, (int)Servo2_Trackbar.Maximum, (int)Servo2_Trackbar.Minimum));
             myServos.Insert(2, new Servo(ref myArduino, (int)numericUpDown3.Value, (int)Servo3_Trackbar.Maximum, (int)Servo3_Trackbar.Minimum));
-            myServos.Insert(3, new Servo(ref myArduino, (int)numericUpDown4.Value, (int)Servo4_Trackbar.Maximum, (int)Servo4_Trackbar.Minimum));
+            //myServos.Insert(3, new Servo(ref myArduino, (int)numericUpDown4.Value, (int)Servo4_Trackbar.Maximum, (int)Servo4_Trackbar.Minimum));
             JoyStickTimer.Interval = 1000 / RefreshRate_HZ;
             JoyStickTimer.Start();
         }
 
 
-        private void Controller_Checkbox_CheckedChanged(object sender, EventArgs e)
-        {
-        }
 
         private void Servo1_Trackbar_ValueChanged(object sender, EventArgs e)
         {
@@ -140,6 +157,8 @@ namespace Robot_Arm.GUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            var Photo = myCamera.QueryFrame(); //draw the image obtained from camera
+            this.imageBox1.Image = Photo;
             if (Controller_Checkbox.Checked)
             {
                 int myOldPacketNumber = 0;
@@ -156,9 +175,31 @@ namespace Robot_Arm.GUI
                     UpdateServoAngle(LeftThumbX, Sensitivity, myServos[0], ref Servo1_Trackbar, DeadZone);
                     UpdateServoAngle(LeftThumbY, Sensitivity, myServos[1], ref Servo2_Trackbar, DeadZone);
                     UpdateServoAngle(RightThumbY, Sensitivity, myServos[2], ref Servo3_Trackbar, DeadZone);
-                    UpdateServoAngle(RightThumbX, Sensitivity, myServos[3], ref Servo4_Trackbar, DeadZone);
+                    //UpdateServoAngle(RightThumbX, Sensitivity, myServos[3], ref Servo4_Trackbar, DeadZone);
                     myOldPacketNumber = myNewPacketNumber;
                 }
+            }
+            else if (auto_checkBox.Checked)
+            {
+                
+                //var Region = Robot_Arm.Video.ColorObjectRecognizer.GetRegion(myWords.GetColorStrings("Orange"), Photo.Clone());
+                //if (! Region.IsEmpty)
+                //{
+                    
+                //    Robot_Arm.Navigation.Base.TrackBlobs(
+                //        (Region.Left + Region.Right) / 2,
+                //        (Region.Top + Region.Bottom) / 2,
+                //        myServos[0],
+                //        myServos[2],
+                //        30);
+
+                //}
+                myServos[1].ServoAngleChange(115);
+                myServos[2].ServoAngleChange(45);
+                Robot_Arm.Navigation.Base.ScanForBlobs(
+                    myWords.GetColorStrings("Orange"),
+                    myCamera,
+                    myServos[0]);
             }
 
         }
@@ -183,7 +224,7 @@ namespace Robot_Arm.GUI
 
         private void AD_Timer_Tick(object sender, EventArgs e)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 2; i++)
             {
                 ushort Val = myArduino.AnalogRead(i);
                 string PinNumber = "Analog " + i.ToString();
@@ -193,15 +234,20 @@ namespace Robot_Arm.GUI
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 6; i++)
+            try
             {
-                string PinNumber = "Analog " + i.ToString();
-                this.chart1.Series.Add(PinNumber);
-                this.chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+                for (int i = 0; i < 2; i++)
+                {
+                    string PinNumber = "Analog " + i.ToString();
+                    this.chart1.Series.Add(PinNumber);
+                    this.chart1.Series[i].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+                }
+                this.AD_Timer.Start();
             }
-
-
-            this.AD_Timer.Start();
+            catch (Exception)
+            {
+            }
+           
         }
 
         private void stopButton_Click(object sender, EventArgs e)
@@ -211,6 +257,7 @@ namespace Robot_Arm.GUI
 
         private void clearButton_Click(object sender, EventArgs e)
         {
+            this.AD_Timer.Stop();
             this.chart1.Series.Clear();
         }
 
@@ -227,15 +274,32 @@ namespace Robot_Arm.GUI
         private void xTrackbar_ValueChanged(object sender, EventArgs e)
         {
             double y_Target = (double) yTrackbar.Value / 10.0;
-            double x_Target = (double)yTrackbar.Value / 10.0;
+            double x_Target = (double) xTrackbar.Value / 10.0;
             var theta1 = double.NaN;
             var theta2 = double.NaN;
+            Console.WriteLine("X Target: {0}    Y Target: {1}", x_Target, y_Target); 
             myAngleCalculator.GetTheta(x_Target, y_Target, out theta1, out theta2);
             if (!double.IsNaN(theta1) && !double.IsNaN(theta2))
             {
-                Servo2_Trackbar.Value = (int)theta1;
-                Servo3_Trackbar.Value = (int)theta2;    
+                int Servo2Val = (int) (170 - (double)theta1 * 8.0/9.0);
+                int Servo3Val = (int) (1.2 * ((double) theta2 + 180) + 5.0);
+                Servo2Val = Math.Min(Servo2Val, Servo2_Trackbar.Maximum);
+                Servo2Val = Math.Max(Servo2Val, Servo2_Trackbar.Minimum); 
+                Servo3Val = Math.Min(Servo3Val, Servo3_Trackbar.Maximum);
+                Servo3Val = Math.Max(Servo3Val, Servo3_Trackbar.Minimum);
+                Servo2_Trackbar.Value = Servo2Val;
+                Servo3_Trackbar.Value = Servo3Val;
             }
+        }
+
+        private void auto_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Controller_Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
 

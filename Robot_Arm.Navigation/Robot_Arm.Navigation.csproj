@@ -42,10 +42,6 @@
     <Reference Include="Emgu.Util">
       <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.Util.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Solver.Foundation, Version=3.0.2.10889, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.Solver.Foundation.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

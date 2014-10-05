@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.Servo1_Trackbar = new System.Windows.Forms.TrackBar();
             this.Servo2_Trackbar = new System.Windows.Forms.TrackBar();
             this.Controller_Checkbox = new System.Windows.Forms.CheckBox();
@@ -47,11 +47,10 @@
             this.JoyStickTimer = new System.Windows.Forms.Timer(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.auto_checkBox = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Video = new System.Windows.Forms.TabPage();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Speech = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Servo_Joystick = new System.Windows.Forms.TabPage();
@@ -68,6 +67,7 @@
             this.startButton = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AD_Timer = new System.Windows.Forms.Timer(this.components);
+            this.imageBox1 = new Emgu.CV.UI.ImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.Servo1_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo2_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo3_Trackbar)).BeginInit();
@@ -79,7 +79,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Video.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Speech.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Servo_Joystick.SuspendLayout();
@@ -88,6 +87,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Navigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Servo1_Trackbar
@@ -168,12 +168,13 @@
             this.Servo4_Trackbar.BackColor = System.Drawing.SystemColors.Window;
             this.Servo4_Trackbar.Location = new System.Drawing.Point(7, 375);
             this.Servo4_Trackbar.Maximum = 90;
+            this.Servo4_Trackbar.Minimum = 30;
             this.Servo4_Trackbar.Name = "Servo4_Trackbar";
             this.Servo4_Trackbar.Size = new System.Drawing.Size(265, 45);
             this.Servo4_Trackbar.TabIndex = 1;
             this.Servo4_Trackbar.Tag = "";
             this.Servo4_Trackbar.TickFrequency = 5;
-            this.Servo4_Trackbar.Value = 70;
+            this.Servo4_Trackbar.Value = 80;
             this.Servo4_Trackbar.ValueChanged += new System.EventHandler(this.Servo4_Trackbar_ValueChanged);
             // 
             // label3
@@ -316,17 +317,17 @@
             this.trackBar1.Value = 60;
             this.trackBar1.ValueChanged += new System.EventHandler(this.Servo4_Trackbar_ValueChanged);
             // 
-            // checkBox1
+            // auto_checkBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(454, 1);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(163, 23);
-            this.checkBox1.TabIndex = 2;
-            this.checkBox1.Text = "Autonomous Mode";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.Controller_Checkbox_CheckedChanged);
+            this.auto_checkBox.AutoSize = true;
+            this.auto_checkBox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.auto_checkBox.Location = new System.Drawing.Point(454, 1);
+            this.auto_checkBox.Name = "auto_checkBox";
+            this.auto_checkBox.Size = new System.Drawing.Size(163, 23);
+            this.auto_checkBox.TabIndex = 2;
+            this.auto_checkBox.Text = "Autonomous Mode";
+            this.auto_checkBox.UseVisualStyleBackColor = true;
+            this.auto_checkBox.CheckedChanged += new System.EventHandler(this.auto_checkBox_CheckedChanged);
             // 
             // label6
             // 
@@ -354,7 +355,7 @@
             // Video
             // 
             this.Video.BackColor = System.Drawing.Color.Gray;
-            this.Video.Controls.Add(this.pictureBox1);
+            this.Video.Controls.Add(this.imageBox1);
             this.Video.Controls.Add(this.label6);
             this.Video.Location = new System.Drawing.Point(4, 28);
             this.Video.Name = "Video";
@@ -362,15 +363,6 @@
             this.Video.Size = new System.Drawing.Size(973, 508);
             this.Video.TabIndex = 1;
             this.Video.Text = "Video";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(481, 80);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(430, 366);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
             // 
             // Speech
             // 
@@ -428,22 +420,24 @@
             // yTrackbar
             // 
             this.yTrackbar.Location = new System.Drawing.Point(449, 81);
-            this.yTrackbar.Maximum = 100;
+            this.yTrackbar.Maximum = 60;
             this.yTrackbar.Minimum = -40;
             this.yTrackbar.Name = "yTrackbar";
             this.yTrackbar.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.yTrackbar.Size = new System.Drawing.Size(45, 339);
             this.yTrackbar.TabIndex = 8;
+            this.yTrackbar.Value = 20;
             this.yTrackbar.ValueChanged += new System.EventHandler(this.yTrackbar_ValueChanged);
             // 
             // xTrackbar
             // 
             this.xTrackbar.Location = new System.Drawing.Point(507, 442);
             this.xTrackbar.Maximum = 100;
+            this.xTrackbar.Minimum = 40;
             this.xTrackbar.Name = "xTrackbar";
             this.xTrackbar.Size = new System.Drawing.Size(449, 45);
             this.xTrackbar.TabIndex = 7;
-            this.xTrackbar.Value = 50;
+            this.xTrackbar.Value = 60;
             this.xTrackbar.ValueChanged += new System.EventHandler(this.xTrackbar_ValueChanged);
             // 
             // pictureBox2
@@ -543,10 +537,10 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(23, 16);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(412, 382);
@@ -559,6 +553,14 @@
             this.AD_Timer.Interval = 200;
             this.AD_Timer.Tick += new System.EventHandler(this.AD_Timer_Tick);
             // 
+            // imageBox1
+            // 
+            this.imageBox1.Location = new System.Drawing.Point(22, 67);
+            this.imageBox1.Name = "imageBox1";
+            this.imageBox1.Size = new System.Drawing.Size(425, 412);
+            this.imageBox1.TabIndex = 2;
+            this.imageBox1.TabStop = false;
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -566,7 +568,7 @@
             this.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(984, 538);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.auto_checkBox);
             this.Controls.Add(this.Controller_Checkbox);
             this.Controls.Add(this.tabControl1);
             this.Name = "MainGUI";
@@ -585,7 +587,6 @@
             this.tabControl1.ResumeLayout(false);
             this.Video.ResumeLayout(false);
             this.Video.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Speech.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.Servo_Joystick.ResumeLayout(false);
@@ -595,6 +596,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Navigation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -618,9 +620,8 @@
         private System.Windows.Forms.Timer JoyStickTimer;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox auto_checkBox;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Servo_Joystick;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -639,6 +640,7 @@
         private System.Windows.Forms.Timer AD_Timer;
         private System.Windows.Forms.TrackBar yTrackbar;
         private System.Windows.Forms.TrackBar xTrackbar;
+        private Emgu.CV.UI.ImageBox imageBox1;
     }
 }
 

@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.SolverFoundation;
-using Microsoft.SolverFoundation.Common;
-using Microsoft.SolverFoundation.Solvers;
-using Microsoft.SolverFoundation.Services;
 using System.Drawing;
 
 namespace Robot_Arm.Navigation
@@ -15,10 +11,6 @@ namespace Robot_Arm.Navigation
     {
         private double L1 = 4.06;
         private double L2 = 5.7;
-        private double theta1_Min = 0;
-        private double theta1_Max = 180;
-        private double theta2_Min = -135;
-        private double theta2_Max = 0;
         private double[] xTableLookup; // lookup tables for x, y, theta1, and theta2
         private double[] yTableLookup;
         private double[] theta1TableLookup;
@@ -26,7 +18,7 @@ namespace Robot_Arm.Navigation
 
         private double Tolerance = .15;
 
-        public AngleCalculator()
+        public AngleCalculator(int theta1_Min = 0, int theta1_Max = 180, int theta2_Min = -135, int theta2_Max = 0)
         {
             int Rows, Cols;
             Rows = (int)(theta1_Max - theta1_Min + 1);
