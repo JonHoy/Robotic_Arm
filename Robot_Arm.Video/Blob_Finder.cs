@@ -318,22 +318,56 @@ namespace Robot_Arm.Video
         public void DrawBlobOutline(Image HostImage)
         {
             Graphics myGraphics = Graphics.FromImage(HostImage);
-            Rectangle[] myRectangles = new Rectangle[Blobs.Length];
-            for (int i = 0; i < Blobs.Length; i++)
-			{
-                int x = Blobs[i].Xmin;
-                int y = Blobs[i].Ymin;
-                int width = Blobs[i].Xmax - Blobs[i].Xmin;
-                int height = Blobs[i].Ymax - Blobs[i].Ymin;
-                myRectangles[i] = new Rectangle(x, y, width, height);
-			}
+            var myRectangles = GetRectangles();
             Pen myPen = new Pen(Color.Red);
             if (myRectangles.Length > 0)
             {
                 myGraphics.DrawRectangles(myPen, myRectangles);    
             }
-            
         }
+
+        private Rectangle[] GetRectangles()
+        {
+            Rectangle[] myRectangles = new Rectangle[Blobs.Length];
+            for (int i = 0; i < Blobs.Length; i++)
+            {
+                int x = Blobs[i].Xmin;
+                int y = Blobs[i].Ymin;
+                int width = Blobs[i].Xmax - Blobs[i].Xmin;
+                int height = Blobs[i].Ymax - Blobs[i].Ymin;
+                myRectangles[i] = new Rectangle(x, y, width, height);
+            }
+            return myRectangles;
+        }
+
+        public Blob PickBestBlob()
+        {
+            double minXCoverage = .05; // define min percentage coverage a blob can have not not be rejected
+            double maxXCoverage = .35; // define maximum percent coverage a blob can have and not be rejected 
+            double maxPercentCoverage = .15;
+
+            try
+            {
+                var rectBounds = GetRectangles();
+                double frameWidth = (double)BW.GetLength(1);
+                double frameHeight = (double)BW.GetLength(0);
+                var FiltBlobs = Array.FindAll(Blobs, (x) => minXCoverage < (double)((double)(x.Xmax - x.Xmin) / frameWidth));
+                FiltBlobs = Array.FindAll(FiltBlobs, (x) => maxXCoverage > (double)((double)(x.Xmax - x.Xmin) / frameWidth));
+                FiltBlobs = Array.FindAll(FiltBlobs, (x) => maxPercentCoverage > (double)x.PixelCount / (frameWidth * frameHeight));
+                double max = FiltBlobs.Max(t => t.PixelCount);
+                int index = Array.FindIndex(FiltBlobs, t => t.PixelCount == max);
+                var BestBlob = FiltBlobs[index];
+                return BestBlob;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+
+
+        }
+
         // remove blobs with a given criteria
         public void RemoveSmallBlobs(int minPixelCount)
         {

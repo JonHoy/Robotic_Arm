@@ -44,60 +44,24 @@ namespace Robot_Arm.Video
                 Color.DeepPink,
                 Color.LightPink,
                 Color.DarkKhaki,
+                Color.RoyalBlue,
+                Color.DodgerBlue,
+                Color.Goldenrod,
+                Color.DarkSlateBlue,
             };
             colornames = new string[allColors.Length];
-            colorvalues_HSV = new float[allColors.Length, 3];
-            colorvalues_BGR = new byte[allColors.Length, 3];
+            colorvalues_BGR = new int[allColors.Length, 3];
             for (int iColor = 0; iColor < allColors.Length; iColor++)
             {
                 colornames[iColor] = allColors[iColor].ToKnownColor().ToString();
                 Color CurrentColor = Color.FromName(colornames[iColor]);
-                colorvalues_HSV[iColor, 0] = CurrentColor.GetHue();
-                colorvalues_HSV[iColor, 1] = CurrentColor.GetSaturation();
-                colorvalues_HSV[iColor, 2] = CurrentColor.GetBrightness();
-                colorvalues_BGR[iColor, 0] = CurrentColor.B;
-                colorvalues_BGR[iColor, 1] = CurrentColor.G;
-                colorvalues_BGR[iColor, 2] = CurrentColor.R;
+                colorvalues_BGR[iColor, 0] = (int) CurrentColor.B;
+                colorvalues_BGR[iColor, 1] = (int)CurrentColor.G;
+                colorvalues_BGR[iColor, 2] = (int) CurrentColor.R;
             }
             
         }
 
-        public short[,] SegmentColors(Image<Hsv,float> Photo) 
-        {
-            int Rows = Photo.Rows;
-            int Cols = Photo.Cols;
-            short[,] SelectedColors = new short[Rows, Cols];
-            int numcolors = colorvalues_HSV.GetLength(0);
-
-            float[, ,] PhotoData = Photo.Data;
-
-            Parallel.For(0, Rows, i =>
-            {
-                for (int j = 0; j < Cols; j++)
-                {
-                    float Hue = (float) PhotoData[i, j, 0];
-                    float Sat = (float) PhotoData[i, j, 1];
-                    float Val = (float) PhotoData[i, j, 2];
-                    float MinDistance = float.MaxValue;
-                    for (int k = 0; k < numcolors; k++)
-                    {
-                        float HueDist = Math.Min(Math.Abs(Hue - colorvalues_HSV[k, 0]),
-                            Math.Abs(360 - Hue - colorvalues_HSV[k, 0])) / 360f;
-                        float SatDist = Math.Abs(Sat - colorvalues_HSV[k, 1]);
-                        float ValDist = Math.Abs(Val - colorvalues_HSV[k, 2]);
-                        float distance = SatDist + (ValDist * (float) 0.5) + HueDist;
-
-                        if (MinDistance > distance)
-                        {
-                            MinDistance = distance;
-                            SelectedColors[i, j] = (short)k;
-                        }
-                    }
-                }
-            }
-            );
-            return SelectedColors;
-        }
 
         public short[,] SegmentColors(Image<Bgr, byte> Photo)
         {
@@ -110,24 +74,28 @@ namespace Robot_Arm.Video
 
             Parallel.For(0, Rows, i =>
             {
+                int TempBluePhotoData, TempGreenPhotoData, TempRedPhotoData;
+                int TempBlueVal, TempGreenVal, TempRedVal;
+                int BlueDist, GreenDist, RedDist;
+                int distance;
                 for (int j = 0; j < Cols; j++)
                 {
                     int MinDistance = int.MaxValue;
                     for (int k = 0; k < numcolors; k++)
                     {
-                        int TempBluePhotoData = (int) PhotoData[i, j, 0];
-                        int TempGreenPhotoData = (int) PhotoData[i, j, 1];
-                        int TempRedPhotoData = (int) PhotoData[i, j, 2];
+                        TempBluePhotoData = (int) PhotoData[i, j, 0];
+                        TempGreenPhotoData = (int) PhotoData[i, j, 1];
+                        TempRedPhotoData = (int) PhotoData[i, j, 2];
 
-                        int TempBlueVal = (int) colorvalues_BGR[k, 0];
-                        int TempGreenVal = (int) colorvalues_BGR[k, 1];
-                        int TempRedVal = (int) colorvalues_BGR[k, 2];
+                        TempBlueVal = colorvalues_BGR[k, 0];
+                        TempGreenVal = colorvalues_BGR[k, 1];
+                        TempRedVal = colorvalues_BGR[k, 2];
 
-                        int BlueDist = Math.Abs(TempBlueVal - TempBluePhotoData);
-                        int GreenDist = Math.Abs(TempGreenVal - TempGreenPhotoData);
-                        int RedDist = Math.Abs(TempRedVal - TempRedPhotoData);
+                        BlueDist = Math.Abs(TempBlueVal - TempBluePhotoData);
+                        GreenDist = Math.Abs(TempGreenVal - TempGreenPhotoData);
+                        RedDist = Math.Abs(TempRedVal - TempRedPhotoData);
                         
-                        int distance = BlueDist + GreenDist + RedDist;
+                        distance = BlueDist + GreenDist + RedDist;
 
                         if (MinDistance > distance)
                         {
@@ -152,9 +120,9 @@ namespace Robot_Arm.Video
                 for (int j = 0; j < Cols; j++)
                 {
                     int SelectedVal = SelectedColor[i, j];
-                    RawMatrix[i, j, 0] = colorvalues_BGR[SelectedVal, 0];
-                    RawMatrix[i, j, 1] = colorvalues_BGR[SelectedVal, 1];
-                    RawMatrix[i, j, 2] = colorvalues_BGR[SelectedVal, 2];
+                    RawMatrix[i, j, 0] = (byte) colorvalues_BGR[SelectedVal, 0];
+                    RawMatrix[i, j, 1] = (byte) colorvalues_BGR[SelectedVal, 1];
+                    RawMatrix[i, j, 2] = (byte) colorvalues_BGR[SelectedVal, 2];
                 }
             }
             Image<Bgr, byte> NewPhoto = new Image<Bgr, byte>(RawMatrix);
@@ -208,8 +176,7 @@ namespace Robot_Arm.Video
         }
 
         string[] colornames; // name of colors recognized by the computer
-        float[,] colorvalues_HSV; // value of colors [HSV]
-        byte[,] colorvalues_BGR; // value of colors [BGR]
+        int[,] colorvalues_BGR; // value of colors [BGR]
     }
 
 }
