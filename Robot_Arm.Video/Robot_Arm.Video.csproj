@@ -85,6 +85,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
+    <Reference Include="Robot_Arm.SpeechRecognition">
+      <HintPath>..\Robot_Arm.SpeechRecognition\bin\Debug\Robot_Arm.SpeechRecognition.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.61.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">

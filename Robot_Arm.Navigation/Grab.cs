@@ -32,6 +32,8 @@ namespace Robot_Arm.Navigation
         private double maxDistance = 40;
         private double cm_to_inch = .394;
 
+        public SharpIR(Arduino Board, int Pin) : base(Board, Pin){ }
+
         double getDistance() // return distance reading in inches
         {
             var voltage = getSensorReading();

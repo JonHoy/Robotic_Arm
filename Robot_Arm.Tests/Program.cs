@@ -33,20 +33,19 @@ namespace Robot_Arm.Tests
             {
                 ImageViewer viewer = new ImageViewer(); //create an image viewer
                 Capture capture = new Capture(); //create a camera capture
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720);
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280);
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 640);
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 360);
                 Thread.Sleep(2000);
                 Application.Idle += new EventHandler(delegate(object sender, EventArgs e)
                 {  //run this until application closed (close button click on image viewer)
                     
                     Photo = capture.QueryFrame(); //draw the image obtained from camera
                     Timer.Start();
-                    string[] MatchStrings = myWords.GetColorStrings("Orange");
-                    //ColorObjectRecognizer myColorObjectRecognizer = new ColorObjectRecognizer(MatchStrings, Photo.Convert<Bgr, Byte>());
-                    //myColor
+                    string[] MatchStrings = myWords.GetColorStrings("Red");
+                    var NewPhoto = Photo.Clone();
+                    Rectangle myRect = Robot_Arm.Video.ColorObjectRecognizer.GetRegion(MatchStrings, NewPhoto);
                     Timer.Stop();
-                    //ImageBlobsFilled.DrawBlobOutline(Photo.Bitmap);
-
+                    viewer.Image = NewPhoto;
                     Console.WriteLine("Time to Process Frame {0} ms", Timer.ElapsedMilliseconds);
                     Timer.Reset();
                 });

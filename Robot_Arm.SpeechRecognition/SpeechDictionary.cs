@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
+// To see what these colors look like go to the link below
+//http://coloreminder.com
+
 namespace Robot_Arm.SpeechRecognition
 {
     public class SpeechDictionary
@@ -17,17 +20,17 @@ namespace Robot_Arm.SpeechRecognition
             Colors = new Dictionary<string, Color[]>();
             Actions = new Dictionary<string, byte>();
             Objects = new Dictionary<string, byte>();
-            Colors.Add("Red", new Color[] {Color.Red, Color.DarkRed, Color.Maroon, Color.Crimson});
-            Colors.Add("Green", new Color[] {Color.Green, Color.LightGreen, Color.DarkGreen, Color.LimeGreen});
-            Colors.Add("Blue", new Color[] {Color.Blue, Color.LightBlue, Color.DarkBlue, Color.Aqua, Color.Turquoise, Color.RoyalBlue});
+            Colors.Add("Red", new Color[] {Color.Red, Color.DarkRed, Color.Maroon, Color.Crimson, Color.Firebrick});
+            Colors.Add("Green", new Color[] {Color.Green, Color.LightGreen, Color.DarkGreen, Color.Lime, Color.Aqua, Color.LightSeaGreen});
+            Colors.Add("Blue", new Color[] {Color.Blue, Color.DarkBlue, Color.RoyalBlue, Color.Navy});
             Colors.Add("Black", new Color[] {Color.Black});
-            Colors.Add("White", new Color[] {Color.White});
-            Colors.Add("Yellow", new Color[] {Color.Yellow, Color.LightYellow});
-            Colors.Add("Purple", new Color[] {Color.Purple, Color.MediumPurple});
+            Colors.Add("White", new Color[] {Color.White, Color.OldLace});
+            Colors.Add("Yellow", new Color[] { Color.Yellow, Color.LightYellow, Color.Gold, Color.Beige, Color.Khaki});
+            Colors.Add("Purple", new Color[] {Color.Purple, Color.MediumPurple, Color.Indigo, Color.DarkOrchid, Color.BlueViolet, Color.DarkMagenta});
             Colors.Add("Orange", new Color[] { Color.Orange, Color.DarkOrange, Color.OrangeRed, Color.PeachPuff});
-            Colors.Add("Brown", new Color[] {Color.Brown, Color.Tan, Color.Moccasin});
-            Colors.Add("Gray", new Color[] {Color.Gray, Color.LightGray, Color.DarkGray});
-            Colors.Add("Pink", new Color[] { Color.Pink, Color.HotPink, Color.LightPink, Color.DeepPink});
+            Colors.Add("Brown", new Color[] {Color.Tan, Color.Peru, Color.SaddleBrown, Color.Chocolate});
+            Colors.Add("Gray", new Color[] {Color.Gray, Color.LightGray, Color.DarkGray, Color.LightSlateGray, Color.Silver, Color.Gainsboro, Color.SlateGray});
+            Colors.Add("Pink", new Color[] { Color.Pink, Color.HotPink, Color.LightPink, Color.DeepPink, Color.Violet, Color.Magenta});
             // Now define Action phrases which correspond to command codes
             Actions.Add("Get", 1);
             Actions.Add("Fetch", 1);

@@ -326,6 +326,17 @@ namespace Robot_Arm.Video
             }
         }
 
+        public void DrawBlobOutline(Image HostImage, Rectangle Box)
+        {
+            Graphics myGraphics = Graphics.FromImage(HostImage);
+            var myRectangles = new Rectangle[] { Box };
+            Pen myPen = new Pen(Color.Red);
+            if (Box.IsEmpty != true)
+            {
+                myGraphics.DrawRectangles(myPen, myRectangles);
+            }
+        }
+
         private Rectangle[] GetRectangles()
         {
             Rectangle[] myRectangles = new Rectangle[Blobs.Length];
@@ -342,9 +353,9 @@ namespace Robot_Arm.Video
 
         public Blob PickBestBlob()
         {
-            double minXCoverage = .05; // define min percentage coverage a blob can have not not be rejected
-            double maxXCoverage = .35; // define maximum percent coverage a blob can have and not be rejected 
-            double maxPercentCoverage = .15;
+            double minXCoverage = .03; // define min percentage coverage a blob can have not not be rejected
+            double maxXCoverage = .2; // define maximum percent coverage a blob can have and not be rejected 
+            double maxPercentCoverage = .07;
 
             try
             {

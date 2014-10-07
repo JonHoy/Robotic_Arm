@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using Robot_Arm.SpeechRecognition;
 
 namespace Robot_Arm.Video
 {
@@ -23,8 +24,6 @@ namespace Robot_Arm.Video
                 Color.Yellow,
                 Color.Purple,
                 Color.Orange,
-                Color.Pink,
-                Color.Brown,
                 Color.DarkRed,
                 Color.DarkOrange,
                 Color.DarkBlue,
@@ -47,19 +46,36 @@ namespace Robot_Arm.Video
                 Color.RoyalBlue,
                 Color.DodgerBlue,
                 Color.Goldenrod,
+                Color.Gold,
+                Color.Beige,
                 Color.DarkSlateBlue,
+                Color.Khaki,
+                Color.Silver,
+                Color.Gainsboro,
+                Color.SlateGray,
+                Color.Navy,
+                Color.SteelBlue,
+                Color.Tan,
+                Color.Peru,
+                Color.Chocolate,
+                Color.SaddleBrown,
+                Color.Indigo,
+                Color.Lime,
+                Color.SeaGreen,
+                Color.LightSeaGreen,
+                Color.DarkOliveGreen
             };
+
             colornames = new string[allColors.Length];
-            colorvalues_BGR = new int[allColors.Length, 3];
+            colorvalues_BGR = new float[allColors.Length, 3];
             for (int iColor = 0; iColor < allColors.Length; iColor++)
             {
                 colornames[iColor] = allColors[iColor].ToKnownColor().ToString();
                 Color CurrentColor = Color.FromName(colornames[iColor]);
-                colorvalues_BGR[iColor, 0] = (int) CurrentColor.B;
-                colorvalues_BGR[iColor, 1] = (int)CurrentColor.G;
-                colorvalues_BGR[iColor, 2] = (int) CurrentColor.R;
+                colorvalues_BGR[iColor, 0] = (float) CurrentColor.B + 1;
+                colorvalues_BGR[iColor, 1] = (float)CurrentColor.G + 1;
+                colorvalues_BGR[iColor, 2] = (float) CurrentColor.R +1;
             }
-            
         }
 
 
@@ -72,31 +88,25 @@ namespace Robot_Arm.Video
 
             byte[, ,] PhotoData = Photo.Data;
 
+            
+
             Parallel.For(0, Rows, i =>
             {
-                int TempBluePhotoData, TempGreenPhotoData, TempRedPhotoData;
-                int TempBlueVal, TempGreenVal, TempRedVal;
-                int BlueDist, GreenDist, RedDist;
-                int distance;
+                
                 for (int j = 0; j < Cols; j++)
                 {
-                    int MinDistance = int.MaxValue;
+                    float MinDistance = float.MaxValue;
+                    float TempBluePhotoData = (float)PhotoData[i, j, 0] + 1;
+                    float TempGreenPhotoData = (float)PhotoData[i, j, 1] + 1;
+                    float TempRedPhotoData = (float)PhotoData[i, j, 2] + 1;
+
                     for (int k = 0; k < numcolors; k++)
                     {
-                        TempBluePhotoData = (int) PhotoData[i, j, 0];
-                        TempGreenPhotoData = (int) PhotoData[i, j, 1];
-                        TempRedPhotoData = (int) PhotoData[i, j, 2];
-
-                        TempBlueVal = colorvalues_BGR[k, 0];
-                        TempGreenVal = colorvalues_BGR[k, 1];
-                        TempRedVal = colorvalues_BGR[k, 2];
-
-                        BlueDist = Math.Abs(TempBlueVal - TempBluePhotoData);
-                        GreenDist = Math.Abs(TempGreenVal - TempGreenPhotoData);
-                        RedDist = Math.Abs(TempRedVal - TempRedPhotoData);
-                        
-                        distance = BlueDist + GreenDist + RedDist;
-
+                        float BlueDist = Math.Abs(TempBluePhotoData - colorvalues_BGR[k, 0]);
+                        float GreenDist = Math.Abs(TempGreenPhotoData - colorvalues_BGR[k, 1]);
+                        float RedDist = Math.Abs(TempRedPhotoData - colorvalues_BGR[k, 2]);
+                        float distance = BlueDist + RedDist + GreenDist;
+                       
                         if (MinDistance > distance)
                         {
                             MinDistance = distance;
@@ -176,7 +186,7 @@ namespace Robot_Arm.Video
         }
 
         string[] colornames; // name of colors recognized by the computer
-        int[,] colorvalues_BGR; // value of colors [BGR]
+        float[,] colorvalues_BGR; // value of colors [BGR]       
     }
 
 }

@@ -26,22 +26,20 @@ namespace Robot_Arm.Video
                 Image<Gray, Byte> smallGrayFrame = grayFrame.PyrDown();
                 Image<Gray, Byte> smoothedGrayFrame = smallGrayFrame.PyrUp();
                 Image<Gray, Byte> cannyFrame = smoothedGrayFrame.Canny(100, 60);
-                cannyFrame._Dilate(2); // use canny edge detection to determine object outlines
+                cannyFrame._Dilate(3); // use canny edge detection to determine object outlines
                 BlobFinder Blobs_FromEdges = new BlobFinder(cannyFrame);
                 bool[,] BW_2 = Blobs_FromEdges.BW;
                 return BW_2;
             });
 
             detectEdges.Start();
-            Frame._SmoothGaussian(5);
             short[,] SelectedColors = ColorClassifier.SegmentColors(Frame);
             bool[,] BW_FromColor = ColorClassifier.GenerateBW(ref SelectedColors, ColorsToLookFor);
-            Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);
-            BW_GrayImg._Dilate(2);
+            Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);;
+            BW_GrayImg._Dilate(3);
             BW_FromColor = BlobFinder.BW_Converter(BW_GrayImg);
             BlobFinder Blobs_FromColor = new BlobFinder(BW_FromColor);
             bool[,] BW_1 = Blobs_FromColor.BW;
-
 
             // Combine objects found via color recognition and edge detection
             // If an object is found with edge and color keep it, otherwise discard it
@@ -52,19 +50,17 @@ namespace Robot_Arm.Video
             bool[,] BW_Filled = ImageBlobs.FillBlobBoundingBox();
             BlobFinder ImageBlobsFilled = new BlobFinder(BW_Filled);
             Blob bestBlob = ImageBlobsFilled.PickBestBlob();
-            //ImageBlobsFilled.DrawBlobOutline(Frame.Bitmap);
-            if (bestBlob == null)
+            Rectangle myRect = new Rectangle();
+            if (bestBlob != null)
             {
-                return new Rectangle();
-            }
-            else
-            {
-                return new Rectangle(
+                myRect = new Rectangle(
                     bestBlob.Xmin,
                     bestBlob.Ymin,
                     bestBlob.Xmax - bestBlob.Xmin + 1,
                     bestBlob.Ymax - bestBlob.Ymin + 1);
             }
+            ImageBlobsFilled.DrawBlobOutline(Frame.Bitmap, myRect);
+            return myRect;
         }
 
 
