@@ -91,7 +91,10 @@ namespace Robot_Arm.GUI
             myServos.Insert(0, new Servo(ref myArduino, (int)numericUpDown1.Value, (int)Servo1_Trackbar.Maximum, (int)Servo1_Trackbar.Minimum));
             myServos.Insert(1, new Servo(ref myArduino, (int)numericUpDown2.Value, (int)Servo2_Trackbar.Maximum, (int)Servo2_Trackbar.Minimum));
             myServos.Insert(2, new Servo(ref myArduino, (int)numericUpDown3.Value, (int)Servo3_Trackbar.Maximum, (int)Servo3_Trackbar.Minimum));
-            //myServos.Insert(3, new Servo(ref myArduino, (int)numericUpDown4.Value, (int)Servo4_Trackbar.Maximum, (int)Servo4_Trackbar.Minimum));
+            myServos.Insert(3, new Servo(ref myArduino, (int)numericUpDown4.Value, (int)Servo4_Trackbar.Maximum, (int)Servo4_Trackbar.Minimum));
+
+            myServos[3].Detach(); // detach the gripper servo until its needed
+
             JoyStickTimer.Interval = 1000 / RefreshRate_HZ;
             JoyStickTimer.Start();
         }
@@ -175,7 +178,7 @@ namespace Robot_Arm.GUI
                     UpdateServoAngle(LeftThumbX, Sensitivity, myServos[0], ref Servo1_Trackbar, DeadZone);
                     UpdateServoAngle(LeftThumbY, Sensitivity, myServos[1], ref Servo2_Trackbar, DeadZone);
                     UpdateServoAngle(RightThumbY, Sensitivity, myServos[2], ref Servo3_Trackbar, DeadZone);
-                    //UpdateServoAngle(RightThumbX, Sensitivity, myServos[3], ref Servo4_Trackbar, DeadZone);
+                    UpdateServoAngle(RightThumbX, Sensitivity, myServos[3], ref Servo4_Trackbar, DeadZone);
                     myOldPacketNumber = myNewPacketNumber;
                 }
             }
