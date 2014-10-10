@@ -33,8 +33,8 @@ namespace Robot_Arm.Tests
             {
                 ImageViewer viewer = new ImageViewer(); //create an image viewer
                 Capture capture = new Capture(); //create a camera capture
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 640);
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 360);
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280);
+                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720);
                 Thread.Sleep(2000);
                 Application.Idle += new EventHandler(delegate(object sender, EventArgs e)
                 {  //run this until application closed (close button click on image viewer)

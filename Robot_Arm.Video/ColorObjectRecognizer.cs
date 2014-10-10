@@ -27,24 +27,21 @@ namespace Robot_Arm.Video
                 Image<Gray, Byte> smoothedGrayFrame = smallGrayFrame.PyrUp();
                 Image<Gray, Byte> cannyFrame = smoothedGrayFrame.Canny(100, 60);
                 cannyFrame._Dilate(3); // use canny edge detection to determine object outlines
-                BlobFinder Blobs_FromEdges = new BlobFinder(cannyFrame);
-                bool[,] BW_2 = Blobs_FromEdges.BW;
+                bool[,] BW_2 = BlobFinder.BW_Converter(cannyFrame); 
                 return BW_2;
             });
 
             detectEdges.Start();
-            short[,] SelectedColors = ColorClassifier.SegmentColors(Frame);
+            int[,] SelectedColors = ColorClassifier.SegmentColors(Frame.Convert<Bgr, int>());
             bool[,] BW_FromColor = ColorClassifier.GenerateBW(ref SelectedColors, ColorsToLookFor);
             Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);;
             BW_GrayImg._Dilate(3);
             BW_FromColor = BlobFinder.BW_Converter(BW_GrayImg);
-            BlobFinder Blobs_FromColor = new BlobFinder(BW_FromColor);
-            bool[,] BW_1 = Blobs_FromColor.BW;
 
             // Combine objects found via color recognition and edge detection
             // If an object is found with edge and color keep it, otherwise discard it
             bool[,] EdgeBW = detectEdges.Result;
-            bool[,] BW_Composite = BlobFinder.AND(ref BW_1, ref EdgeBW);
+            bool[,] BW_Composite = BlobFinder.AND(ref BW_FromColor, ref EdgeBW);
             BlobFinder ImageBlobs = new BlobFinder(BW_Composite);
             ImageBlobs.RemoveSmallBlobs(100);
             bool[,] BW_Filled = ImageBlobs.FillBlobBoundingBox();

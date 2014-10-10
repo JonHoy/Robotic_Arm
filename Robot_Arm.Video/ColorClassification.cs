@@ -78,12 +78,25 @@ namespace Robot_Arm.Video
             }
         }
 
+        public int[,] SegmentColors(Image<Bgr, int> Photo)
+        { 
+            var Colors = new int[colorvalues_BGR.GetLength(0), colorvalues_BGR.GetLength(1)];
+            for (int iColor = 0; iColor < Colors.GetLength(0); iColor++)
+			{
+                for (int j = 0; j < colorvalues_BGR.GetLength(1); j++)
+			    {
+			        Colors[iColor, j] = (int) colorvalues_BGR[iColor, j];
+			    }
+			}
+            var SelectedColors = GPU.SegmentColors(Photo.Data, Colors);
+            return SelectedColors;
+        }
 
-        public short[,] SegmentColors(Image<Bgr, byte> Photo)
+        public int[,] SegmentColors(Image<Bgr, byte> Photo)
         {
             int Rows = Photo.Rows;
             int Cols = Photo.Cols;
-            short[,] SelectedColors = new short[Rows, Cols];
+            var SelectedColors = new int[Rows, Cols];
             int numcolors = colorvalues_BGR.GetLength(0);
 
             byte[, ,] PhotoData = Photo.Data;
@@ -139,7 +152,7 @@ namespace Robot_Arm.Video
             return NewPhoto;
         }
 
-        public bool[,] GenerateBW(ref short[,] SegmentedImage, string[] ColorName)
+        public bool[,] GenerateBW(ref int[,] SegmentedImage, string[] ColorName)
         {
             bool[,] BW = new bool[SegmentedImage.GetLength(0), SegmentedImage.GetLength(1)];
             bool[] SelectionResult = new bool[colornames.Length];
