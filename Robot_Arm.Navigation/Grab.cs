@@ -7,12 +7,13 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using ArduinoClass;
 using System.Drawing;
+using System.Threading;
 
 namespace Robot_Arm.Navigation
 {
     class Action
     {
-        public static void Grab(
+        public static bool Grab(
             Sensor forceSensor, // sensor used to determine if object is gripped or not
             Sensor distanceSensor, // sensor used to determine the distance between the gripper and the target
             Capture Camera, // Webcam used to locate object
@@ -22,7 +23,27 @@ namespace Robot_Arm.Navigation
             Servo gripperServo // servo used to grip object
             )
         {
- 
+            double forceLevel = 200; // define a threshold value that the force sensor must go above to be considered grabbed
+            int iterationLimit = 30; // define max number of attempts to grab object before exiting
+            int iterationCount = 1; // define the current iteration number
+            bool objectGrabbed = true; // define success 
+
+            var myAngleCalculator = new AngleCalculator();
+
+            while (forceSensor.getSensorReading() < forceLevel)
+            {
+                
+                
+                
+                
+                if (iterationCount > iterationLimit)
+                {
+                    objectGrabbed = false; // iteration limit reached exit out and report as failure
+                    break;
+                }
+                iterationCount++;
+            }
+            return objectGrabbed;
         }
     }
     class SharpIR : Sensor // Class for Sharp IR distance sensors
