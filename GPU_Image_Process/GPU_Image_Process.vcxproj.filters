@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GPU_Image_Process.cpp">
+    <ClCompile Include="SegmentColorsGPU.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
