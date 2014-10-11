@@ -20,7 +20,7 @@ namespace Robot_Arm.SpeechRecognition
             Colors = new Dictionary<string, Color[]>();
             Actions = new Dictionary<string, byte>();
             Objects = new Dictionary<string, byte>();
-            Colors.Add("Red", new Color[] {Color.Red, Color.DarkRed, Color.Maroon, Color.Crimson, Color.Firebrick});
+            Colors.Add("Red", new Color[] {Color.Red, Color.DarkRed, Color.Maroon, Color.Crimson, Color.Firebrick, Color.IndianRed, Color.Tomato});
             Colors.Add("Green", new Color[] {Color.Green, Color.LightGreen, Color.DarkGreen, Color.Lime, Color.Aqua, Color.LightSeaGreen});
             Colors.Add("Blue", new Color[] {Color.Blue, Color.DarkBlue, Color.RoyalBlue, Color.Navy});
             Colors.Add("Black", new Color[] {Color.Black});

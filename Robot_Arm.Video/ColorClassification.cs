@@ -63,18 +63,20 @@ namespace Robot_Arm.Video
                 Color.Lime,
                 Color.SeaGreen,
                 Color.LightSeaGreen,
-                Color.DarkOliveGreen
+                Color.DarkOliveGreen,
+                Color.IndianRed,
+                Color.Tomato,
             };
 
             colornames = new string[allColors.Length];
-            colorvalues_BGR = new float[allColors.Length, 3];
+            colorvalues_BGR = new byte[allColors.Length, 3];
             for (int iColor = 0; iColor < allColors.Length; iColor++)
             {
                 colornames[iColor] = allColors[iColor].ToKnownColor().ToString();
                 Color CurrentColor = Color.FromName(colornames[iColor]);
-                colorvalues_BGR[iColor, 0] = (float) CurrentColor.B + 1;
-                colorvalues_BGR[iColor, 1] = (float)CurrentColor.G + 1;
-                colorvalues_BGR[iColor, 2] = (float) CurrentColor.R +1;
+                colorvalues_BGR[iColor, 0] = (byte) CurrentColor.B;
+                colorvalues_BGR[iColor, 1] = (byte)CurrentColor.G;
+                colorvalues_BGR[iColor, 2] = (byte) CurrentColor.R;
             }
         }
 
@@ -109,21 +111,21 @@ namespace Robot_Arm.Video
                 for (int j = 0; j < Cols; j++)
                 {
                     float MinDistance = float.MaxValue;
-                    float TempBluePhotoData = (float)PhotoData[i, j, 0] + 1;
-                    float TempGreenPhotoData = (float)PhotoData[i, j, 1] + 1;
-                    float TempRedPhotoData = (float)PhotoData[i, j, 2] + 1;
+                    float TempBluePhotoData = (float)PhotoData[i, j, 0];
+                    float TempGreenPhotoData = (float)PhotoData[i, j, 1];
+                    float TempRedPhotoData = (float)PhotoData[i, j, 2];
 
                     for (int k = 0; k < numcolors; k++)
                     {
-                        float BlueDist = Math.Abs(TempBluePhotoData - colorvalues_BGR[k, 0]);
-                        float GreenDist = Math.Abs(TempGreenPhotoData - colorvalues_BGR[k, 1]);
-                        float RedDist = Math.Abs(TempRedPhotoData - colorvalues_BGR[k, 2]);
+                        float BlueDist = Math.Abs(TempBluePhotoData - (float) colorvalues_BGR[k, 0]);
+                        float GreenDist = Math.Abs(TempGreenPhotoData - (float) colorvalues_BGR[k, 1]);
+                        float RedDist = Math.Abs(TempRedPhotoData - (float) colorvalues_BGR[k, 2]);
                         float distance = BlueDist + RedDist + GreenDist;
                        
                         if (MinDistance > distance)
                         {
                             MinDistance = distance;
-                            SelectedColors[i, j] = (short)k;
+                            SelectedColors[i, j] = k;
                         }
                     }
                 }
@@ -132,7 +134,7 @@ namespace Robot_Arm.Video
             return SelectedColors;
         }
 
-        public Image<Bgr, byte> ReColorPhoto(ref short[,] SelectedColor)
+        public Image<Bgr, byte> ReColorPhoto(ref int[,] SelectedColor)
         {
             int Rows = SelectedColor.GetLength(0);
             int Cols = SelectedColor.GetLength(1);
@@ -199,7 +201,7 @@ namespace Robot_Arm.Video
         }
 
         string[] colornames; // name of colors recognized by the computer
-        float[,] colorvalues_BGR; // value of colors [BGR]       
+        byte[,] colorvalues_BGR; // value of colors [BGR]       
     }
 
 }

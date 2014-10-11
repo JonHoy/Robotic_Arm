@@ -22,19 +22,17 @@ namespace Robot_Arm.Video
 
             Task<bool[,]> detectEdges = new Task<bool[,]>(() =>
             {
-                grayFrame._SmoothGaussian(3); // Smooth the frame
-                Image<Gray, Byte> smallGrayFrame = grayFrame.PyrDown();
-                Image<Gray, Byte> smoothedGrayFrame = smallGrayFrame.PyrUp();
-                Image<Gray, Byte> cannyFrame = smoothedGrayFrame.Canny(100, 60);
+                Image<Gray, Byte> cannyFrame = grayFrame.Canny(100, 60);
                 cannyFrame._Dilate(3); // use canny edge detection to determine object outlines
                 bool[,] BW_2 = BlobFinder.BW_Converter(cannyFrame); 
                 return BW_2;
             });
 
             detectEdges.Start();
+            Frame._SmoothGaussian(5);
             int[,] SelectedColors = ColorClassifier.SegmentColors(Frame.Convert<Bgr, int>());
             bool[,] BW_FromColor = ColorClassifier.GenerateBW(ref SelectedColors, ColorsToLookFor);
-            Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);;
+            Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);
             BW_GrayImg._Dilate(3);
             BW_FromColor = BlobFinder.BW_Converter(BW_GrayImg);
 
@@ -42,11 +40,10 @@ namespace Robot_Arm.Video
             // If an object is found with edge and color keep it, otherwise discard it
             bool[,] EdgeBW = detectEdges.Result;
             bool[,] BW_Composite = BlobFinder.AND(ref BW_FromColor, ref EdgeBW);
+
             BlobFinder ImageBlobs = new BlobFinder(BW_Composite);
-            ImageBlobs.RemoveSmallBlobs(100);
-            bool[,] BW_Filled = ImageBlobs.FillBlobBoundingBox();
-            BlobFinder ImageBlobsFilled = new BlobFinder(BW_Filled);
-            Blob bestBlob = ImageBlobsFilled.PickBestBlob();
+            ImageBlobs.RemoveSmallBlobs(1500);
+            Blob bestBlob = ImageBlobs.PickBestBlob();
             Rectangle myRect = new Rectangle();
             if (bestBlob != null)
             {
@@ -56,7 +53,7 @@ namespace Robot_Arm.Video
                     bestBlob.Xmax - bestBlob.Xmin + 1,
                     bestBlob.Ymax - bestBlob.Ymin + 1);
             }
-            ImageBlobsFilled.DrawBlobOutline(Frame.Bitmap, myRect);
+            ImageBlobs.DrawBlobOutline(Frame.Bitmap, myRect);
             return myRect;
         }
 
