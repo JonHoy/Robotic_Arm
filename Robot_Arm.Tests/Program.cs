@@ -24,6 +24,18 @@ namespace Robot_Arm.Tests
         private static Image<Emgu.CV.Structure.Bgr, byte> Photo;
         static void Main(string[] args)
         {
+            var Y = new double[1000000];
+            var X = new double[1000000,1];
+            Random rnd = new Random();
+            for (int i = 0; i < Y.Length; i++)
+            {
+                Y[i] = rnd.NextDouble();
+                X[i, 0] = rnd.NextDouble();
+            }
+            var N = new int[]{10000};
+            var R = new double[,]{{0 , 1}};
+            
+            
             Stopwatch Timer = new Stopwatch();
 
             Console.WriteLine("Video Tests... ");
@@ -32,20 +44,22 @@ namespace Robot_Arm.Tests
             try
             {
                 ImageViewer viewer = new ImageViewer(); //create an image viewer
-                Capture capture = new Capture(); //create a camera capture
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280);
-                capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720);
-                Thread.Sleep(2000);
+                //Capture capture = new Capture(); //create a camera capture
+                //capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280);
+                //capture.SetCaptureProperty(Emgu.CV.CvEnum.CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720);
+                
+                //Thread.Sleep(2000);
                 Application.Idle += new EventHandler(delegate(object sender, EventArgs e)
                 {  //run this until application closed (close button click on image viewer)
-                    
-                    Photo = capture.QueryFrame(); //draw the image obtained from camera
+
+                    //Photo = capture.QueryFrame(); //draw the image obtained from camera
                     Timer.Start();
-                    string[] MatchStrings = myWords.GetColorStrings("Red");
-                    var NewPhoto = Photo.Clone();
-                    Rectangle myRect = Robot_Arm.Video.ColorObjectRecognizer.GetRegion(MatchStrings, NewPhoto);
+                    Statistics DataStats = Robot_Arm.Video.GPU.ND_Correlate(ref Y, ref X, N, R);
+                    //string[] MatchStrings = myWords.GetColorStrings("Red");
+                    //var NewPhoto = Photo.Clone();
+                    //Rectangle myRect = Robot_Arm.Video.ColorObjectRecognizer.GetRegion(MatchStrings, NewPhoto);
                     Timer.Stop();
-                    viewer.Image = NewPhoto;
+                    //viewer.Image = NewPhoto;
                     Console.WriteLine("Time to Process Frame {0} ms", Timer.ElapsedMilliseconds);
                     Timer.Reset();
                 });
