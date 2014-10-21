@@ -18,7 +18,7 @@
     <ClCompile Include="SegmentColorsGPU.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ND_Correlate.cpp">
+    <ClCompile Include="ND_Correlate_CPU.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
