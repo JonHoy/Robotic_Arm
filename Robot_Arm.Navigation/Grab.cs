@@ -8,76 +8,64 @@ using Emgu.CV.Structure;
 using ArduinoClass;
 using System.Drawing;
 using System.Threading;
+using Robot_Arm.Video;
 
 namespace Robot_Arm.Navigation
 {
-    class Action
+    public partial class Action
     {
         public static bool Grab(
-            Sensor forceSensor, // sensor used to determine if object is gripped or not
-            Sensor distanceSensor, // sensor used to determine the distance between the gripper and the target
+            ResistiveForce forceSensor, // sensor used to determine if object is gripped or not
+            SharpIR distanceSensor, // sensor used to determine the distance between the gripper and the target
             Capture Camera, // Webcam used to locate object
             Servo xAxisServo, // servo used center the object between the gripper forks
             Servo yAxisServo1, // servo used to control planar vertical and horizontal position 
             Servo yAxisServo2, // servo used to control planar vertical and horizontal position 
-            Servo gripperServo // servo used to grip object
+            Servo gripperServo, // servo used to grip object
+            string[] ColorsToLookFor // colors to look for ie "Red", "Blue", "Yellow", etc
             )
         {
             double forceLevel = 200; // define a threshold value that the force sensor must go above to be considered grabbed
+            double grabRange = 8;
             int iterationLimit = 30; // define max number of attempts to grab object before exiting
             int iterationCount = 1; // define the current iteration number
-            bool objectGrabbed = true; // define success 
+            bool objectGrabbed = false; // define success 
 
             var myAngleCalculator = new AngleCalculator();
 
-            while (forceSensor.getSensorReading() < forceLevel)
+            while (iterationCount < iterationLimit) // continue trying to grab the object until success or iteration limit reached
             {
-                
-                
-                
-                
-                if (iterationCount > iterationLimit)
+                var NewFrame = Camera.QueryFrame(); // take image
+                NewFrame = NewFrame.Clone(); // clone to remove null reference
+
+                var TargetRegion = ColorObjectRecognizer.GetRegion(ColorsToLookFor, NewFrame.Clone());
+                var Xpoint = ((double)TargetRegion.Left + (double)TargetRegion.Right) / 2;
+                var Ypoint = ((double)TargetRegion.Top + (double)TargetRegion.Bottom) / 2;
+                Robot_Arm.Navigation.Action.TrackBlobs(Xpoint, Ypoint, xAxisServo, yAxisServo2, 50, NewFrame.Height, NewFrame.Width); // center the object with the arm
+                double objectDistance = distanceSensor.getDistance(); // take distance reading
+                if (objectDistance < grabRange) // the object is within range of the gripper, try grabbing it
                 {
-                    objectGrabbed = false; // iteration limit reached exit out and report as failure
-                    break;
+                    gripperServo.ServoAngleChange(gripperServo.MinAngle); // engage gripper
+                    Thread.Sleep(1000); // wait one second
+                    if (forceSensor.getSensorReading() > forceLevel) // take force reading
+                    {
+                        objectGrabbed = true; // if force reading above threshold it means the object has been grabbed and we can break out of the loop
+                        break;
+                    }
+                    else
+	                {
+                        gripperServo.ServoAngleChange(gripperServo.MaxAngle); // if not gripped release the gripper and start the process over again
+	                }
+                    
                 }
-                iterationCount++;
+                double theta1_New; double theta2_New;
+                myAngleCalculator.getNewTheta(objectDistance, (double)yAxisServo1.Angle, (double)yAxisServo2.Angle, out theta1_New, out theta2_New); // estimate the new angles needed to pick up the object
+                yAxisServo1.ServoAngleChange((int) theta1_New); // move the servos to the new estimated angles to pick up the object
+                yAxisServo2.ServoAngleChange((int) theta2_New);
+                iterationCount++; // increase the iteration count
             }
             return objectGrabbed;
         }
-    }
-    class SharpIR : Sensor // Class for Sharp IR distance sensors
-    {
-        private double voltageMultiplier = 11.58;
-        private double voltagePower = -1.058;
-        private double maxDistance = 40;
-        private double cm_to_inch = .394;
 
-        public SharpIR(Arduino Board, int Pin) : base(Board, Pin){ }
-
-        double getDistance() // return distance reading in inches
-        {
-            var voltage = getSensorReading();
-            var distance = voltageMultiplier * Math.Pow(voltage, voltagePower);
-            distance = cm_to_inch * Math.Min(distance, maxDistance);
-            return distance;
-        }
-    }
-    class ResistiveForce : Sensor // Class for resistive force sensors
-    {
-        private double rConst = 10000; // resistance of the constant value resistor in the voltage divider circuit 
-        private double voltageMultiplier = 2.979e11; // constants based on curve fit
-        private double voltagePower = -1.388;
-
-        public ResistiveForce(Arduino Board, int Pin) : base(Board, Pin){ }
-
-        double getForce() // gets the force reading in grams
-        {
-            var voltage = getSensorReading();
-            var v_Ratio = (voltage - minVoltage) / (maxVoltage - minVoltage);
-            var r_Sensor = rConst / v_Ratio - rConst;
-            var Force = voltageMultiplier * Math.Pow(r_Sensor, voltagePower);
-            return Force;
-        }
     }
 }

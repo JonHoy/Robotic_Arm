@@ -59,7 +59,7 @@ namespace Robot_Arm.Navigation
 
         }
         // Gets theta1 and theta2 given a target x and y value
-        public void GetTheta(double x_Target, double y_Target, out double theta1, out double theta2)
+        public void getTheta(double x_Target, double y_Target, out double theta1, out double theta2)
         {
             theta1 = double.NaN;
             theta2 = double.NaN;
@@ -96,6 +96,21 @@ namespace Robot_Arm.Navigation
 
 
 
+        }
+
+        public void get_xy_Target(double targetDistance,double theta1_Current, double theta2_Current, out double x_Target, out double y_Target)
+        {
+            var x_Current = Math.Cos(theta1_Current) * L1 + Math.Cos(theta2_Current) * L2;
+            var y_Current = Math.Sin(theta1_Current) * L1 + Math.Sin(theta2_Current) * L2;
+            x_Target = x_Current + Math.Cos(theta2_Current) * targetDistance;
+            y_Target = y_Current + Math.Sin(theta1_Current) * targetDistance;
+        }
+
+        public void getNewTheta(double targetDistance, double theta1_Current, double theta2_Current, out double theta1_New, out double theta2_New)
+        { 
+            double x_Target; double y_Target;
+            get_xy_Target(targetDistance, theta1_Current, theta2_Current, out x_Target, out y_Target);
+            getTheta(x_Target, y_Target, out theta1_New, out theta2_New);
         }
 
     }
