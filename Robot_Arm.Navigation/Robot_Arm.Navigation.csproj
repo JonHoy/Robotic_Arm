@@ -34,19 +34,19 @@
       <HintPath>..\..\Arduino_Interface_CSharp\bin\Debug\Arduino.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV">
-      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.CV.dll</HintPath>
+      <HintPath>..\Externals\EmguCV\Emgu.CV.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV.UI">
-      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.CV.UI.dll</HintPath>
+      <HintPath>..\Externals\EmguCV\Emgu.CV.UI.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.Util">
-      <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\Emgu.Util.dll</HintPath>
+      <HintPath>..\Externals\EmguCV\Emgu.Util.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>$(SharpDXPackageBinDir)\SharpDX.dll</HintPath>
+      <HintPath>..\Externals\Sharp DX\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.XInput">
-      <HintPath>..\packages\SharpDX.2.6.3\Bin\DirectX11_2-Signed-net40\SharpDX.XInput.dll</HintPath>
+      <HintPath>..\Externals\Sharp DX\SharpDX.XInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

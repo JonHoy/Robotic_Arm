@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace Robot_Arm.SpeechRecognition
 {
-    public class Colors : Dictionary<string, Color[]>
+    public class Colors : Dictionary<System.String, Color[]>
     {
         public Colors()
         {

@@ -1,19 +1,5 @@
-﻿Build started 10/31/2014 9:56:45 AM.
-     1>Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\GPU_Image_Process\GPU_Image_Process.vcxproj" on node 4 (Rebuild target(s)).
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(346,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /nologo /W3 /WX- /sdl /O2 /Oi /Ot /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /MDd /GS /Qpar /arch:SSE2 /fp:precise /Zc:wchar_t /Zc:forScope /openmp /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ND_Correlate_CPU.cpp SegmentColorsGPU.cpp
-     1>cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
-         ND_Correlate_CPU.cpp
-         SegmentColorsGPU.cpp
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"..\Robot_Arm.Tests\bin\Debug\GPU_Image_Process.dll" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"..\Robot_Arm.Tests\bin\Debug\GPU_Image_Process.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"..\Robot_Arm.Tests\bin\Debug\GPU_Image_Process.lib" /MACHINE:X86 /DLL Debug\ND_Correlate_CPU.obj
-         Debug\SegmentColorsGPU.obj
-            Creating library ..\Robot_Arm.Tests\bin\Debug\GPU_Image_Process.lib and object ..\Robot_Arm.Tests\bin\Debug\GPU_Image_Process.exp
-         GPU_Image_Process.vcxproj -> C:\Users\Jonathan\Documents\Github\Robotic_Arm\GPU_Image_Process\..\Robot_Arm.Tests\bin\Debug\GPU_Image_Process.dll
-     1>Done Building Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\GPU_Image_Process\GPU_Image_Process.vcxproj" (Rebuild target(s)).
+﻿Build started 10/31/2014 10:23:31 AM.
 
 Build succeeded.
 
-Time Elapsed 00:00:07.23
+Time Elapsed 00:00:00.01

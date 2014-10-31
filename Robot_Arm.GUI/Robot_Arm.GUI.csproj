@@ -49,26 +49,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Arduino, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Externals\Arduino\Arduino.dll</HintPath>
+    <Reference Include="Arduino">
+      <HintPath>..\Externals\Arduino\Arduino.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV">
-      <HintPath>Externals\EmguCV\Emgu.CV.dll</HintPath>
+      <HintPath>..\Externals\EmguCV\Emgu.CV.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV.UI">
-      <HintPath>Externals\EmguCV\Emgu.CV.UI.dll</HintPath>
+      <HintPath>..\Externals\EmguCV\Emgu.CV.UI.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.Util">
-      <HintPath>Externals\EmguCV\Emgu.Util.dll</HintPath>
+      <HintPath>..\Externals\EmguCV\Emgu.Util.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX, Version=2.6.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Externals\Sharp DX\SharpDX.dll</HintPath>
+    <Reference Include="SharpDX">
+      <HintPath>..\Externals\Sharp DX\SharpDX.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.XInput, Version=2.6.2.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Externals\Sharp DX\SharpDX.XInput.dll</HintPath>
+    <Reference Include="SharpDX.XInput">
+      <HintPath>..\Externals\Sharp DX\SharpDX.XInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
