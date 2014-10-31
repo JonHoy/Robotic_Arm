@@ -199,10 +199,10 @@ namespace Robot_Arm.GUI
                 //}
                 myServos[1].ServoAngleChange(115);
                 myServos[2].ServoAngleChange(45);
-                Robot_Arm.Navigation.Base.ScanForBlobs(
-                    myWords.GetColorStrings("Orange"),
-                    myCamera,
-                    myServos[0]);
+                //Robot_Arm.Navigation.Action.ScanForBlobs(
+                //    myWords.GetColorStrings("Orange"),
+                //    myCamera,
+                //    myServos[0]);
             }
 
         }
@@ -281,7 +281,7 @@ namespace Robot_Arm.GUI
             var theta1 = double.NaN;
             var theta2 = double.NaN;
             Console.WriteLine("X Target: {0}    Y Target: {1}", x_Target, y_Target); 
-            myAngleCalculator.GetTheta(x_Target, y_Target, out theta1, out theta2);
+            myAngleCalculator.getTheta(x_Target, y_Target, out theta1, out theta2);
             if (!double.IsNaN(theta1) && !double.IsNaN(theta2))
             {
                 int Servo2Val = (int) (170 - (double)theta1 * 8.0/9.0);

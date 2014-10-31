@@ -39,10 +39,14 @@ namespace Robot_Arm.Navigation
                 NewFrame = NewFrame.Clone(); // clone to remove null reference
 
                 var TargetRegion = ColorObjectRecognizer.GetRegion(ColorsToLookFor, NewFrame.Clone());
+                if (TargetRegion.IsEmpty) // if there is no target in sight break out of the loop
+                {
+                    break;
+                }
                 var Xpoint = ((double)TargetRegion.Left + (double)TargetRegion.Right) / 2;
                 var Ypoint = ((double)TargetRegion.Top + (double)TargetRegion.Bottom) / 2;
                 Robot_Arm.Navigation.Action.TrackBlobs(Xpoint, Ypoint, xAxisServo, yAxisServo2, 50, NewFrame.Height, NewFrame.Width); // center the object with the arm
-                double objectDistance = distanceSensor.getDistance(); // take distance reading
+                double objectDistance = distanceSensor.getDistance() / 2; // take distance reading, then go halfway to estimated distance
                 if (objectDistance < grabRange) // the object is within range of the gripper, try grabbing it
                 {
                     gripperServo.ServoAngleChange(gripperServo.MinAngle); // engage gripper

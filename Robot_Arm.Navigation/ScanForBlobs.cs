@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using ArduinoClass;
+using Emgu.CV;
+using Robot_Arm.Video;
+using System.Threading;
 
 namespace Robot_Arm.Navigation
 {

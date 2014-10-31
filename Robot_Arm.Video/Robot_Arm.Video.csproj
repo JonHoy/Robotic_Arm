@@ -21,7 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -85,9 +85,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Robot_Arm.GUI\Externals\EmguCV\NHibernate.ByteCode.LinFu.dll</HintPath>
     </Reference>
-    <Reference Include="Robot_Arm.SpeechRecognition">
-      <HintPath>..\Robot_Arm.SpeechRecognition\bin\Debug\Robot_Arm.SpeechRecognition.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.61.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
@@ -107,11 +104,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blob.cs" />
     <Compile Include="Blob_Finder.cs" />
     <Compile Include="ColorClassification.cs" />
     <Compile Include="ColorObjectRecognizer.cs" />
     <Compile Include="GPU.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Robot_Arm.SpeechRecognition\Robot_Arm.SpeechRecognition.csproj">
+      <Project>{4bffad55-54b5-4d5e-851b-ae5f4122819c}</Project>
+      <Name>Robot_Arm.SpeechRecognition</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

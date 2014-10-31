@@ -15,58 +15,9 @@ namespace Robot_Arm.Video
     {
         public ColorClassification()
         {
-            Color[] allColors = new Color[]{
-                Color.Red,
-                Color.Blue,
-                Color.Green,
-                Color.Black,
-                Color.White,
-                Color.Yellow,
-                Color.Purple,
-                Color.Orange,
-                Color.DarkRed,
-                Color.DarkOrange,
-                Color.DarkBlue,
-                Color.DarkGreen,
-                Color.OrangeRed,
-                Color.LightGreen,
-                Color.LimeGreen,
-                Color.LightBlue,
-                Color.LightYellow,
-                Color.MediumPurple,
-                Color.Maroon,
-                Color.Tan,
-                Color.LightGray,
-                Color.Moccasin,
-                Color.PeachPuff,
-                Color.HotPink,
-                Color.DeepPink,
-                Color.LightPink,
-                Color.DarkKhaki,
-                Color.RoyalBlue,
-                Color.DodgerBlue,
-                Color.Goldenrod,
-                Color.Gold,
-                Color.Beige,
-                Color.DarkSlateBlue,
-                Color.Khaki,
-                Color.Silver,
-                Color.Gainsboro,
-                Color.SlateGray,
-                Color.Navy,
-                Color.SteelBlue,
-                Color.Tan,
-                Color.Peru,
-                Color.Chocolate,
-                Color.SaddleBrown,
-                Color.Indigo,
-                Color.Lime,
-                Color.SeaGreen,
-                Color.LightSeaGreen,
-                Color.DarkOliveGreen,
-                Color.IndianRed,
-                Color.Tomato,
-            };
+            
+            var myColors = new Colors();
+            var allColors = myColors.getAllColors();
 
             colornames = new string[allColors.Length];
             colorvalues_BGR = new byte[allColors.Length, 3];

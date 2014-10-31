@@ -7,7 +7,7 @@ using ArduinoClass;
 
 namespace Robot_Arm.Navigation
 {
-    class ResistiveForce : Sensor // Class for resistive force sensors
+    public class ResistiveForce : Sensor // Class for resistive force sensors in a voltage divider circuit
     {
         private double rConst = 10000; // resistance of the constant value resistor in the voltage divider circuit 
         private double voltageMultiplier = 2.979e11; // constants based on curve fit

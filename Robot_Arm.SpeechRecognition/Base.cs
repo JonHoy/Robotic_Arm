@@ -78,7 +78,6 @@ namespace Robot_Arm.SpeechRecognition
         private Grammar myGrammar;
         private SpeechRecognitionEngine mySpeechEngine;
         private SpeechDictionary mySpeechDictionary;
-        private GrammarBuilder builder;
     }
     
 }

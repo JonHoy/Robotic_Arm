@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-// To see what these colors look like go to the link below
-//http://coloreminder.com
 
 namespace Robot_Arm.SpeechRecognition
 {
@@ -14,23 +12,11 @@ namespace Robot_Arm.SpeechRecognition
     {
         public SpeechDictionary()
         {
-            // Now define each color with a string array of other colors that can be associated with the key 
-            //"Red" for example can be {"Red", "DarkRed", "Crimson"}, "OrangeRed", etc 
-            //
-            Colors = new Dictionary<string, Color[]>();
+
+            myColors = new Colors();
             Actions = new Dictionary<string, byte>();
             Objects = new Dictionary<string, byte>();
-            Colors.Add("Red", new Color[] {Color.Red, Color.DarkRed, Color.Maroon, Color.Crimson, Color.Firebrick, Color.IndianRed, Color.Tomato});
-            Colors.Add("Green", new Color[] {Color.Green, Color.LightGreen, Color.DarkGreen, Color.Lime, Color.Aqua, Color.LightSeaGreen});
-            Colors.Add("Blue", new Color[] {Color.Blue, Color.DarkBlue, Color.RoyalBlue, Color.Navy});
-            Colors.Add("Black", new Color[] {Color.Black});
-            Colors.Add("White", new Color[] {Color.White, Color.OldLace});
-            Colors.Add("Yellow", new Color[] { Color.Yellow, Color.LightYellow, Color.Gold, Color.Beige, Color.Khaki});
-            Colors.Add("Purple", new Color[] {Color.Purple, Color.MediumPurple, Color.Indigo, Color.DarkOrchid, Color.BlueViolet, Color.DarkMagenta});
-            Colors.Add("Orange", new Color[] { Color.Orange, Color.DarkOrange, Color.OrangeRed, Color.PeachPuff});
-            Colors.Add("Brown", new Color[] {Color.Tan, Color.Peru, Color.SaddleBrown, Color.Chocolate});
-            Colors.Add("Gray", new Color[] {Color.Gray, Color.LightGray, Color.DarkGray, Color.LightSlateGray, Color.Silver, Color.Gainsboro, Color.SlateGray});
-            Colors.Add("Pink", new Color[] { Color.Pink, Color.HotPink, Color.LightPink, Color.DeepPink, Color.Violet, Color.Magenta});
+            
             // Now define Action phrases which correspond to command codes
             Actions.Add("Get", 1);
             Actions.Add("Fetch", 1);
@@ -50,7 +36,7 @@ namespace Robot_Arm.SpeechRecognition
 
         }
 
-        public Dictionary<string, Color[]> Colors;
+        public Colors myColors;
         public Dictionary<string, byte> Actions;
         public Dictionary<string, byte> Objects;
 
@@ -59,7 +45,7 @@ namespace Robot_Arm.SpeechRecognition
             List<string[]> PhraseList = new List<string[]>();
             PhraseList.Add(GetPhrases(Actions));
             PhraseList.Add(new string[] { "the", "a" });
-            PhraseList.Add(GetPhrases(Colors));
+            PhraseList.Add(GetPhrases(myColors));
             PhraseList.Add(GetPhrases(Objects));
             return PhraseList;
         }
@@ -86,12 +72,12 @@ namespace Robot_Arm.SpeechRecognition
         }
         public string[] GetColorStrings(string KeyString)
         {
-            Color[] myColors = null;
-            Colors.TryGetValue(KeyString, out myColors);
-            string[] OutStrings = new string[myColors.Length];
+            Color[] myColorList = null;
+            myColors.TryGetValue(KeyString, out myColorList);
+            string[] OutStrings = new string[myColorList.Length];
             for (int i = 0; i < OutStrings.Length; i++)
             {
-                OutStrings[i] = myColors[i].ToKnownColor().ToString();
+                OutStrings[i] = myColorList[i].ToKnownColor().ToString();
             }
             return OutStrings;
         }

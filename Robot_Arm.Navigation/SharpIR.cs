@@ -7,7 +7,7 @@ using ArduinoClass;
 
 namespace Robot_Arm.Navigation
 {
-    class SharpIR : Sensor // Class for Sharp IR distance sensors
+    public class SharpIR : Sensor // Class for Sharp IR distance sensors
     {
         private double voltageMultiplier = 11.58;
         private double voltagePower = -1.058;
