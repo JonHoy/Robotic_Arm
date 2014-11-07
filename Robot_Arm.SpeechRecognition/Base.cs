@@ -53,6 +53,12 @@ namespace Robot_Arm.SpeechRecognition
         // ie Phrase = "Pick up the Red Ball"
         // PhraseList = {{"Get", "Find", "Pick up", "Grab"} , {"the", "a"} , {"Green", "Blue" , "Red"} , {"Ball", "Block", "Cube"}}
         // DecodedPhrase = {"Pick up", "the", "Red" , "Ball"}
+
+        public string[] DecodePhrase(RecognitionResult Result)
+        {
+            return DecodePhrase(Result.Text);
+        }
+
         public string[] DecodePhrase(string Phrase)
         {
             List<string[]> PhraseList = mySpeechDictionary.GetPhraseList();
@@ -77,7 +83,7 @@ namespace Robot_Arm.SpeechRecognition
         public SpeechSynthesizer mySpeaker;
         private Grammar myGrammar;
         private SpeechRecognitionEngine mySpeechEngine;
-        private SpeechDictionary mySpeechDictionary;
+        public SpeechDictionary mySpeechDictionary;
     }
     
 }

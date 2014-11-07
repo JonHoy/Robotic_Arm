@@ -13,7 +13,7 @@ namespace Robot_Arm.Navigation
 {
     public partial class Action // class used to determine the
     {
-        public static List<Rectangle> ScanForBlobs(
+        public static void ScanForBlobs(
             string[] ColorsToLookFor,
             Capture myCamera,
             Servo xAxisServo,
@@ -25,10 +25,11 @@ namespace Robot_Arm.Navigation
         {
             int xStartPt = xAxisServo.MinAngle;
             int xEndPt = xAxisServo.MaxAngle;
-            var FoundBlobs = new List<Rectangle>();
             int yAngle;
             for (int i_x = 0; i_x < xPoints; i_x++)
             {
+                int xAngle = xStartPt + i_x * (xEndPt - xStartPt) / (xPoints - 1);
+                xAxisServo.ServoAngleChange(xAngle);
                 for (int i_y = 0; i_y < yPoints; i_y++)
                 {
                     if (i_x % 2 == 0)
@@ -38,13 +39,13 @@ namespace Robot_Arm.Navigation
                     yAxisServo.ServoAngleChange(yAngle);
                     Thread.Sleep(500);
                     var Photo = myCamera.QueryFrame();
-                    FoundBlobs.Add(ColorObjectRecognizer.GetRegion(ColorsToLookFor, Photo.Clone()));
+                    var newRect = ColorObjectRecognizer.GetRegion(ColorsToLookFor, Photo.Clone());
+                    if (newRect.IsEmpty == false)              
+                        break;
                 }
-                int xAngle = xStartPt + i_x * (xEndPt - xStartPt) / (xPoints - 1);
-                xAxisServo.ServoAngleChange(xAngle);
-
             }
-            return FoundBlobs;
         }
+
+
     }
 }

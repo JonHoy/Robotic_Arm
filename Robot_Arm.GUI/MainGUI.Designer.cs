@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.Servo1_Trackbar = new System.Windows.Forms.TrackBar();
             this.Servo2_Trackbar = new System.Windows.Forms.TrackBar();
             this.Controller_Checkbox = new System.Windows.Forms.CheckBox();
@@ -51,6 +51,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Video = new System.Windows.Forms.TabPage();
+            this.imageBox1 = new Emgu.CV.UI.ImageBox();
             this.Speech = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Servo_Joystick = new System.Windows.Forms.TabPage();
@@ -67,7 +68,6 @@
             this.startButton = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.AD_Timer = new System.Windows.Forms.Timer(this.components);
-            this.imageBox1 = new Emgu.CV.UI.ImageBox();
             ((System.ComponentModel.ISupportInitialize)(this.Servo1_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo2_Trackbar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Servo3_Trackbar)).BeginInit();
@@ -79,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Video.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             this.Speech.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.Servo_Joystick.SuspendLayout();
@@ -87,7 +88,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Navigation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Servo1_Trackbar
@@ -101,6 +101,7 @@
             this.Servo1_Trackbar.Tag = "";
             this.Servo1_Trackbar.TickFrequency = 5;
             this.Servo1_Trackbar.Value = 90;
+            this.Servo1_Trackbar.Scroll += new System.EventHandler(this.Servo1_Trackbar_Scroll);
             this.Servo1_Trackbar.ValueChanged += new System.EventHandler(this.Servo1_Trackbar_ValueChanged);
             // 
             // Servo2_Trackbar
@@ -364,6 +365,14 @@
             this.Video.TabIndex = 1;
             this.Video.Text = "Video";
             // 
+            // imageBox1
+            // 
+            this.imageBox1.Location = new System.Drawing.Point(22, 67);
+            this.imageBox1.Name = "imageBox1";
+            this.imageBox1.Size = new System.Drawing.Size(425, 412);
+            this.imageBox1.TabIndex = 2;
+            this.imageBox1.TabStop = false;
+            // 
             // Speech
             // 
             this.Speech.BackColor = System.Drawing.Color.Gray;
@@ -537,10 +546,10 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(23, 16);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(412, 382);
@@ -552,14 +561,6 @@
             // 
             this.AD_Timer.Interval = 200;
             this.AD_Timer.Tick += new System.EventHandler(this.AD_Timer_Tick);
-            // 
-            // imageBox1
-            // 
-            this.imageBox1.Location = new System.Drawing.Point(22, 67);
-            this.imageBox1.Name = "imageBox1";
-            this.imageBox1.Size = new System.Drawing.Size(425, 412);
-            this.imageBox1.TabIndex = 2;
-            this.imageBox1.TabStop = false;
             // 
             // MainGUI
             // 
@@ -587,6 +588,7 @@
             this.tabControl1.ResumeLayout(false);
             this.Video.ResumeLayout(false);
             this.Video.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             this.Speech.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.Servo_Joystick.ResumeLayout(false);
@@ -596,7 +598,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Navigation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

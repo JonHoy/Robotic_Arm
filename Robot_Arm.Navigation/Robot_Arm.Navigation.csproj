@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Arduino">
-      <HintPath>..\..\Arduino_Interface_CSharp\bin\Debug\Arduino.dll</HintPath>
+      <HintPath>..\Externals\Arduino\Arduino.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV">
       <HintPath>..\Externals\EmguCV\Emgu.CV.dll</HintPath>

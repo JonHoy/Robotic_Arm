@@ -1,0 +1,11 @@
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Robot_Arm.Video.dll
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Robot_Arm.Video.pdb
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.CV.dll
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.CV.UI.dll
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.Util.dll
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Robot_Arm.SpeechRecognition.dll
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\ZedGraph.dll
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Robot_Arm.SpeechRecognition.pdb
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.CV.xml
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.CV.UI.xml
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.Util.xml

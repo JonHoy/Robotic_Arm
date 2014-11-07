@@ -32,6 +32,13 @@ namespace Robot_Arm.Navigation
             xAxisServo.ServoAngleChange(xAngle + (int)dThetaX);
             yAxisServo.ServoAngleChange(yAngle + (int)dThetaY); 
         }
+        public static void TrackBlobs(Rectangle Region, Servo xAxisServo, Servo yAxisServo, double FOV, double FrameHeight, double FrameWidth)
+        {
+            double Xpoint = ((double)Region.Left + (double)Region.Right) / 2;
+            double Ypoint = ((double)Region.Top + (double)Region.Bottom) / 2;
+        }
+
+
     }
 
 }

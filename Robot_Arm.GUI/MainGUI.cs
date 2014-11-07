@@ -305,6 +305,11 @@ namespace Robot_Arm.GUI
 
         }
 
+        private void Servo1_Trackbar_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
 
 
     }

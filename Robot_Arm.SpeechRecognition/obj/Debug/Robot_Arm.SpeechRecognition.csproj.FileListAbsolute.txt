@@ -1,0 +1,2 @@
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\Robot_Arm.SpeechRecognition.dll
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\Robot_Arm.SpeechRecognition.pdb

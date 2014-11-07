@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Linq;
 
 // To see what these colors look like go to the link below
 //http://coloreminder.com
@@ -29,7 +30,7 @@ namespace Robot_Arm.SpeechRecognition
 
         public Color[] getAllColors()
         {
-            List<Color> AllColors = null;
+            var AllColors = new List<Color>();
             foreach (var Key in Keys)
             {
                 Color[] TempColor = null;

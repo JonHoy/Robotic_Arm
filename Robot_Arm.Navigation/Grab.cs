@@ -65,7 +65,7 @@ namespace Robot_Arm.Navigation
                 double theta1_New; double theta2_New;
                 myAngleCalculator.getNewTheta(objectDistance, (double)yAxisServo1.Angle, (double)yAxisServo2.Angle, out theta1_New, out theta2_New); // estimate the new angles needed to pick up the object
                 yAxisServo1.ServoAngleChange((int) theta1_New); // move the servos to the new estimated angles to pick up the object
-                yAxisServo2.ServoAngleChange((int) theta2_New);
+                yAxisServo2.ServoAngleChange((int) theta2_New + 90);
                 iterationCount++; // increase the iteration count
             }
             return objectGrabbed;
