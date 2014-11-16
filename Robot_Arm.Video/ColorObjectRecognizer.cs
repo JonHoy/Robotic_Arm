@@ -53,7 +53,7 @@ namespace Robot_Arm.Video
                     bestBlob.Xmax - bestBlob.Xmin + 1,
                     bestBlob.Ymax - bestBlob.Ymin + 1);
             }
-            ImageBlobs.DrawBlobOutline(Frame.Bitmap, myRect);
+            BlobFinder.DrawBlobOutline(Frame.Bitmap, myRect);
             return myRect;
         }
 

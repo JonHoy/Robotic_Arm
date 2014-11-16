@@ -27,6 +27,7 @@ namespace Robot_Arm.Navigation
         {
             double forceLevel = 200; // define a threshold value that the force sensor must go above to be considered grabbed
             double grabRange = 8;
+            int verticalscan = 10;
             int iterationLimit = 30; // define max number of attempts to grab object before exiting
             int iterationCount = 1; // define the current iteration number
             bool objectGrabbed = false; // define success 
@@ -38,15 +39,18 @@ namespace Robot_Arm.Navigation
                 var NewFrame = Camera.QueryFrame(); // take image
                 NewFrame = NewFrame.Clone(); // clone to remove null reference
 
-                var TargetRegion = ColorObjectRecognizer.GetRegion(ColorsToLookFor, NewFrame.Clone());
-                if (TargetRegion.IsEmpty) // if there is no target in sight break out of the loop
+                var TargetRegion = ColorObjectRecognizer.GetRegion(ColorsToLookFor, NewFrame);
+                if (TargetRegion.IsEmpty) // if there is no target in sight scan veritically until the target is aquired
                 {
-                    break;
+                    yAxisServo2.ServoAngleChange(yAxisServo2.Angle - verticalscan);
+                    iterationCount++; // increase the iteration count
+                    continue;
                 }
                 var Xpoint = ((double)TargetRegion.Left + (double)TargetRegion.Right) / 2;
                 var Ypoint = ((double)TargetRegion.Top + (double)TargetRegion.Bottom) / 2;
                 Robot_Arm.Navigation.Action.TrackBlobs(Xpoint, Ypoint, xAxisServo, yAxisServo2, 50, NewFrame.Height, NewFrame.Width); // center the object with the arm
                 double objectDistance = distanceSensor.getDistance() / 2; // take distance reading, then go halfway to estimated distance
+                Thread.Sleep(500);
                 if (objectDistance < grabRange) // the object is within range of the gripper, try grabbing it
                 {
                     gripperServo.ServoAngleChange(gripperServo.MinAngle); // engage gripper

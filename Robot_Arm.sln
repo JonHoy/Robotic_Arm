@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.SpeechRecognition", "Robot_Arm.SpeechRecognition\Robot_Arm.SpeechRecognition.csproj", "{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.GUI", "Robot_Arm.GUI\Robot_Arm.GUI.csproj", "{A854491A-F1C4-4311-BD91-96328068D0D1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Video", "Robot_Arm.Video\Robot_Arm.Video.csproj", "{36B5015E-6EB2-4AC3-A003-77B772755AAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Navigation", "Robot_Arm.Navigation\Robot_Arm.Navigation.csproj", "{9CCA42D5-3875-4664-AB16-7782E830BB49}"
@@ -14,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Tests", "Robot_Arm.Tests\Robot_Arm.Tests.csproj", "{20DD177C-F19A-42C7-8A54-31323799B0DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm", "Robot_Arm\Robot_Arm.csproj", "{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,16 +33,6 @@ Global
 		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4BFFAD55-54B5-4D5E-851B-AE5F4122819C}.Release|Win32.ActiveCfg = Release|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A854491A-F1C4-4311-BD91-96328068D0D1}.Release|Win32.ActiveCfg = Release|Any CPU
 		{36B5015E-6EB2-4AC3-A003-77B772755AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{36B5015E-6EB2-4AC3-A003-77B772755AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36B5015E-6EB2-4AC3-A003-77B772755AAD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -97,16 +83,6 @@ Global
 		{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}.Release|Win32.ActiveCfg = Release|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{E4AC1F8D-DF15-47D1-90F4-753C5F2FBB3B}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

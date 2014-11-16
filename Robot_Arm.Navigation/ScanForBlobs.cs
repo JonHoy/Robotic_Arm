@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using System.Drawing;
 using ArduinoClass;
 using Emgu.CV;
+using Emgu.CV.UI;
 using Robot_Arm.Video;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace Robot_Arm.Navigation
 {
@@ -26,6 +28,8 @@ namespace Robot_Arm.Navigation
             int xStartPt = xAxisServo.MinAngle;
             int xEndPt = xAxisServo.MaxAngle;
             int yAngle;
+            Rectangle newRect = new Rectangle();
+
             for (int i_x = 0; i_x < xPoints; i_x++)
             {
                 int xAngle = xStartPt + i_x * (xEndPt - xStartPt) / (xPoints - 1);
@@ -37,12 +41,15 @@ namespace Robot_Arm.Navigation
                     else
                         yAngle = yEndPt - i_y * (yEndPt - yStartPt) / (yPoints - 1);
                     yAxisServo.ServoAngleChange(yAngle);
-                    Thread.Sleep(500);
-                    var Photo = myCamera.QueryFrame();
-                    var newRect = ColorObjectRecognizer.GetRegion(ColorsToLookFor, Photo.Clone());
+                    Thread.Sleep(200);
+                    var Photo = myCamera.QueryFrame().Clone();
+                    newRect = ColorObjectRecognizer.GetRegion(ColorsToLookFor, Photo);
+                    BlobFinder.DrawBlobOutline(Photo.Bitmap, newRect);
                     if (newRect.IsEmpty == false)              
                         break;
                 }
+                if (newRect.IsEmpty == false)
+                    break;
             }
         }
 
