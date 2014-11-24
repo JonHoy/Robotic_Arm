@@ -1,0 +1,12 @@
+﻿Build started 11/23/2014 11:47:00 AM.
+     1>Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.dll" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X64 /DLL x64\Debug\Robot_Arm.GPU.obj
+         x64\Debug\SegmentColors.obj
+         "x64\Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         Robot_Arm.GPU.vcxproj -> C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.dll
+     1>Done Building Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.12
