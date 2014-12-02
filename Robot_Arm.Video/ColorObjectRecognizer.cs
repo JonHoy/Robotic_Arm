@@ -40,7 +40,7 @@ namespace Robot_Arm.Video
             });
 
             detectEdges.Start();
-            Frame._SmoothGaussian(11);
+            Frame.SmoothGaussian(25);
             Image<Bgr, int> ColorFrame = Frame.Convert<Bgr, int>();
             int[,] SelectedColors = ColorClassifier.SegmentColors(ColorFrame);
             bool[,] BW_FromColor = ColorClassifier.GenerateBW(ref SelectedColors, ColorsToLookFor);
@@ -54,7 +54,7 @@ namespace Robot_Arm.Video
             bool[,] BW_Composite = BlobFinder.AND(ref BW_FromColor, ref EdgeBW);
 
             BlobFinder ImageBlobs = new BlobFinder(BW_Composite);
-            ImageBlobs.RemoveSmallBlobs(1500);
+            ImageBlobs.RemoveSmallBlobs(3000);
             Blob bestBlob = ImageBlobs.PickBestBlob();
             Rectangle myRect = new Rectangle();
             if (bestBlob != null)

@@ -22,13 +22,13 @@ namespace Robot_Arm.GUI
         public MainGUI()
         {
             InitializeComponent();
-            TransparentHelper(pictureBox1, new Label[]{
-                servo1_Label, 
-                servo2_Label, 
-                servo3_Label, 
-                servo4_Label, 
-                sensor1_Label, 
-                sensor2_Label});
+            //TransparentHelper(pictureBox1, new Label[]{
+            //    servo1_Label, 
+            //    servo2_Label, 
+            //    servo3_Label, 
+            //    servo4_Label, 
+            //    sensor1_Label, 
+            //    sensor2_Label});
             this.Arm = new Robot_Arm.Base();
             this.Arm.ImageTaken += new EventHandler<Base.RobotEventArgs>(GUI_Refresh);
             trackBar1.Maximum = Arm.xAxisServo.MaxAngle;
@@ -45,7 +45,7 @@ namespace Robot_Arm.GUI
 
         private void start_button_Click(object sender, EventArgs e)
         {
-            this.Arm.Grab("Red");
+            this.Arm.Grab("Orange");
         }
 
         private void GUI_Refresh(object sender, Base.RobotEventArgs e)
@@ -57,6 +57,12 @@ namespace Robot_Arm.GUI
             servo4_Label.Text = "Servo 4 (Gripper) " + e.gripperServoAngle.ToString() + " deg";
             sensor1_Label.Text = "Sensor 1 (Force) " + (e.ForceReading/1000).ToString("F2") + " kg";
             sensor2_Label.Text = "Sensor 2 (Distance) " + e.DistanceReading.ToString("F1") + " cm";
+            progressBar1.Value = (int) (Arm.ForceSensor.getSensorReading()*1023.0/5.0);
+            progressBar2.Value = (int) (Arm.DistanceSensor.getSensorReading()*1023.0/5.0);
+            trackBar1.Value = e.xAxisServoAngle;
+            trackBar2.Value = e.y1AxisServoAngle;
+            trackBar3.Value = e.y2AxisServoAngle;
+            trackBar4.Value = e.gripperServoAngle;
             Refresh();
         }
 
@@ -64,8 +70,8 @@ namespace Robot_Arm.GUI
         {
             var Photo = this.Arm.Webcam.QueryFrame().Clone();
             var Dictionary = new SpeechRecognition.SpeechDictionary();
-            var PhotoNew = ColorObjectRecognizer.ReColorPhoto(Dictionary.GetColorStrings("Orange"), Photo);
-            this.pictureBox1.Image = PhotoNew.Bitmap;
+            ColorObjectRecognizer.GetRegion(Dictionary.GetColorStrings("Orange"), Photo);
+            this.pictureBox1.Image = Photo.ToBitmap();
             Refresh();
         }
 
@@ -116,6 +122,28 @@ namespace Robot_Arm.GUI
         {
             Arm.gripperServo.ServoAngleChange(trackBar4.Value);
             Arm.Webcam.QueryFrame();
+        }
+
+        private void MainGUI_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void auto_radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (auto_radioButton.Checked)
+            {
+                this.Arm.Grab("Orange");
+            }
+
+        }
+
+        private void manual_radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (manual_radioButton.Checked)
+            {
+
+            }
         }
 
     }

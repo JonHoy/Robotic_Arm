@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using ArduinoClass;
 using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
-using ArduinoClass;
 using Robot_Arm.Video;
 using Robot_Arm.Navigation;
 using Robot_Arm.SpeechRecognition;
@@ -64,7 +64,7 @@ namespace Robot_Arm
             }
             ForceSensor = new ResistiveForce(Mega2560, Force_Analog_Pin);
             DistanceSensor = new SharpIR(Mega2560, Distance_Analog_Pin);
-            Webcam = new Capture(1);
+            Webcam = new Capture();
             Dictionary = new SpeechDictionary();
             Webcam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280);
             Webcam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_HEIGHT, 720); // set cam resolution to 720P
@@ -102,7 +102,7 @@ namespace Robot_Arm
 
         public void Disconnect()
         {
-            //Mega2560.Disconnect();
+            Mega2560.Disconnect();
         }
 
         public class RobotEventArgs : EventArgs

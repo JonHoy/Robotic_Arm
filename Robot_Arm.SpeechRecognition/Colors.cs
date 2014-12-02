@@ -20,7 +20,7 @@ namespace Robot_Arm.SpeechRecognition
             Add("Blue", new Color[] { Color.Blue, Color.MidnightBlue});
             Add("Black", new Color[] { Color.Black });
             Add("White", new Color[] { Color.White});
-            Add("Yellow", new Color[] { Color.Yellow, Color.Gold, Color.DarkKhaki});
+            Add("Yellow", new Color[] { Color.Yellow, Color.Gold, Color.DarkKhaki, Color.DarkGoldenrod, Color.LightGoldenrodYellow});
             Add("Purple", new Color[] { Color.Purple, Color.MediumPurple, Color.Indigo, Color.DarkOrchid, Color.BlueViolet, Color.DarkMagenta });
             Add("Orange", new Color[] { Color.Orange, Color.DarkOrange, Color.OrangeRed, Color.IndianRed, Color.Tomato, Color.Coral, Color.SaddleBrown});
             Add("Brown", new Color[] { Color.Brown});

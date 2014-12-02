@@ -351,16 +351,19 @@ namespace Robot_Arm.Video
 
         public Blob PickBestBlob()
         {
-            double minXCoverage = .03; // define min percentage coverage a blob can have not not be rejected
-            double maxXCoverage = .2; // define maximum percent coverage a blob can have and not be rejected 
-            double maxPercentCoverage = .1;
-
+            double minXCoverage = .06; // define min percentage coverage a blob can have not not be rejected
+            double maxXCoverage = .25; // define maximum percent coverage a blob can have and not be rejected 
+            double maxPercentCoverage = .15;
+            double maxAspectRatio = 2;
+            double minAspectRatio = .5;
             try
             {
                 var rectBounds = GetRectangles();
                 double frameWidth = (double)BW.GetLength(1);
                 double frameHeight = (double)BW.GetLength(0);
                 var FiltBlobs = Array.FindAll(Blobs, (x) => minXCoverage < (double)((double)(x.Xmax - x.Xmin) / frameWidth));
+                FiltBlobs = Array.FindAll(FiltBlobs, (x) => maxAspectRatio > ((double)(x.Xmax - x.Xmin) / (double) (x.Ymax - x.Ymin)));
+                FiltBlobs = Array.FindAll(FiltBlobs, (x) => minAspectRatio < ((double)(x.Xmax - x.Xmin) / (double)(x.Ymax - x.Ymin)));
                 FiltBlobs = Array.FindAll(FiltBlobs, (x) => maxXCoverage > (double)((double)(x.Xmax - x.Xmin) / frameWidth));
                 FiltBlobs = Array.FindAll(FiltBlobs, (x) => maxPercentCoverage > (double)x.PixelCount / (frameWidth * frameHeight));
                 double max = FiltBlobs.Max(t => t.PixelCount);

@@ -38,12 +38,7 @@ namespace Robot_Arm
                         yAngle = yEndPt - i_y * (yEndPt - yStartPt) / (yPoints - 1);
                     yAxisServo2.ServoAngleChange(yAngle);
                     Thread.Sleep(500);
-                    var PhotoArray = new Emgu.CV.Image<Bgr, float>[PhotoCount];
-                    for (int iPhoto = 0; iPhoto < PhotoCount; iPhoto++)
-                    {
-                        PhotoArray[iPhoto] = Webcam.QueryFrame().Clone().Convert<Bgr, float>();
-                    }
-                    newRect = ColorObjectRecognizer.GetRegion(ColorsToLookFor, PhotoArray);
+                    newRect = ColorObjectRecognizer.GetRegion(ColorsToLookFor, Webcam.QueryFrame().Clone());
                     if (newRect.IsEmpty == false)
                         break;
                 }
