@@ -80,9 +80,6 @@
     <ClCompile Include="RunningAvgGPU.cpp" />
     <ClCompile Include="SegmentColorsGPU.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <CudaCompile Include="CUDA_Hello.cu" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\CUDA 6.5.targets" />

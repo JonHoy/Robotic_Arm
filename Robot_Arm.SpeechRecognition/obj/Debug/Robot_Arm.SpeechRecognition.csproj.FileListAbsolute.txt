@@ -2,6 +2,8 @@ C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\D
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\bin\Debug\Robot_Arm.SpeechRecognition.pdb
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.SpeechRecognition.dll
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.SpeechRecognition.pdb
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.SpeechRecognition.dll.CodeAnalysisLog.xml
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.SpeechRecognition.dll.lastcodeanalysissucceeded
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.csprojResolveAssemblyReference.cache
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.dll
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.pdb
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.csprojResolveAssemblyReference.cache

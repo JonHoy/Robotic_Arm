@@ -11,6 +11,8 @@ C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.CV
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\bin\Debug\Emgu.Util.xml
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Video.dll
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Video.pdb
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Video.dll.CodeAnalysisLog.xml
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Video.dll.lastcodeanalysissucceeded
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\obj\Debug\Robot_Arm.Video.csprojResolveAssemblyReference.cache
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\obj\Debug\Robot_Arm.Video.dll
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Video\obj\Debug\Robot_Arm.Video.pdb

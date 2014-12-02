@@ -1,12 +1,18 @@
-﻿Build started 11/23/2014 11:47:00 AM.
+﻿Build started 11/28/2014 10:13:17 AM.
      1>Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.dll" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X64 /DLL x64\Debug\Robot_Arm.GPU.obj
-         x64\Debug\SegmentColors.obj
-         "x64\Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
-         Robot_Arm.GPU.vcxproj -> C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.dll
-     1>Done Building Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /errorReport:prompt /clr:nostdlib Robot_Arm.GPU.cpp
+         Robot_Arm.GPU.cpp
+     1>c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(12): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(12): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(12): error C2238: unexpected token(s) preceding ';'
+     1>c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(13): error C2143: syntax error : missing ';' before '<'
+     1>c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+     1>c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(13): error C2086: 'int Robot_Arm_GPU::GPU::Statistics' : redefinition
+                 c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(12) : see declaration of 'Robot_Arm_GPU::GPU::Statistics'
+     1>c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\Robot_Arm.GPU.h(13): error C2238: unexpected token(s) preceding ';'
+     1>Done Building Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:02.12
+Time Elapsed 00:00:00.30

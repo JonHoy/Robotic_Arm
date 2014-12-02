@@ -139,6 +139,9 @@
     <ClInclude Include="Robot_Arm.GPU.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ND_Correlate.cpp">
+      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
+    </ClCompile>
     <ClCompile Include="Robot_Arm.GPU.cpp" />
     <ClCompile Include="SegmentColors.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
