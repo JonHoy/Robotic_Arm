@@ -1,0 +1,16 @@
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\ManualTests.exe.config
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\ManualTests.exe
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\ManualTests.pdb
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\Robot_Arm.GPU.dll
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\Robot_Arm.GPU.pdb
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.csprojResolveAssemblyReference.cache
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.exe
+C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.pdb
+D:\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\ManualTests.exe.config
+D:\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\ManualTests.exe
+D:\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\ManualTests.pdb
+D:\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\Robot_Arm.GPU.dll
+D:\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\Robot_Arm.GPU.pdb
+D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.exe
+D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.pdb
