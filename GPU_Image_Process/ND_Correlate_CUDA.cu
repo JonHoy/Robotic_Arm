@@ -1,6 +1,3 @@
-#include "ND_Correlate_CUDA.h"
-
-
 __global__ void ndCorrelateKernel(
 	float* Y,
 	float* X,
@@ -18,7 +15,7 @@ __global__ void ndCorrelateKernel(
 {
 	int i = threadIdx.x + blockIdx.x * blockDim.x;
 	int idx = 0;
-	while (i < numPoints)
+	if (i < numPoints)
 	{
 		for (int iDim = 0; iDim < Dims; iDim++)
 		{
@@ -55,13 +52,11 @@ __global__ void ndCorrelateKernel_STD(
 	)
 {
 	int i = threadIdx.x + blockIdx.x * blockDim.x;
-	int stride = blockDim.x * gridDim.x;
-	while (i < numPoints)
+	if (i < numPoints)
 	{
 		int idx = Index[i];
 		float var = (Sum[idx]/Count[idx] - Y[i]) * (Sum[idx]/Count[idx] - Y[i]); // keep a running sum of the variance
 		atomicAdd(&Std[idx],var); // add up the variance
-		i += stride;
 	}
 	__syncthreads(); // now synchronize all threads so that we can now compute the standard deviation
 }

@@ -1,7 +1,0 @@
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Tests.dll
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Tests.pdb
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Tests.dll.CodeAnalysisLog.xml
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\Robot_Arm.Tests.dll.lastcodeanalysissucceeded
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Tests\obj\Debug\Robot_Arm.Tests.csprojResolveAssemblyReference.cache
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Tests\obj\Debug\Robot_Arm.Tests.dll
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.Tests\obj\Debug\Robot_Arm.Tests.pdb

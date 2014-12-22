@@ -30,6 +30,7 @@ namespace Robot_Arm
         // specific analog pin mappings on the arduino
         private int Distance_Analog_Pin = 0;
         private int Force_Analog_Pin = 1;
+        private int Light_Analog_Pin = 2;
 
         public Servo xAxisServo;
         public Servo yAxisServo1;
@@ -41,6 +42,7 @@ namespace Robot_Arm
         public Arduino Mega2560;
         public SharpIR DistanceSensor;
         public ResistiveForce ForceSensor;
+        public Sensor LightSensor;
         public SpeechRecognition.Base SpeechEngine;
         public SpeechRecognition.SpeechDictionary Dictionary;
 
@@ -64,6 +66,8 @@ namespace Robot_Arm
             }
             ForceSensor = new ResistiveForce(Mega2560, Force_Analog_Pin);
             DistanceSensor = new SharpIR(Mega2560, Distance_Analog_Pin);
+            LightSensor = new Sensor(Mega2560, Light_Analog_Pin);
+            
             Webcam = new Capture();
             Dictionary = new SpeechDictionary();
             Webcam.SetCaptureProperty(CAP_PROP.CV_CAP_PROP_FRAME_WIDTH, 1280);
@@ -91,8 +95,9 @@ namespace Robot_Arm
             Image<Bgr, Byte> Frame = this.Webcam.RetrieveBgrFrame().Clone();
             args.Photo = Frame.ToBitmap();
             args.Date = DateTime.Now.ToLongTimeString();
-            args.ForceReading = ForceSensor.getForce();
+            args.ForceReading = ForceSensor.getSensorResistance(10e3);
             args.DistanceReading = DistanceSensor.getDistance();
+            args.LightReading = LightSensor.getSensorResistance(10e3);
             args.xAxisServoAngle = xAxisServo.Angle;
             args.y1AxisServoAngle = yAxisServo1.Angle;
             args.y2AxisServoAngle = yAxisServo2.Angle;
@@ -114,6 +119,7 @@ namespace Robot_Arm
             public int gripperServoAngle;
             public double ForceReading;
             public double DistanceReading;
+            public double LightReading;
             public string Date;
         }
         private void OnImageGrabbed(RobotEventArgs e)

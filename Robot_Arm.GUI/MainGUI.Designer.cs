@@ -47,6 +47,10 @@
             this.progressBar2 = new System.Windows.Forms.ProgressBar();
             this.auto_radioButton = new System.Windows.Forms.RadioButton();
             this.manual_radioButton = new System.Windows.Forms.RadioButton();
+            this.sensor3_Label = new System.Windows.Forms.Label();
+            this.progressBar3 = new System.Windows.Forms.ProgressBar();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -56,9 +60,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(207, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1129, 571);
+            this.pictureBox1.Size = new System.Drawing.Size(925, 571);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -66,7 +70,7 @@
             // test_button
             // 
             this.test_button.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.test_button.Location = new System.Drawing.Point(13, 452);
+            this.test_button.Location = new System.Drawing.Point(12, 496);
             this.test_button.Name = "test_button";
             this.test_button.Size = new System.Drawing.Size(143, 30);
             this.test_button.TabIndex = 2;
@@ -79,7 +83,7 @@
             this.servo1_Label.AutoSize = true;
             this.servo1_Label.BackColor = System.Drawing.SystemColors.Control;
             this.servo1_Label.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.servo1_Label.Location = new System.Drawing.Point(13, 19);
+            this.servo1_Label.Location = new System.Drawing.Point(12, 2);
             this.servo1_Label.Name = "servo1_Label";
             this.servo1_Label.Size = new System.Drawing.Size(123, 21);
             this.servo1_Label.TabIndex = 3;
@@ -90,7 +94,7 @@
             this.servo2_Label.AutoSize = true;
             this.servo2_Label.BackColor = System.Drawing.Color.Transparent;
             this.servo2_Label.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.servo2_Label.Location = new System.Drawing.Point(13, 71);
+            this.servo2_Label.Location = new System.Drawing.Point(12, 54);
             this.servo2_Label.Name = "servo2_Label";
             this.servo2_Label.Size = new System.Drawing.Size(123, 21);
             this.servo2_Label.TabIndex = 3;
@@ -101,7 +105,7 @@
             this.servo3_Label.AutoSize = true;
             this.servo3_Label.BackColor = System.Drawing.Color.Transparent;
             this.servo3_Label.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.servo3_Label.Location = new System.Drawing.Point(13, 123);
+            this.servo3_Label.Location = new System.Drawing.Point(12, 106);
             this.servo3_Label.Name = "servo3_Label";
             this.servo3_Label.Size = new System.Drawing.Size(123, 21);
             this.servo3_Label.TabIndex = 3;
@@ -112,7 +116,7 @@
             this.servo4_Label.AutoSize = true;
             this.servo4_Label.BackColor = System.Drawing.Color.Transparent;
             this.servo4_Label.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.servo4_Label.Location = new System.Drawing.Point(13, 175);
+            this.servo4_Label.Location = new System.Drawing.Point(12, 158);
             this.servo4_Label.Name = "servo4_Label";
             this.servo4_Label.Size = new System.Drawing.Size(133, 21);
             this.servo4_Label.TabIndex = 3;
@@ -123,7 +127,7 @@
             this.sensor1_Label.AutoSize = true;
             this.sensor1_Label.BackColor = System.Drawing.Color.Transparent;
             this.sensor1_Label.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sensor1_Label.Location = new System.Drawing.Point(13, 227);
+            this.sensor1_Label.Location = new System.Drawing.Point(12, 210);
             this.sensor1_Label.Name = "sensor1_Label";
             this.sensor1_Label.Size = new System.Drawing.Size(126, 21);
             this.sensor1_Label.TabIndex = 3;
@@ -134,7 +138,7 @@
             this.sensor2_Label.AutoSize = true;
             this.sensor2_Label.BackColor = System.Drawing.Color.Transparent;
             this.sensor2_Label.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sensor2_Label.Location = new System.Drawing.Point(13, 279);
+            this.sensor2_Label.Location = new System.Drawing.Point(12, 262);
             this.sensor2_Label.Name = "sensor2_Label";
             this.sensor2_Label.Size = new System.Drawing.Size(147, 21);
             this.sensor2_Label.TabIndex = 3;
@@ -143,7 +147,7 @@
             // trackBar1
             // 
             this.trackBar1.AutoSize = false;
-            this.trackBar1.Location = new System.Drawing.Point(13, 43);
+            this.trackBar1.Location = new System.Drawing.Point(12, 26);
             this.trackBar1.Maximum = 180;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(188, 25);
@@ -155,7 +159,7 @@
             // trackBar2
             // 
             this.trackBar2.AutoSize = false;
-            this.trackBar2.Location = new System.Drawing.Point(13, 95);
+            this.trackBar2.Location = new System.Drawing.Point(12, 78);
             this.trackBar2.Maximum = 180;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(188, 25);
@@ -166,7 +170,7 @@
             // trackBar3
             // 
             this.trackBar3.AutoSize = false;
-            this.trackBar3.Location = new System.Drawing.Point(13, 147);
+            this.trackBar3.Location = new System.Drawing.Point(12, 130);
             this.trackBar3.Maximum = 180;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Size = new System.Drawing.Size(188, 25);
@@ -177,7 +181,7 @@
             // trackBar4
             // 
             this.trackBar4.AutoSize = false;
-            this.trackBar4.Location = new System.Drawing.Point(13, 199);
+            this.trackBar4.Location = new System.Drawing.Point(12, 182);
             this.trackBar4.Maximum = 180;
             this.trackBar4.Name = "trackBar4";
             this.trackBar4.Size = new System.Drawing.Size(188, 25);
@@ -188,7 +192,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(13, 490);
+            this.button2.Location = new System.Drawing.Point(12, 532);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 30);
             this.button2.TabIndex = 5;
@@ -197,7 +201,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(13, 251);
+            this.progressBar1.Location = new System.Drawing.Point(12, 234);
             this.progressBar1.Maximum = 1023;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(188, 25);
@@ -207,7 +211,7 @@
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(13, 303);
+            this.progressBar2.Location = new System.Drawing.Point(12, 286);
             this.progressBar2.Maximum = 1023;
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(188, 25);
@@ -218,7 +222,7 @@
             // 
             this.auto_radioButton.AutoSize = true;
             this.auto_radioButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.auto_radioButton.Location = new System.Drawing.Point(13, 331);
+            this.auto_radioButton.Location = new System.Drawing.Point(12, 370);
             this.auto_radioButton.Name = "auto_radioButton";
             this.auto_radioButton.Size = new System.Drawing.Size(118, 25);
             this.auto_radioButton.TabIndex = 7;
@@ -231,7 +235,7 @@
             // 
             this.manual_radioButton.AutoSize = true;
             this.manual_radioButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.manual_radioButton.Location = new System.Drawing.Point(13, 359);
+            this.manual_radioButton.Location = new System.Drawing.Point(12, 398);
             this.manual_radioButton.Name = "manual_radioButton";
             this.manual_radioButton.Size = new System.Drawing.Size(80, 25);
             this.manual_radioButton.TabIndex = 7;
@@ -240,19 +244,75 @@
             this.manual_radioButton.UseVisualStyleBackColor = true;
             this.manual_radioButton.CheckedChanged += new System.EventHandler(this.manual_radioButton_CheckedChanged);
             // 
+            // sensor3_Label
+            // 
+            this.sensor3_Label.AutoSize = true;
+            this.sensor3_Label.BackColor = System.Drawing.Color.Transparent;
+            this.sensor3_Label.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sensor3_Label.Location = new System.Drawing.Point(12, 315);
+            this.sensor3_Label.Name = "sensor3_Label";
+            this.sensor3_Label.Size = new System.Drawing.Size(123, 21);
+            this.sensor3_Label.TabIndex = 3;
+            this.sensor3_Label.Text = "Sensor 3 (Light):";
+            // 
+            // progressBar3
+            // 
+            this.progressBar3.Location = new System.Drawing.Point(12, 339);
+            this.progressBar3.Maximum = 1023;
+            this.progressBar3.Name = "progressBar3";
+            this.progressBar3.Size = new System.Drawing.Size(188, 25);
+            this.progressBar3.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressBar3.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Black",
+            "Blue",
+            "Brown",
+            "Green",
+            "Orange",
+            "Red",
+            "White",
+            "Yellow"});
+            this.comboBox1.Location = new System.Drawing.Point(12, 452);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(184, 29);
+            this.comboBox1.Sorted = true;
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 428);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(151, 21);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Color(s) to Look For:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1136, 574);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.manual_radioButton);
             this.Controls.Add(this.auto_radioButton);
+            this.Controls.Add(this.progressBar3);
             this.Controls.Add(this.progressBar2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.trackBar4);
             this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.trackBar2);
+            this.Controls.Add(this.sensor3_Label);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.sensor2_Label);
             this.Controls.Add(this.sensor1_Label);
@@ -298,6 +358,10 @@
         private System.Windows.Forms.ProgressBar progressBar2;
         private System.Windows.Forms.RadioButton auto_radioButton;
         private System.Windows.Forms.RadioButton manual_radioButton;
+        private System.Windows.Forms.Label sensor3_Label;
+        private System.Windows.Forms.ProgressBar progressBar3;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

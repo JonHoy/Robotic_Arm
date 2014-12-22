@@ -55,10 +55,17 @@ namespace Robot_Arm.GUI
             servo2_Label.Text = "Servo 2 (Y-Axis) " + e.y1AxisServoAngle.ToString() + " deg";
             servo3_Label.Text = "Servo 3 (Y-Axis) " + e.y2AxisServoAngle.ToString() + " deg";
             servo4_Label.Text = "Servo 4 (Gripper) " + e.gripperServoAngle.ToString() + " deg";
-            sensor1_Label.Text = "Sensor 1 (Force) " + (e.ForceReading/1000).ToString("F2") + " kg";
+            
+            if (double.IsInfinity(e.ForceReading))
+                sensor1_Label.Text = "Sensor 1 (Force) " + "\u221E" + " k\u2126"; // add kOhm to reading
+            else
+                sensor1_Label.Text = "Sensor 1 (Force) " + (e.ForceReading / 1000).ToString("F1") + " k\u2126"; // add kOhm to reading
+            
             sensor2_Label.Text = "Sensor 2 (Distance) " + e.DistanceReading.ToString("F1") + " cm";
+            sensor3_Label.Text = "Sensor 3 (Light) " + (e.LightReading / 1000).ToString("F1") + " k\u2126"; // add kOhm to reading
             progressBar1.Value = (int) (Arm.ForceSensor.getSensorReading()*1023.0/5.0);
             progressBar2.Value = (int) (Arm.DistanceSensor.getSensorReading()*1023.0/5.0);
+            progressBar3.Value = (int)(Arm.LightSensor.getSensorReading() * 1023.0 / 5.0);
             trackBar1.Value = e.xAxisServoAngle;
             trackBar2.Value = e.y1AxisServoAngle;
             trackBar3.Value = e.y2AxisServoAngle;
@@ -144,6 +151,16 @@ namespace Robot_Arm.GUI
             {
 
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
     }
