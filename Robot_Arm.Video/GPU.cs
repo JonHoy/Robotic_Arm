@@ -18,37 +18,6 @@ namespace Robot_Arm.Video
         [DllImport("GPU_Image_Process", CallingConvention = CallingConvention.StdCall)]
         extern unsafe static void ND_Correlate_CPU(double* Y, double* X, int Y_length, int Dims, double* Range, int* Bins, 
             double* Max, double* Min, double* Std, double* Avg, double* Count);
-        public static unsafe Image<Bgr, float> RunningAvg(Image<Bgr, float>[] Frames)
-        {
-            int FrameCount = Frames.Length;
-            var OutputImage = new Image<Bgr, float>(Frames[0].Width, Frames[0].Height);
-            int PixelCount = Frames[0].Width * Frames[0].Height * 3;
-            float[, , ,] FramesData = new float[FrameCount, Frames[0].Width, Frames[0].Height, 3];
-            float[,,] OutputImageData = OutputImage.Data;
-            fixed (float* OutputImagePtr = &OutputImageData[0, 0, 0])
-            fixed (float* FramePtr = &FramesData[0,0,0,0])
-            {
-                var frames_gch = GCHandle.Alloc(FramesData, GCHandleType.Pinned);
-                var frames_ptr = frames_gch.AddrOfPinnedObject();
-                float[] TempBuffer = new float[PixelCount];
-                for (int i = 0; i < FrameCount; i++)
-                {    
-                    float[, ,] Data = Frames[i].Data;
-                    var gch = GCHandle.Alloc(Data, GCHandleType.Pinned);
-                    var source = gch.AddrOfPinnedObject();
-                    Marshal.Copy(source, TempBuffer, 0, PixelCount);
-                    gch.Free();
-                    Marshal.Copy(TempBuffer, 0, frames_ptr + i * PixelCount, PixelCount);
-
-                }
-                frames_gch.Free();
-                RunningAvgGPU(FramePtr, PixelCount, FrameCount, OutputImagePtr);
-                OutputImage.Data = OutputImageData;
-            }
-            
-            return OutputImage;
-        }
-
 
         public static unsafe int[,] SegmentColors(int[, ,] Image, int[,] Colors)
         { 

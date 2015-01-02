@@ -7,3 +7,12 @@ C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.csproj.GenerateResource.Cache
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.exe
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.pdb
+D:\Documents\GitHub\Robotic_Arm\Bin\Robot_Arm.GUI.exe.config
+D:\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.exe
+D:\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.pdb
+D:\Documents\GitHub\Robotic_Arm\Bin\Robot_Arm.GUI.exe
+D:\Documents\GitHub\Robotic_Arm\Bin\Robot_Arm.GUI.pdb
+D:\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.MainGUI.resources
+D:\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.Properties.Resources.resources
+D:\Documents\GitHub\Robotic_Arm\Robot_Arm.GUI\obj\Debug\Robot_Arm.GUI.csproj.GenerateResource.Cache

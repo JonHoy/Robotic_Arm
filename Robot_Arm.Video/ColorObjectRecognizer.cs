@@ -11,13 +11,6 @@ namespace Robot_Arm.Video
 {
     public class ColorObjectRecognizer
     {
-
-        public static Rectangle GetRegion(string[] ColorsToLookFor, Image<Bgr, float>[] Frames)
-        {
-            var FinalComposite = GPU.RunningAvg(Frames);
-            return GetRegion(ColorsToLookFor, FinalComposite.Convert<Bgr, Byte>());
-        }
-
         public static Image<Bgr, Byte> ReColorPhoto(string[] ColorsToLookFor, Image<Bgr, Byte> Frame)
         {
             var ColorClassifier = new ColorClassification();

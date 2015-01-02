@@ -1,3 +1,2 @@
 ﻿  SegmentColors.cpp
-d:\documents\github\robotic_arm\robot_arm.gpu\HSI_Pixel.h(49): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
   Robot_Arm.GPU.vcxproj -> D:\Documents\GitHub\Robotic_Arm\x64\Debug\Robot_Arm.GPU.dll

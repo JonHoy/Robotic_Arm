@@ -1,6 +1,7 @@
 
 #include <amp_graphics.h>
 #include <amp_math.h>
+#include <limits>
 
 #define PI 3.14159f
 
@@ -16,8 +17,13 @@ struct HSI_Pixel {
 inline HSI_Pixel RGB2HSI(float R, float G, float B) restrict (amp, cpu)
 {
 	HSI_Pixel Pixel;
+	
+	R = R/255.0f;
+	G = G/255.0f;
+	B = B/255.0f;
+
 	Pixel.I = (R + G + B)/3;
-	float MinColor;
+	float MinColor = 0;
 	
 	if (R < G)
 		MinColor = R;
@@ -25,9 +31,12 @@ inline HSI_Pixel RGB2HSI(float R, float G, float B) restrict (amp, cpu)
 		MinColor = G;
 	if (MinColor > B)
 		MinColor = B;
-	
-	Pixel.S = 1 - MinColor / Pixel.I;
-	
+
+	if (Pixel.I != 0)
+		Pixel.S = 1 - MinColor / Pixel.I;
+	else
+		Pixel.S = 0;
+
 	float Theta;
 	if (R == 0 && G == 0 && B == 0)
 		Theta = 0;

@@ -22,42 +22,42 @@ namespace native_library {
 			if (Planes == 3 && NumColors <= TileSize && PixelCount % TileSize == 0) // fast implementation for 3 planes and color count less than or equal to TileSize
 			{
 				std::vector<HSI_Pixel> HSIColors(NumColors);
-
+				for (int i = 0; i < NumColors; i++)
+				{
+					float R = (float) colorsView(i, 0);
+					float G = (float) colorsView(i, 1);
+					float B = (float) colorsView(i, 2);
+					HSIColors[i] = RGB2HSI(R, G, B);
+				}
 				
+				array_view<const HSI_Pixel> HSIColorsView(NumColors, &HSIColors[0]); // make an array view wrapper over the hsi
+
 				parallel_for_each(selectedcolorsView.extent.tile<TileSize>(),  [=] (tiled_index<TileSize> t_idx) restrict(amp)
 				{
-					tile_static HSI_Pixel HSI_Tile[TileSize];
-					tile_static float ColorTile[TileSize][3];
-					tile_static float ImageTile[TileSize][3];	
+					tile_static HSI_Pixel Color_HSI_Tile[TileSize];
+					tile_static HSI_Pixel ImageTile[TileSize];
 					tile_static int SelectedColorTile[TileSize];
 
 					int iPixel = t_idx.global[0];
 					int LocalIdx = t_idx.local[0];
-					ImageTile[LocalIdx][0] = (float) imageView(iPixel, 0);
-					ImageTile[LocalIdx][1] = (float) imageView(iPixel, 1);
-					ImageTile[LocalIdx][2] = (float) imageView(iPixel, 2);
+					
+					float R = (float) imageView(iPixel, 0);
+					float G = (float) imageView(iPixel, 1);
+					float B = (float) imageView(iPixel, 2);
+
+					ImageTile[LocalIdx] = RGB2HSI(R, G, B);
 					if (LocalIdx < NumColors)
 					{
-						ColorTile[LocalIdx][0] = (float) colorsView(LocalIdx, 0);
-						ColorTile[LocalIdx][1] = (float) colorsView(LocalIdx, 1);
-						ColorTile[LocalIdx][2] = (float) colorsView(LocalIdx, 2);
+						Color_HSI_Tile[LocalIdx] = HSIColorsView(LocalIdx);
 					}
 
 					t_idx.barrier.wait_with_tile_static_memory_fence();
 
-					float min_distance = FLT_MAX;
-		
+					float min_distance = FLT_MAX;		
 					for (int lColor = 0; lColor < NumColors; lColor++)
 					{
-						float distance = 0;
 
-						for (int kPlane = 0; kPlane < Planes; kPlane++)
-						{
-							float localColor = ColorTile[lColor][kPlane];
-							float localImage = ImageTile[LocalIdx][kPlane];
-							float localdist = (localImage - localColor) * (localImage - localColor);
-							distance = distance + localdist;
-						}
+						float distance = HSI_Distance(Color_HSI_Tile[lColor], ImageTile[LocalIdx]);
 						if (min_distance > distance)
 						{
 							min_distance = distance;
@@ -65,8 +65,6 @@ namespace native_library {
 						}
 					}
 					selectedcolorsView(iPixel) = SelectedColorTile[LocalIdx];
-
-
 				});
 			}
 			else // C++ AMP SIMPLE MODEL

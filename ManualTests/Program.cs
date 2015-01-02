@@ -11,10 +11,13 @@ namespace ManualTests
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Please press any key to Begin");
+            Console.ReadKey();
             var rnd = new Random();
             float[,] Colors = { 
                               { 255, 0, 0 }, 
                               { 0, 255, 0 }, 
+                              { 0, 0, 0},
                               { 0, 0, 255 },
                               };
             var Image = new float[1280, 720, 3];
@@ -24,11 +27,12 @@ namespace ManualTests
                 {
                     for (int k = 0; k < Image.GetLength(2); k++)
                     {
-                        Image[i, j, k] = (float)(rnd.NextDouble() * 255);
+                        Image[i, j, k] = 0;
                     }
                 }
             }
             int[] SelectedColors = GPU.SegmentColors(Image, Colors);
+            Console.WriteLine(SelectedColors);
         }
     }
 }
