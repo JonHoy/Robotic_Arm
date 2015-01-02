@@ -14,3 +14,8 @@ D:\Documents\GitHub\Robotic_Arm\ManualTests\bin\Debug\Robot_Arm.GPU.pdb
 D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.csprojResolveAssemblyReference.cache
 D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.exe
 D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.pdb
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\ManualTests.exe.config
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\ManualTests.exe
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\ManualTests.pdb
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\ManualTests\obj\Debug\ManualTests.Form1.resources
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\ManualTests\obj\Debug\ManualTests.csproj.GenerateResource.Cache
