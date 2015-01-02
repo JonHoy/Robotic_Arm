@@ -114,18 +114,18 @@ namespace Robot_Arm.Video
             return;
         }
 
-        public Bitmap ComputeDisparityMap(Bitmap InputImage1, Bitmap InputImage2) {
-            Bitmap Im1Rect;
-            Bitmap Im2Rect;
-            RectifyImagePair(InputImage1, InputImage2, out Im1Rect, out  Im2Rect);
-            var Im1Rect_CV = new Image<Gray, byte>(Im1Rect);
-            var Im2Rect_CV = new Image<Gray, byte>(Im2Rect);
-            var Disparity = new Image<Gray, Int16>(ImageSize);
-            var BlockMatcher = new StereoGC(500, 10);
-            BlockMatcher.State = State;
-            BlockMatcher.FindStereoCorrespondence(
+        //public Bitmap ComputeDisparityMap(Bitmap InputImage1, Bitmap InputImage2) {
+        //    Bitmap Im1Rect;
+        //    Bitmap Im2Rect;
+        //    RectifyImagePair(InputImage1, InputImage2, out Im1Rect, out  Im2Rect);
+        //    var Im1Rect_CV = new Image<Gray, byte>(Im1Rect);
+        //    var Im2Rect_CV = new Image<Gray, byte>(Im2Rect);
+        //    var Disparity = new Image<Gray, Int16>(ImageSize);
+        //    var BlockMatcher = new StereoGC(500, 10);
+        //    BlockMatcher.State = State;
+        //    BlockMatcher.FindStereoCorrespondence(
 
-        }
+        //}
 
     }
 }

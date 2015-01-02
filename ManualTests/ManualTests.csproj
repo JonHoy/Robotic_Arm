@@ -84,16 +84,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj">
-      <Project>{b3ccd1a3-0430-4637-990e-3b4aec3bd50b}</Project>
-      <Name>Robot_Arm.GPU</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Robot_Arm.Video\Robot_Arm.Video.csproj">
-      <Project>{36b5015e-6eb2-4ac3-a003-77b772755aad}</Project>
-      <Name>Robot_Arm.Video</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
@@ -114,6 +104,16 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj">
+      <Project>{b3ccd1a3-0430-4637-990e-3b4aec3bd50b}</Project>
+      <Name>Robot_Arm.GPU</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Robot_Arm.Video\Robot_Arm.Video.csproj">
+      <Project>{36b5015e-6eb2-4ac3-a003-77b772755aad}</Project>
+      <Name>Robot_Arm.Video</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

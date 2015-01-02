@@ -13,7 +13,7 @@ namespace Robot_Arm.Navigation
         private double voltageMultiplier = 2.979e11; // constants based on curve fit
         private double voltagePower = -1.388;
 
-        public ResistiveForce(Arduino Board, int Pin) : base(Board, Pin) { }
+        public ResistiveForce(Arduino Board, int Pin) : base (Board, Pin) { }
 
         public double getForce() // gets the force reading in grams
         {

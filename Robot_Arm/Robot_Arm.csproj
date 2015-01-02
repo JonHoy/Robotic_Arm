@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="Arduino, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Bin\Arduino.dll</HintPath>
+      <HintPath>..\..\Arduino_Interface_CSharp\bin\Debug\Arduino.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV, Version=2.9.0.1922, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
