@@ -19,3 +19,8 @@ C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\ManualTests.exe
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Bin\ManualTests.pdb
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\ManualTests\obj\Debug\ManualTests.Form1.resources
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\ManualTests\obj\Debug\ManualTests.csproj.GenerateResource.Cache
+D:\Documents\GitHub\Robotic_Arm\Bin\ManualTests.exe.config
+D:\Documents\GitHub\Robotic_Arm\Bin\ManualTests.exe
+D:\Documents\GitHub\Robotic_Arm\Bin\ManualTests.pdb
+D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.Form1.resources
+D:\Documents\GitHub\Robotic_Arm\ManualTests\obj\Debug\ManualTests.csproj.GenerateResource.Cache

@@ -5,35 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Emgu.CV.Structure;
 using Emgu.CV;
+using Emgu.CV.GPU;
+
 using System.Drawing;
 
 namespace Robot_Arm.Video
 {
-    public class StereoSystem
+    public partial class StereoSystem
     {
-        private Matrix<double> CameraMatrix1;
-        private Matrix<double> CameraMatrix2;
-        private Matrix<double> CameraMatrix1New;
-        private Matrix<double> CameraMatrix2New;        
-        private Matrix<double> distCoeffs1;
-        private Matrix<double> distCoeffs2;
+        public CameraParameters LeftCam;
+        public CameraParameters RightCam;
         private Matrix<double> RotationMatrix;
         private Matrix<double> TranslationVector;
-        private Matrix<double> RectificationTransform1;
-        private Matrix<double> RectificationTransform2;
-        private Matrix<double> ProjectionMatrix1;
-        private Matrix<double> ProjectionMatrix2;
         private Matrix<double> DisparityDepthMapMatrix;
-        private Matrix<float> map1x;
-        private Matrix<float> map1y;
-        private Matrix<float> map2x;
-        private Matrix<float> map2y;
-        private Rectangle ROI1;
-        private Rectangle ROI2;
-
-        private IntrinsicCameraParameters Camera1_Intrinsic;
-        private IntrinsicCameraParameters Camera2_Intrinsic;
-
+        private GpuStereoConstantSpaceBP GPU_Block_Matcher;
+        private StereoBM CPU_Block_Matcher;
+        private GpuImage<Gray, Byte> DisparityMapGPU;
+        private Image<Gray, Byte> DisparityMap;
         private Size ImageSize;
 
         public StereoSystem(double[,] A1, 
@@ -44,89 +32,70 @@ namespace Robot_Arm.Video
             int ImageHeight, 
             double[,] R, 
             double[,] T)  {
-            ImageSize = new Size(ImageWidth, ImageHeight);
 
-            CameraMatrix1 = new Matrix<double>(A1);
-            CameraMatrix2 = new Matrix<double>(A2);
-            distCoeffs1 = new Matrix<double>(kc1);
-            distCoeffs2 = new Matrix<double>(kc2);
+            LeftCam = new CameraParameters(A1, kc1, ImageWidth, ImageHeight);
+            RightCam = new CameraParameters(A2, kc2, ImageWidth, ImageHeight);
             TranslationVector = new Matrix<double>(T);
             RotationMatrix = new Matrix<double>(R);
-            
-            RectificationTransform1 = new Matrix<double>(3, 3);
-            RectificationTransform2 = new Matrix<double>(3, 3);
-            ProjectionMatrix1 = new Matrix<double>(3, 4);
-            ProjectionMatrix2 = new Matrix<double>(3, 4);
             DisparityDepthMapMatrix = new Matrix<double>(4, 4);
-            
-            var ROI = new Rectangle(0, 0, ImageSize.Width, ImageSize.Height);
-            ROI1 = new Rectangle();
-            ROI2 = new Rectangle();
+            ImageSize = new Size(ImageWidth, ImageHeight);
+
             CvInvoke.cvStereoRectify(
-                CameraMatrix1.Ptr,
-                CameraMatrix2.Ptr,
-                distCoeffs1.Ptr,
-                distCoeffs2.Ptr,
+                LeftCam.CameraMatrix.Ptr,
+                RightCam.CameraMatrix.Ptr,
+                LeftCam.distCoeffs.Ptr,
+                RightCam.distCoeffs.Ptr,
                 ImageSize,
                 RotationMatrix.Ptr,
                 TranslationVector.Ptr,
-                RectificationTransform1.Ptr,
-                RectificationTransform2.Ptr,
-                ProjectionMatrix1.Ptr,
-                ProjectionMatrix2.Ptr,
+                LeftCam.RectificationTransform.Ptr,
+                RightCam.RectificationTransform.Ptr,
+                LeftCam.ProjectionMatrix.Ptr,
+                RightCam.ProjectionMatrix.Ptr,
                 DisparityDepthMapMatrix.Ptr,
                 Emgu.CV.CvEnum.STEREO_RECTIFY_TYPE.DEFAULT,
                 1,
                 Size.Empty, 
-                ref ROI1, 
-                ref ROI2);
+                ref LeftCam.ROI, 
+                ref RightCam.ROI);
 
-            Camera1_Intrinsic = new IntrinsicCameraParameters();
-            Camera2_Intrinsic = new IntrinsicCameraParameters();
+            LeftCam.UndistortRectifyMap();
+            RightCam.UndistortRectifyMap();
+            DisparityMapGPU = new GpuImage<Gray, byte>(ImageHeight, ImageWidth);
+            DisparityMap = new Image<Gray, byte>(ImageWidth, ImageHeight);
+            GPU_Block_Matcher = new GpuStereoConstantSpaceBP(64, 4, 4, 4);
+            CPU_Block_Matcher = new StereoBM(Emgu.CV.CvEnum.STEREO_BM_TYPE.BASIC, 30);
+       }
 
-            Camera1_Intrinsic.DistortionCoeffs = distCoeffs1;
-            Camera2_Intrinsic.DistortionCoeffs = distCoeffs2;
-            Camera1_Intrinsic.IntrinsicMatrix = CameraMatrix1;
-            Camera2_Intrinsic.IntrinsicMatrix = CameraMatrix2;
-
-            Camera1_Intrinsic.InitUndistortMap(ImageWidth, ImageHeight, out map1x, out map1y);
-            Camera2_Intrinsic.InitUndistortMap(ImageWidth, ImageHeight, out map2x, out map2y);
-        }
-
-        public void RectifyImagePair(Bitmap InputImage1, Bitmap InputImage2, out Bitmap OutputImage1, out Bitmap OutputImage2) {
+        public void RectifyImagePair(Bitmap InputImage1, Bitmap InputImage2) {
             if (!InputImage1.Size.Equals(InputImage2.Size))
                 throw new Exception("Input images must be the same size");
             if (!InputImage1.Size.Equals(ImageSize))
                 throw new Exception("Image Resolution must be " + ImageSize.Width.ToString() + "  x " + ImageSize.Height.ToString());
             
-            var InputImage1_CV = new Image<Gray, float>(InputImage1);
-            var InputImage2_CV = new Image<Gray, float>(InputImage2);
-            var OutputImage1_CV = new Image<Gray, float>(ImageSize);
-            var OutputImage2_CV = new Image<Gray, float>(ImageSize);
-
-            var ScaleVal = new MCvScalar(0);
-
-            CvInvoke.cvRemap(InputImage1_CV.Ptr, OutputImage1_CV.Ptr, map1x.Ptr, map1y.Ptr, 0, ScaleVal);
-            CvInvoke.cvRemap(InputImage2_CV.Ptr, OutputImage2_CV.Ptr, map2x.Ptr, map2y.Ptr, 0, ScaleVal);
-
-            OutputImage1 = OutputImage1_CV.Bitmap;
-            OutputImage2 = OutputImage2_CV.Bitmap;
-            return;
+            LeftCam.RectifyImage(new Image<Gray, byte>(InputImage1));
+            RightCam.RectifyImage(new Image<Gray, byte>(InputImage2));
         }
 
-        //public Bitmap ComputeDisparityMap(Bitmap InputImage1, Bitmap InputImage2) {
-        //    Bitmap Im1Rect;
-        //    Bitmap Im2Rect;
-        //    RectifyImagePair(InputImage1, InputImage2, out Im1Rect, out  Im2Rect);
-        //    var Im1Rect_CV = new Image<Gray, byte>(Im1Rect);
-        //    var Im2Rect_CV = new Image<Gray, byte>(Im2Rect);
-        //    var Disparity = new Image<Gray, Int16>(ImageSize);
-        //    var BlockMatcher = new StereoGC(500, 10);
-        //    BlockMatcher.State = State;
-        //    BlockMatcher.FindStereoCorrespondence(
-
-        //}
-
+        public Bitmap ComputeDisparityMap(Bitmap InputImage1, Bitmap InputImage2) {
+            RectifyImagePair(InputImage1, InputImage2);
+            var myStream = new Stream();
+            //GPU_Block_Matcher.FindStereoCorrespondence(LeftCam.ImageRectifiedGPU, RightCam.ImageRectifiedGPU, DisparityMap, myStream);
+            //CPU_Block_Matcher.FindStereoCorrespondence(LeftCam.ImageRectifiedGPU.ToImage(), RightCam.ImageRectifiedGPU.ToImage(), DisparityMap);
+            var stateptr = CvInvoke.cvCreateStereoBMState(Emgu.CV.CvEnum.STEREO_BM_TYPE.BASIC, 10);
+            CvInvoke.cvFindStereoCorrespondenceBM(LeftCam.ImageRectified.Ptr, RightCam.ImageRectified.Ptr, DisparityMap.Ptr, stateptr);
+            //myStream.WaitForCompletion();
+            //var Img = DisparityMapGPU.ToImage();
+            return DisparityMap.Bitmap;
+        }
+        public void DrawROI(Bitmap Image, Rectangle ROI)
+        {
+            using (var g = Graphics.FromImage(Image))
+            {
+                SolidBrush Brush = new SolidBrush(Color.Red);
+                g.FillRectangle(Brush, ROI);
+            }
+        }
     }
 }
 

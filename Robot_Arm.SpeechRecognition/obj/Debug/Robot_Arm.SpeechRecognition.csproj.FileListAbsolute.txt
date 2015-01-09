@@ -6,6 +6,5 @@ C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\D
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.pdb
 D:\Documents\GitHub\Robotic_Arm\Bin\Robot_Arm.SpeechRecognition.dll
 D:\Documents\GitHub\Robotic_Arm\Bin\Robot_Arm.SpeechRecognition.pdb
-D:\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.csprojResolveAssemblyReference.cache
 D:\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.dll
 D:\Documents\GitHub\Robotic_Arm\Robot_Arm.SpeechRecognition\obj\Debug\Robot_Arm.SpeechRecognition.pdb
