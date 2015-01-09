@@ -16,15 +16,15 @@ namespace native_library {
 			{
 				int i = idx[0];
 				int j = idx[1];
-				if (i >= KernelRadius &&  RowEnd < i)
+				if (i >= KernelRadius &&  RowEnd > i)
 				{
-					if (j >= KernelRadius && ColEnd < j)
+					if (j >= KernelRadius && ColEnd > j)
 					{
 						for (int ilocal = -KernelRadius; ilocal <= KernelRadius; ilocal++)
 						{
 							for (int jlocal = -KernelRadius; jlocal  <= KernelRadius; jlocal ++)
 							{
-								int SelectedValue = SelectedColorsView(ilocal, jlocal);
+								int SelectedValue = SelectedColorsView(i + ilocal,j + jlocal);
 								KNNCount(i,j,SelectedValue)++;
 							}
 						}
