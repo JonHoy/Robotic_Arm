@@ -31,6 +31,9 @@
     <ClCompile Include="ND_Correlate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="KNN_Filter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
