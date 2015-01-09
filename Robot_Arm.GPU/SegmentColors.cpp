@@ -28,6 +28,10 @@ namespace native_library {
 					float G = (float) colorsView(i, 1);
 					float B = (float) colorsView(i, 2);
 					HSIColors[i] = RGB2HSI(R, G, B);
+					// If already in HSV
+					//HSIColors[i].H = (float) colorsView(i, 0);
+					//HSIColors[i].S = (float) colorsView(i, 1);
+					//HSIColors[i].I = (float) colorsView(i, 2);
 				}
 				
 				array_view<const HSI_Pixel> HSIColorsView(NumColors, &HSIColors[0]); // make an array view wrapper over the hsi
@@ -44,8 +48,12 @@ namespace native_library {
 					float R = (float) imageView(iPixel, 0);
 					float G = (float) imageView(iPixel, 1);
 					float B = (float) imageView(iPixel, 2);
-
 					ImageTile[LocalIdx] = RGB2HSI(R, G, B);
+					// If image is already converted to HSV;
+					//ImageTile[LocalIdx].H = (float) imageView(iPixel, 0);
+					//ImageTile[LocalIdx].S = (float) imageView(iPixel, 1);
+					//ImageTile[LocalIdx].I = (float) imageView(iPixel, 2);
+
 					if (LocalIdx < NumColors)
 					{
 						Color_HSI_Tile[LocalIdx] = HSIColorsView(LocalIdx);

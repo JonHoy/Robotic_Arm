@@ -23,25 +23,19 @@ inline HSI_Pixel RGB2HSI(float R, float G, float B) restrict (amp, cpu)
 	B = B/255.0f;
 
 	Pixel.I = (R + G + B)/3;
-	float MinColor = 0;
-	
-	if (R < G)
-		MinColor = R;
-	else
-		MinColor = G;
-	if (MinColor > B)
-		MinColor = B;
+	float MinColor = min(min(R, G),B);
 
-	if (Pixel.I != 0)
-		Pixel.S = 1 - MinColor / Pixel.I;
-	else
+	if (Pixel.I == 0)
 		Pixel.S = 0;
+	else
+		Pixel.S = 1 - MinColor / Pixel.I;
 
 	float Theta;
+	
 	if (R == 0 && G == 0 && B == 0)
 		Theta = 0;
 	else
-		Theta = acosf(((R - G) + (R - B))/ 2 / sqrtf((R - G)*(R - G) + (R - B)*(G - B))); 
+		Theta = acosf((R - G/2 - B/2) / sqrtf(R*R + G*G + B*B - R*G - R*B - G*B));
 	if (B <= G)
 		Pixel.H = Theta / (PI);
 	else
@@ -50,13 +44,13 @@ inline HSI_Pixel RGB2HSI(float R, float G, float B) restrict (amp, cpu)
 }
 
 // determine the distance between two HSI pixels 
-inline float HSI_Distance(HSI_Pixel Pixel1, HSI_Pixel Pixel2) restrict (amp)
+inline float HSI_Distance(HSI_Pixel Pixel1, HSI_Pixel Pixel2) restrict (amp, cpu)
 {
 	float DistS = fabsf(Pixel1.S - Pixel2.S);
 	float DistI = fabsf(Pixel1.I - Pixel2.I);
 	float DistH_1 = fabsf(Pixel1.H - Pixel2.H);
 	float DistH_2 = 2.0f - DistH_1;
 	float DistH = min(DistH_1, DistH_2);
-	float distance = DistH + DistI + DistS;
+	float distance = DistH * DistH + DistI * DistI + DistS * DistS;
 	return distance;
 }

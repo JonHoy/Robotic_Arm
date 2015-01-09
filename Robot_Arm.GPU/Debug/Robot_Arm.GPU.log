@@ -1,32 +1,6 @@
-﻿  
-  C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GPU>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin\nvcc.exe" -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile   -g   -DWIN32 -D_DEBUG -D_WINDLL -D_UNICODE -DUNICODE -Xcompiler "/EHsc /W3 /nologo /Od /Zi  /MDd  " -o Debug\SegmentColorsCUDA.cu.obj "C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GPU\SegmentColorsCUDA.cu" -clean 
-  SegmentColorsCUDA.cu
-  Compiling CUDA source file SegmentColorsCUDA.cu...
-  
-  C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GPU>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\bin\nvcc.exe" -gencode=arch=compute_20,code=\"sm_20,compute_20\" --use-local-env --cl-version 2012 -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin"  -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include"  -G   --keep-dir Debug -maxrregcount=0  --machine 32 --compile -cudart static  -g   -DWIN32 -D_DEBUG -D_WINDLL -D_UNICODE -DUNICODE -Xcompiler "/EHsc /W3 /nologo /Od /Zi  /MDd  " -o Debug\SegmentColorsCUDA.cu.obj "C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Robot_Arm.GPU\SegmentColorsCUDA.cu" 
-  SegmentColorsCUDA.cu
-  ND_Correlate.cpp
-ND_Correlate.cpp(33): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-          ND_Correlate.cpp(140) : see reference to function template instantiation 'void native_library::details::ND_Correlate<double,1>(const T *,const T *,const int,const T *,const int *,T *,T *,T *,int *)' being compiled
-          with
-          [
-              T=double
-          ]
-ND_Correlate.cpp(118): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-ND_Correlate.cpp(118): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+﻿  ND_Correlate.cpp
   SegmentColors.cpp
   Generating Code...
-c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\nd_correlate.cpp(89): warning C4872: floating point division by zero detected when compiling the call graph for the concurrency::parallel_for_each at: 'c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\nd_correlate.cpp(48)'
-c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\nd_correlate.cpp(89): warning C4872: floating point division by zero detected when compiling the call graph for the concurrency::parallel_for_each at: 'c:\users\jonathan\documents\github\robotic_arm\robot_arm.gpu\nd_correlate.cpp(48)'
   Robot_Arm.GPU.cpp
   .NETFramework,Version=v4.5.AssemblyAttributes.cpp
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol _cudaFree@4 referenced in function "void __cdecl native_library::details::SegmentColorsCUDA<unsigned char>(unsigned char *,int,int,unsigned char *,int,int *)" (??$SegmentColorsCUDA@E@details@native_library@@YAXPAEHH0HPAH@Z)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol _cudaMalloc@8 referenced in function "void __cdecl native_library::details::SegmentColorsCUDA<unsigned char>(unsigned char *,int,int,unsigned char *,int,int *)" (??$SegmentColorsCUDA@E@details@native_library@@YAXPAEHH0HPAH@Z)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol _cudaConfigureCall@32 referenced in function "void __cdecl native_library::details::SegmentColorsCUDA<unsigned char>(unsigned char *,int,int,unsigned char *,int,int *)" (??$SegmentColorsCUDA@E@details@native_library@@YAXPAEHH0HPAH@Z)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol _cudaSetupArgument@12 referenced in function "void __cdecl __device_stub__Z16MeanFilterKernelIfLi16EEviiPT_i(int,int,float *,int)" (?__device_stub__Z16MeanFilterKernelIfLi16EEviiPT_i@@YAXHHPAMH@Z)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol _cudaLaunch@4 referenced in function "enum cudaError __cdecl _GLOBAL__N__52_tmpxft_0000148c_00000000_5_SegmentColorsCUDA_cpp1_ii_2b063b45::cudaLaunch<char>(char *)" (??$cudaLaunch@D@_GLOBAL__N__52_tmpxft_0000148c_00000000_5_SegmentColorsCUDA_cpp1_ii_2b063b45@@YA?AW4cudaError@@PAD@Z)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol _cudaMemcpy@16 referenced in function "void __cdecl native_library::details::SegmentColorsCUDA<unsigned char>(unsigned char *,int,int,unsigned char *,int,int *)" (??$SegmentColorsCUDA@E@details@native_library@@YAXPAEHH0HPAH@Z)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol ___cudaRegisterFatBinary@4 referenced in function "void __cdecl __nv_cudaEntityRegisterCallback(void * *)" (?__nv_cudaEntityRegisterCallback@@YAXPAPAX@Z)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol ___cudaUnregisterFatBinary@4 referenced in function "void __cdecl __cudaUnregisterBinaryUtil(void)" (?__cudaUnregisterBinaryUtil@@YAXXZ)
-SegmentColorsCUDA.cu.obj : error LNK2019: unresolved external symbol ___cudaRegisterFunction@40 referenced in function "void __cdecl __nv_cudaEntityRegisterCallback(void * *)" (?__nv_cudaEntityRegisterCallback@@YAXPAPAX@Z)
-C:\Users\Jonathan\Documents\GitHub\Robotic_Arm\Debug\Robot_Arm.GPU.dll : fatal error LNK1120: 9 unresolved externals
+  Robot_Arm.GPU.vcxproj -> D:\Documents\GitHub\Robotic_Arm\Debug\Robot_Arm.GPU.dll
