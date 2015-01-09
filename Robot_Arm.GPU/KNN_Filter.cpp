@@ -8,11 +8,11 @@ namespace native_library {
 	namespace details {
 		void KNN_Filter(int* SelectedColors, int NumColors, int Rows, int Columns, int KernelRadius) {
 			array_view<int, 2> SelectedColorsView(Rows, Columns, SelectedColors);
-			array_view<int, 2> NewSelectedColors(Rows, Columns);
-			array_view<int, 3> KNNCount(Rows, Columns, NumColors);
+			array<int, 2> NewSelectedColors(Rows, Columns);
+			array<int, 3> KNNCount(Rows, Columns, NumColors);
 			int RowEnd = Rows - KernelRadius;
 			int ColEnd = Columns - KernelRadius;
-			parallel_for_each(NewSelectedColors.extent, [=](index<2> idx) restrict (amp)
+			parallel_for_each(NewSelectedColors.extent, [=, &KNNCount, &NewSelectedColors](index<2> idx) restrict (amp)
 			{
 				int i = idx[0];
 				int j = idx[1];
@@ -34,7 +34,7 @@ namespace native_library {
 							int CurrentCount = KNNCount(i,j,iColor);
 							if (CurrentCount > MaxCount)
 							{
-								NewSelectedColors(i,j) = iColor;
+								NewSelectedColors[idx] = iColor;
 								MaxCount = CurrentCount;
 							}
 						}
