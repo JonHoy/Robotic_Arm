@@ -17,72 +17,24 @@ namespace Robot_Arm.Video
         {
             
             var myColors = new Colors();
-            var allColors = myColors.getAllColors();
-
+            var ColorInfo = myColors.getAllColors();
+            var allColors = ColorInfo.ColorValues;
+            ParentColorIdx = ColorInfo.MasterIndices;
             colornames = new string[allColors.Length];
-            colorvalues_BGR = new byte[allColors.Length, 3];
+            colorvalues_RGB = new float[allColors.Length, 3];
             for (int iColor = 0; iColor < allColors.Length; iColor++)
             {
                 colornames[iColor] = allColors[iColor].ToKnownColor().ToString();
                 Color CurrentColor = Color.FromName(colornames[iColor]);
-                colorvalues_BGR[iColor, 0] = (byte) CurrentColor.B;
-                colorvalues_BGR[iColor, 1] = (byte)CurrentColor.G;
-                colorvalues_BGR[iColor, 2] = (byte) CurrentColor.R;
+                colorvalues_RGB[iColor, 0] = (float) CurrentColor.R;
+                colorvalues_RGB[iColor, 1] = (float) CurrentColor.G;
+                colorvalues_RGB[iColor, 2] = (float)  CurrentColor.B;
             }
         }
 
-        public int[,] SegmentColors(Image<Bgr, int> Photo)
-        { 
-            var Colors = new int[colorvalues_BGR.GetLength(0), colorvalues_BGR.GetLength(1)];
-            for (int iColor = 0; iColor < Colors.GetLength(0); iColor++)
-			{
-                for (int j = 0; j < colorvalues_BGR.GetLength(1); j++)
-			    {
-			        Colors[iColor, j] = (int) colorvalues_BGR[iColor, j];
-			    }
-			}
-            var SelectedColors = GPU.SegmentColors(Photo.Data, Colors);
-            return SelectedColors;
-        }
-
-        public int[,] SegmentColors(Image<Bgr, byte> Photo)
+        public int[,] SegmentColors(float[,,] Image)
         {
-            int Rows = Photo.Rows;
-            int Cols = Photo.Cols;
-            var SelectedColors = new int[Rows, Cols];
-            int numcolors = colorvalues_BGR.GetLength(0);
-
-            byte[, ,] PhotoData = Photo.Data;
-
-            
-
-            Parallel.For(0, Rows, i =>
-            {
-                
-                for (int j = 0; j < Cols; j++)
-                {
-                    float MinDistance = float.MaxValue;
-                    float TempBluePhotoData = (float)PhotoData[i, j, 0];
-                    float TempGreenPhotoData = (float)PhotoData[i, j, 1];
-                    float TempRedPhotoData = (float)PhotoData[i, j, 2];
-
-                    for (int k = 0; k < numcolors; k++)
-                    {
-                        float BlueDist = Math.Abs(TempBluePhotoData - (float) colorvalues_BGR[k, 0]);
-                        float GreenDist = Math.Abs(TempGreenPhotoData - (float) colorvalues_BGR[k, 1]);
-                        float RedDist = Math.Abs(TempRedPhotoData - (float) colorvalues_BGR[k, 2]);
-                        float distance = BlueDist + RedDist + GreenDist;
-                       
-                        if (MinDistance > distance)
-                        {
-                            MinDistance = distance;
-                            SelectedColors[i, j] = k;
-                        }
-                    }
-                }
-            }
-            );
-            return SelectedColors;
+            return Robot_Arm_GPU.GPU.SegmentColors(Image, colorvalues_RGB, ParentColorIdx);
         }
 
         public Image<Bgr, byte> ReColorPhoto(ref int[,] SelectedColor)
@@ -96,9 +48,9 @@ namespace Robot_Arm.Video
                 for (int j = 0; j < Cols; j++)
                 {
                     int SelectedVal = SelectedColor[i, j];
-                    RawMatrix[i, j, 0] = (byte) colorvalues_BGR[SelectedVal, 0];
-                    RawMatrix[i, j, 1] = (byte) colorvalues_BGR[SelectedVal, 1];
-                    RawMatrix[i, j, 2] = (byte) colorvalues_BGR[SelectedVal, 2];
+                    RawMatrix[i, j, 0] = (byte) colorvalues_RGB[SelectedVal, 2];
+                    RawMatrix[i, j, 1] = (byte) colorvalues_RGB[SelectedVal, 1];
+                    RawMatrix[i, j, 2] = (byte) colorvalues_RGB[SelectedVal, 0];
                 }
             }
             Image<Bgr, byte> NewPhoto = new Image<Bgr, byte>(RawMatrix);
@@ -152,7 +104,8 @@ namespace Robot_Arm.Video
         }
 
         string[] colornames; // name of colors recognized by the computer
-        byte[,] colorvalues_BGR; // value of colors [BGR]       
+        float[,] colorvalues_RGB; // value of colors [BGR]     
+        int[] ParentColorIdx; // index of master color in the dictionary
     }
 
 }

@@ -14,7 +14,7 @@ namespace Robot_Arm.Video
         public static Image<Bgr, Byte> ReColorPhoto(string[] ColorsToLookFor, Image<Bgr, Byte> Frame)
         {
             var ColorClassifier = new ColorClassification();
-            var SelectedColors = ColorClassifier.SegmentColors(Frame);
+            var SelectedColors = ColorClassifier.SegmentColors(Frame.Convert<Rgb, float>().Data);
             return ColorClassifier.ReColorPhoto(ref SelectedColors);
         }
         public static Rectangle GetRegion(string[] ColorsToLookFor, Image<Bgr, Byte> Frame)
@@ -34,8 +34,8 @@ namespace Robot_Arm.Video
 
             detectEdges.Start();
             Frame.SmoothGaussian(25);
-            Image<Bgr, int> ColorFrame = Frame.Convert<Bgr, int>();
-            int[,] SelectedColors = ColorClassifier.SegmentColors(ColorFrame);
+            var ColorFrame = Frame.Convert<Rgb, float>();
+            int[,] SelectedColors = ColorClassifier.SegmentColors(ColorFrame.Data);
             bool[,] BW_FromColor = ColorClassifier.GenerateBW(ref SelectedColors, ColorsToLookFor);
             Image<Gray, byte> BW_GrayImg = BlobFinder.Gray_Converter(ref BW_FromColor);
             BW_GrayImg._Dilate(3);

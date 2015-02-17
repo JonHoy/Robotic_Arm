@@ -36,6 +36,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\Jonathan\Desktop\alglibnet2\alglibnet2.dll</HintPath>
     </Reference>
+    <Reference Include="csmatio">
+      <HintPath>..\Externals\CSMATIO\csmatio.dll</HintPath>
+    </Reference>
     <Reference Include="Emgu.CV, Version=2.9.0.1922, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Bin\Emgu.CV.dll</HintPath>
@@ -52,6 +55,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Bin\Emgu.Util.dll</HintPath>
     </Reference>
+    <Reference Include="Robot_Arm.GPU, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Bin\Robot_Arm.GPU.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -61,6 +68,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="zlib.net">
+      <HintPath>..\Externals\CSMATIO\zlib.net.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blob.cs" />
@@ -68,7 +78,6 @@
     <Compile Include="CameraParameters.cs" />
     <Compile Include="ColorClassification.cs" />
     <Compile Include="ColorObjectRecognizer.cs" />
-    <Compile Include="GPU.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StereoSystem.cs" />
     <Compile Include="SurfRecognizer.cs" />
@@ -79,6 +88,14 @@
       <Project>{4bffad55-54b5-4d5e-851b-ae5f4122819c}</Project>
       <Name>Robot_Arm.SpeechRecognition</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Calib_Results_stereo.mat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Calib_Results_stereo_rectified.mat">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
