@@ -8,14 +8,14 @@ using namespace concurrency;
 namespace native_library {
 	namespace details {	
 	template <typename T>
-		void SegmentColors(const T* ImagePtr, int PixelCount, const int Planes, const T* ColorsPtr, int NumColors, int* SelectedColorsPtr)
+		void SegmentColors(const T* ImagePtr, int PixelCount, const int Planes, const T* ColorsPtr, int NumColors, int* SelectedColorsPtr, const int* MasterIndicesPtr)
 		{
 			static const int TileSize = 256;
 			extent<1> ex(PixelCount);
 			// Create a view over the data on the CPU
 			array_view<const T,2> imageView(PixelCount, Planes, ImagePtr);
 			array_view<const T,2> colorsView(NumColors, Planes, ColorsPtr);
-
+			array_view<const int, 1> MasterIndicesView(NumColors, MasterIndicesPtr); 
 			array_view<int, 1> selectedcolorsView(ex, SelectedColorsPtr);
     
 			// Run code on the GPU
@@ -61,7 +61,10 @@ namespace native_library {
 
 					t_idx.barrier.wait_with_tile_static_memory_fence();
 
-					float min_distance = FLT_MAX;		
+					float min_distance = FLT_MAX;	
+
+					SelectedColorTile[LocalIdx] = 0;
+
 					for (int lColor = 0; lColor < NumColors; lColor++)
 					{
 
@@ -72,7 +75,7 @@ namespace native_library {
 							SelectedColorTile[LocalIdx] = lColor;
 						}
 					}
-					selectedcolorsView(iPixel) = SelectedColorTile[LocalIdx];
+					selectedcolorsView(iPixel) = MasterIndicesView(SelectedColorTile[LocalIdx]);
 				});
 			}
 			else // C++ AMP SIMPLE MODEL
@@ -103,7 +106,7 @@ namespace native_library {
 						if (min_distance > distance)
 						{
 							min_distance = distance;
-							selectedcolorsView(iPixel) = lColor;
+							selectedcolorsView(iPixel) = MasterIndicesView(lColor);
 						}
 					}
 				});
@@ -113,10 +116,10 @@ namespace native_library {
 		}
 	}
 
-	void SegmentColorsGPU(const float* Image, int PixelCount, int Planes, const float* Colors, int NumColors, int* SelectedColors) {
-		details::SegmentColors<float>(Image, PixelCount, Planes, Colors, NumColors, SelectedColors);
+	void SegmentColorsGPU(const float* Image, int PixelCount, int Planes, const float* Colors, int NumColors, int* SelectedColors, const int* MasterIndicesPtr) {
+		details::SegmentColors<float>(Image, PixelCount, Planes, Colors, NumColors, SelectedColors, MasterIndicesPtr);
 	}
-	void SegmentColorsGPU(const int* Image, int PixelCount, int Planes, const int* Colors, int NumColors, int* SelectedColors) {
-		details::SegmentColors<int>(Image, PixelCount, Planes, Colors, NumColors, SelectedColors);
+	void SegmentColorsGPU(const int* Image, int PixelCount, int Planes, const int* Colors, int NumColors, int* SelectedColors, const int* MasterIndicesPtr) {
+		details::SegmentColors<int>(Image, PixelCount, Planes, Colors, NumColors, SelectedColors, MasterIndicesPtr);
 	}	
 }
