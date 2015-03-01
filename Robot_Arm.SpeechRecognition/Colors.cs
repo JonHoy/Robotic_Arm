@@ -11,35 +11,47 @@ using System.Drawing;
 
 namespace Robot_Arm.SpeechRecognition
 {
-    
+    public struct ColorIndex
+    {
+        public Color[] ColorValues {get; set;}
+        public int[] MasterIndices { get; set;} // indices which tells robot which master color the child color belongs to  (FireBrick and DarkRed belong to Red) Family
+    }
 
     public class Colors : Dictionary<System.String, Color[]>
     {
         public Colors()
         {
-            Add("Red", new Color[] { Color.Red, Color.FromArgb(162, 30, 33)});
-            Add("Green", new Color[] { Color.Green, Color.FromArgb(11, 154, 72)});
-            Add("Blue", new Color[] { Color.Blue, Color.FromArgb(0, 93, 154)});
-            Add("Black", new Color[] { Color.Black, Color.FromArgb(34, 30, 31)});
-            Add("White", new Color[] { Color.White, Color.FromArgb(250, 244, 244)});
-            Add("Yellow", new Color[] { Color.Yellow, Color.Gold, Color.FromArgb(254, 233, 0)});
-            //Add("Purple", new Color[] { Color.Purple, Color.MediumPurple, Color.Indigo, Color.DarkOrchid, Color.BlueViolet, Color.DarkMagenta });
-            Add("Orange", new Color[] { Color.Orange, Color.FromArgb(243, 121, 33)});
-            Add("Brown", new Color[] { Color.Brown, Color.FromArgb(85, 69, 55)});
-            //Add("Gray", new Color[] { Color.Gray, Color.LightGray, Color.DarkGray, Color.LightSlateGray, Color.Silver, Color.Gainsboro, Color.SlateGray });
-            //Add("Pink", new Color[] { Color.Pink});
+            Add("Red", new Color[] { Color.Red, Color.FromArgb(162, 30, 33), Color.DarkRed, Color.Firebrick});
+            Add("Green", new Color[] { Color.Green, Color.FromArgb(11, 154, 72), Color.ForestGreen});
+            Add("Blue", new Color[] { Color.Blue, Color.FromArgb(0, 93, 154), Color.Aqua});
+            Add("Black", new Color[] { Color.Black, Color.FromArgb(34, 30, 31), Color.DarkBlue});
+            Add("White", new Color[] { Color.White, Color.FromArgb(250, 244, 244), Color.Gray});
+            Add("Yellow", new Color[] { Color.Yellow, Color.Gold, Color.FromArgb(254, 233, 0), Color.Goldenrod});
+            Add("Orange", new Color[] { Color.Orange, Color.FromArgb(243, 121, 33), Color.DarkOrange});
+            Add("Brown", new Color[] { Color.Brown, Color.FromArgb(85, 69, 55), Color.Sienna});
         }
 
-        public Color[] getAllColors()
+        public ColorIndex getAllColors()
         {
             var AllColors = new List<Color>();
+            var indices = new List<int>();
+            int CurrentIndex = 0;
             foreach (var Key in Keys)
             {
+                
                 Color[] TempColor = null;
                 TryGetValue(Key, out TempColor);
                 AllColors.AddRange(TempColor.ToList());
+                for (int i = 0; i < TempColor.Length; i++)
+			    {
+			        indices.Add(CurrentIndex);
+			    }
+                CurrentIndex++;
             }
-            return AllColors.ToArray();
+            ColorIndex myColorIdx = new ColorIndex();
+            myColorIdx.ColorValues = AllColors.ToArray();
+            myColorIdx.MasterIndices = indices.ToArray();
+            return myColorIdx;
         }
     }
 }

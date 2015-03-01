@@ -324,14 +324,17 @@ namespace Robot_Arm.Video
             }
         }
 
-        public static void DrawBlobOutline(Image HostImage, Rectangle Box)
+        public static void DrawBlobOutline(Image HostImage, Rectangle Box) {
+            DrawBlobOutline(HostImage, new Rectangle[] { Box });
+        }
+
+        public static void DrawBlobOutline(Image HostImage, Rectangle[] Boxes)
         {
             Graphics myGraphics = Graphics.FromImage(HostImage);
-            var myRectangles = new Rectangle[] { Box };
             Pen myPen = new Pen(Color.Red);
-            if (Box.IsEmpty != true)
+            if (Boxes.Length > 0)
             {
-                myGraphics.DrawRectangles(myPen, myRectangles);
+                myGraphics.DrawRectangles(myPen, Boxes);
             }
         }
 

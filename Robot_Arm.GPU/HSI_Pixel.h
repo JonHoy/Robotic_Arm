@@ -50,11 +50,12 @@ HSI_Pixel RGB2HSI(RgbPixel PixelRGB) restrict (amp, cpu)
 // determine the distance between two HSI pixels 
 float HSI_Distance(HSI_Pixel Pixel1, HSI_Pixel Pixel2) restrict (amp, cpu)
 {
+	// let distance be weighted more towards hue and saturation than intensity
 	float DistS = fabsf(Pixel1.S - Pixel2.S);
 	float DistI = fabsf(Pixel1.I - Pixel2.I);
 	float DistH_1 = fabsf(Pixel1.H - Pixel2.H);
 	float DistH_2 = 2.0f - DistH_1;
 	float DistH = min(DistH_1, DistH_2);
-	float distance = DistH * DistH + DistI * DistI + DistS * DistS;
+	float distance = DistH * DistH + DistI * DistI *DistI * DistI + DistS * DistS;
 	return distance;
 }

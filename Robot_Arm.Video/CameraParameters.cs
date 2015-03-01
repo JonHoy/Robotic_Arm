@@ -15,6 +15,8 @@ namespace Robot_Arm.Video
         public Matrix<double> distCoeffs;
         public Matrix<double> RectificationTransform;
         public Matrix<double> ProjectionMatrix;
+        public Matrix<double> Fc;
+        public Matrix<double> Cc;
         public Matrix<float> mapx;
         public Matrix<float> mapy;
         public GpuMat<float> mapxGPU;
@@ -27,9 +29,15 @@ namespace Robot_Arm.Video
         private int ImageHeight;
         public System.Drawing.Rectangle ROI;
         
-        public CameraParameters(double[,] A, double[,] kc, int Width, int Height) {
+        public CameraParameters(double[,] A, double[,] kc, double[,] fc, double[,] cc, int Width, int Height) {
+            Fc = new Matrix<double>(fc);
+            Cc = new Matrix<double>(cc);
             CameraMatrix = new Matrix<double>(A);
-            distCoeffs = new Matrix<double>(kc);
+            distCoeffs = new Matrix<double>(4, 1);
+            for (int i = 0; i < distCoeffs.Rows; i++)
+            {
+                distCoeffs[i, 0] = kc[i, 0];
+            }
             RectificationTransform = new Matrix<double>(3, 3);
             ProjectionMatrix = new Matrix<double>(3, 4);
             ImageWidth = Width;
@@ -43,12 +51,11 @@ namespace Robot_Arm.Video
                 ImageWidth,
                 RectificationTransform.Data,
                 CameraMatrix.Data,
-                new double[] { CameraMatrix[0, 0], CameraMatrix[1, 1] },
-                new double[] { CameraMatrix[0, 2], CameraMatrix[1, 2] },
+                Fc.Data,
+                Cc.Data,
                 distCoeffs.Data,
                 out mapx,
                 out mapy);
-            //CvInvoke.
             mapxGPU = new GpuMat<float>(mapx);
             mapyGPU = new GpuMat<float>(mapy);
 

@@ -9,7 +9,7 @@ namespace Robot_Arm.Video
 {
     public partial class StereoSystem
     {
-        public static void UndistortRectifyMap(int nr, int nc, double[,] R, double[,] KK, double[] f, double[] c, double[,] k, out Matrix<float> mapx, out Matrix<float> mapy)
+        public static void UndistortRectifyMap(int nr, int nc, double[,] R, double[,] KK, double[,] f, double[,] c, double[,] k, out Matrix<float> mapx, out Matrix<float> mapy)
         {
             /*
             Adapted from MATLAB calibration Toolbox
@@ -73,8 +73,8 @@ namespace Robot_Arm.Video
             {
                 for (int j = 0; j < nc; j++)
                 {
-                    mapx[i,j] = (float)(f[0]*x[0,idx]+c[0]);
-                    mapy[i, j] = (float)(f[1] * x[1, idx] + c[1]);
+                    mapx[i,j] = (float)(f[0,0]*x[0,idx]+c[0,0]);
+                    mapy[i, j] = (float)(f[1,0] * x[1, idx] + c[1,0]);
                     idx++;
                 }
             }
