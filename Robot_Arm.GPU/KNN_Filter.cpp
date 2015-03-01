@@ -6,13 +6,14 @@ using namespace concurrency;
 
 namespace native_library {
 	namespace details {
-		void KNN_Filter(int* SelectedColors, int NumColors, int Rows, int Columns, int KernelRadius) {
-			array_view<int, 2> SelectedColorsView(Rows, Columns, SelectedColors);
-			array<int, 2> NewSelectedColors(Rows, Columns);
-			array<int, 3> KNNCount(Rows, Columns, NumColors);
+		array<int,2> KNN_Filter(array<int,2>& SelectedColors, int NumColors, int KernelRadius) {
+			int Rows = SelectedColors.extent[0];
+			int Columns = SelectedColors.extent[1];	
+			array<int, 2> NewSelectedColors(SelectedColors.extent);
+			array<int, 3> KNNCount(Rows, Columns, NumColors);		
 			int RowEnd = Rows - KernelRadius;
 			int ColEnd = Columns - KernelRadius;
-			parallel_for_each(NewSelectedColors.extent, [=, &KNNCount, &NewSelectedColors](index<2> idx) restrict (amp)
+			parallel_for_each(NewSelectedColors.extent, [=, &KNNCount, &NewSelectedColors, &SelectedColors](index<2> idx) restrict (amp)
 			{
 				int i = idx[0];
 				int j = idx[1];
@@ -24,7 +25,7 @@ namespace native_library {
 						{
 							for (int jlocal = -KernelRadius; jlocal  <= KernelRadius; jlocal ++)
 							{
-								int SelectedValue = SelectedColorsView(i + ilocal,j + jlocal);
+								int SelectedValue = SelectedColors(i + ilocal,j + jlocal);
 								KNNCount(i,j,SelectedValue)++;
 							}
 						}
@@ -34,20 +35,14 @@ namespace native_library {
 							int CurrentCount = KNNCount(i,j,iColor);
 							if (CurrentCount > MaxCount)
 							{
-								NewSelectedColors[idx] = iColor;
+								NewSelectedColors(idx) = iColor;
 								MaxCount = CurrentCount;
 							}
 						}
 					}
 				}
 			});
-			NewSelectedColors.copy_to(SelectedColorsView);
-			SelectedColorsView.synchronize();
+			return NewSelectedColors;
 		}
 	}
-
-	void KNN_FilterGPU(int* SelectedColors, int NumColors, int Rows, int Columns, int KernelRadius) {
-		details::KNN_Filter(SelectedColors, NumColors, Rows, Columns, KernelRadius);
-	}
-
 }
