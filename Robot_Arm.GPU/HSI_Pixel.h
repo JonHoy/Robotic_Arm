@@ -1,7 +1,9 @@
+#pragma once
 
 #include <amp_graphics.h>
 #include <amp_math.h>
 #include <limits>
+#include "RgbPixel.h"
 
 #define PI 3.14159f
 
@@ -14,10 +16,12 @@ struct HSI_Pixel {
 	float I;
 };
 
-inline HSI_Pixel RGB2HSI(float R, float G, float B) restrict (amp, cpu)
+HSI_Pixel RGB2HSI(RgbPixel PixelRGB) restrict (amp, cpu)
 {
 	HSI_Pixel Pixel;
-	
+	auto R = PixelRGB.r;
+	auto G = PixelRGB.g;
+	auto B = PixelRGB.b;
 	R = R/255.0f;
 	G = G/255.0f;
 	B = B/255.0f;
@@ -44,7 +48,7 @@ inline HSI_Pixel RGB2HSI(float R, float G, float B) restrict (amp, cpu)
 }
 
 // determine the distance between two HSI pixels 
-inline float HSI_Distance(HSI_Pixel Pixel1, HSI_Pixel Pixel2) restrict (amp, cpu)
+float HSI_Distance(HSI_Pixel Pixel1, HSI_Pixel Pixel2) restrict (amp, cpu)
 {
 	float DistS = fabsf(Pixel1.S - Pixel2.S);
 	float DistI = fabsf(Pixel1.I - Pixel2.I);

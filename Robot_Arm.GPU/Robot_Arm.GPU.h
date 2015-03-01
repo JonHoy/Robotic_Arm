@@ -4,10 +4,19 @@
 
 using namespace System;
 
-namespace Robot_Arm_GPU {
-		public ref class GPU{
+namespace Robot_Arm {
+	public value class Blob {
+		public:	
+			int PixelCount;
+			int RowMin;
+			int RowMax;
+			int ColMin;
+			int ColMax;
+			int RowSum;
+			int ColSum;
+		};	
+	public ref class GPU{
 		public:
-			static array<int,2>^ SegmentColors(array<int,3>^ Image, array<int, 2>^ Colors);// TODO: Add your methods for this class here.
-			static array<int,2>^ SegmentColors(array<float,3>^ Image, array<float, 2>^ Colors);// TODO: Add your methods for this class here.
+			static array<Blob>^ SegmentColors(array<Byte,3>^ Image, array<Byte, 2>^ Colors, array<int,1>^ SelectionIndex, int SelectedColor);
 		};
 }

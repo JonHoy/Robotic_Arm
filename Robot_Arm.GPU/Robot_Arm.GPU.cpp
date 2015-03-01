@@ -3,40 +3,37 @@
 
 using namespace System;
 
-namespace Robot_Arm_GPU {
-	namespace details {
-		template <typename T>
-		array<int,2>^ SegmentColors(array<T,3>^ Image, array<T, 2>^ Colors)
+namespace Robot_Arm {
+	array<Blob>^ GPU::SegmentColors(array<Byte,3>^ Image, array<Byte, 2>^ Colors, array<int,1>^ SelectionIndex, int SelectedColor)
+	{
+		if (Image == nullptr || Colors == nullptr)
+			throw gcnew ArgumentNullException();
+		if (Colors->GetLength(0) != SelectionIndex->Length)
+			throw gcnew Exception("Colors Array must be the same length as SelectionIndex Array");
+		int NumColors = Colors->GetLength(0);
+		for (int i = 0; i < NumColors; i++)
 		{
-			if (Image == nullptr || Colors == nullptr)
-				throw gcnew ArgumentNullException();
-			int NumColors = Colors->GetLength(0);
-			int Planes = Colors->GetLength(1);
-			if (Planes != Image->GetLength(2) && Planes != 3)
-				throw gcnew FormatException("The number of columns of Colors must be equal to the depth of the Image and equal to 3!");
-			int Rows = Image->GetLength(0);
-			int Cols = Image->GetLength(1);
-
-			int NumElements = Image->Length;
-			int PixelCount = NumElements/Planes;
-			array<int,2>^ SelectedColors = gcnew array<int,2>(Rows, Cols);
-			{
-				pin_ptr<T> ImagePtr = &Image[0,0,0];
-				pin_ptr<T> ColorsPtr = &Colors[0,0];
-				pin_ptr<int> SelectedColorsPtr = &SelectedColors[0,0];
-				native_library::SegmentColorsGPU(ImagePtr, PixelCount, Planes, ColorsPtr, NumColors, SelectedColorsPtr);
-				native_library::KNN_FilterGPU(SelectedColorsPtr, NumColors, Rows, Cols, 12);
-			}
-			return SelectedColors;
+			if (SelectionIndex[i] > NumColors || SelectionIndex[i] < 0)
+				throw gcnew Exception("Selection Index must contain valid array indices numbers");
 		}
-		
+		if (Colors->GetLength(1) != Image->GetLength(2))
+		{
+			throw gcnew Exception("Colors and Image must be of RGBA data type");
+		}
+		auto Numel = Image->Length;
+		if (Numel % 4 != 0)
+			throw gcnew Exception("Colors and Image must be of RGBA data type");
+		int Rows = Image->GetLength(0);
+		int Cols = Image->GetLength(1);
+		int NumElements = Image->Length;
+		pin_ptr<Byte> ImagePtr = &Image[0,0,0];
+		pin_ptr<Byte> ColorsPtr = &Colors[0,0];
+		pin_ptr<int> SelectionIndexPtr = &SelectionIndex[0];
+		auto Blobs = native_library::details::BlobFinder(ImagePtr, Rows, Cols, ColorsPtr, SelectionIndexPtr, NumColors, SelectedColor);
+		auto Length = Blobs.size();
+		auto ManagedBlobs = gcnew array<Blob>(Length);
+		pin_ptr<Blob> ManagedBlobPtr = &ManagedBlobs[0];
+		memcpy((void*) ManagedBlobPtr, (void*)&Blobs[0], sizeof(Blob)*Length);
+		return ManagedBlobs;
 	}
-
-	array<int,2>^ GPU::SegmentColors(array<float,3>^ Image, array<float,2>^ Colors) {
-		return details::SegmentColors<float>(Image, Colors);
-	}
-	array<int,2>^ GPU::SegmentColors(array<int,3>^ Image, array<int, 2>^ Colors) {
-		return details::SegmentColors<int>(Image, Colors);
-	}
-
 }

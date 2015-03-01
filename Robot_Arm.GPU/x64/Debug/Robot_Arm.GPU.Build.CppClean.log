@@ -1,5 +1,6 @@
 C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\ROBOT_ARM.GPU\X64\DEBUG\SEGMENTCOLORS.OBJ
-C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\ROBOT_ARM.GPU\X64\DEBUG\ND_CORRELATE.OBJ
+C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\ROBOT_ARM.GPU\X64\DEBUG\KNN_FILTER.OBJ
+C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\ROBOT_ARM.GPU\X64\DEBUG\BLOBFINDER.OBJ
 C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\ROBOT_ARM.GPU\X64\DEBUG\VC110.PDB
 C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\ROBOT_ARM.GPU\X64\DEBUG\ROBOT_ARM.GPU.OBJ
 C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\ROBOT_ARM.GPU\X64\DEBUG\.NETFRAMEWORK,VERSION=V4.5.ASSEMBLYATTRIBUTES.OBJ
@@ -7,7 +8,8 @@ C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\X64\DEBUG\ROBOT_ARM.GPU.ILK
 C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\X64\DEBUG\ROBOT_ARM.GPU.DLL
 C:\USERS\JONATHAN\DOCUMENTS\GITHUB\ROBOTIC_ARM\X64\DEBUG\ROBOT_ARM.GPU.PDB
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\ND_Correlate.obj
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\BlobFinder.obj
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\KNN_Filter.obj
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\Robot_Arm.GPU.obj
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\SegmentColors.obj
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\cl.command.1.tlog
@@ -21,12 +23,12 @@ C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\CL.write.
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\CL.write.3.tlog
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\CL.write.4.tlog
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\CL.write.5.tlog
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.5736-cvtres.read.1.tlog
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.5736-cvtres.write.1.tlog
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.5736-rc.read.1.tlog
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.5736-rc.write.1.tlog
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.5736.read.1.tlog
-C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.5736.write.1.tlog
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.6744-cvtres.read.1.tlog
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.6744-cvtres.write.1.tlog
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.6744-rc.read.1.tlog
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.6744-rc.write.1.tlog
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.6744.read.1.tlog
+C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.6744.write.1.tlog
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.command.1.tlog
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.read.1.tlog
 C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\x64\Debug\link.write.1.tlog

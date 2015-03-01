@@ -20,6 +20,15 @@
     <ClInclude Include="HSI_Pixel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BlobFinder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RgbPixel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SegmentColors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Robot_Arm.GPU.cpp">
@@ -28,10 +37,10 @@
     <ClCompile Include="SegmentColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ND_Correlate.cpp">
+    <ClCompile Include="KNN_Filter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="KNN_Filter.cpp">
+    <ClCompile Include="BlobFinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -39,8 +48,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="SegmentColorsCUDA.cu">
-      <Filter>Source Files</Filter>
-    </CudaCompile>
+    <None Include="CUDAHelper.cuh">
+      <Filter>Header Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
