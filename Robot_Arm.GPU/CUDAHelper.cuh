@@ -65,16 +65,19 @@ private:
 	UINT[Rank] Range;
 };
 
-// wrapper for device pointer with range checking
+// wrapper for device pointer with range checking (For use by individual threads)
 template <typename T, int Rank = 1>
 class Array {
 public:
 	__device__ Array(T* Ptr, Extent<Rank> Dims) {
 		_Ptr = Ptr;
-		ex
+		ex = Dims;
 	}
 	__device__ T operator() (const Index<Rank>& Idx) {
 		return _Ptr[Idx.globalID()];
+	}
+	__device__ T operator[] (int Idx) {
+		return _Ptr[Idx];
 	}
 private:
 	T* _Ptr;

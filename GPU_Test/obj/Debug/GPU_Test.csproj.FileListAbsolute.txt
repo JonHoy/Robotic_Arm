@@ -1,0 +1,15 @@
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\obj\Debug\GPU_Test.csprojResolveAssemblyReference.cache
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\GPU_Test.exe.config
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\GPU_Test.exe
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\GPU_Test.pdb
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\Robot_Arm.GPU.dll
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\Robot_Arm.GPU.pdb
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\obj\Debug\GPU_Test.exe
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\obj\Debug\GPU_Test.pdb
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\Emgu.CV.dll
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\Emgu.CV.UI.dll
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\Emgu.Util.dll
+D:\Documents\GitHub\Robotic_Arm\GPU_Test\bin\Debug\ZedGraph.dll
+D:\Documents\GitHub\Robotic_Arm\Bin\GPU_Test.exe.config
+D:\Documents\GitHub\Robotic_Arm\Bin\GPU_Test.exe
+D:\Documents\GitHub\Robotic_Arm\Bin\GPU_Test.pdb

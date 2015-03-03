@@ -2,7 +2,7 @@
 #include "SegmentColors.h"
 #include "BlobFinder.h"
 #include <algorithm>
-
+#include <ppl.h>
 
 using namespace concurrency;
 
@@ -39,7 +39,7 @@ namespace native_library {
 			});
 			return BlobImage;
 		}
-		std::vector<int> FixBlobImage(array<int,2>& BlobImage, ScanType ScanDirection) {
+		std::vector<int> FixBlobImage(array_view<int,2>& BlobImage, ScanType ScanDirection) {
 			ScanSettings Settings;
 			switch (ScanDirection)
 			{								
@@ -67,74 +67,89 @@ namespace native_library {
 
 			extent<2> ex(BlobImage.extent);
 			ex[Settings.Dimension] = 1;
-			array<int,2> DimCheck(ex);
-			parallel_for_each(ex, [=, &BlobImage, &DimCheck] (index<2> idx) restrict (amp)
+			
+			auto Start = Settings.Start;
+			auto End = Settings.End;
+			auto Dimension = Settings.Dimension;
+			auto Increment = Settings.Increment;
+
+			int Length = ex[0] * ex[1];
+
+			std::vector<int> DimCheck(ex[Dimension]);
+			array_view<int,2> DimCheckView(ex[0], ex[1], &DimCheck[0]);
+
+			parallel_for_each(ex, [&BlobImage, &DimCheckView, Start, End, Dimension, Increment] (index<2> idx) restrict (cpu) // determine which blobs are connected and fix them
 			{
 				int PreviousVal = 0;
 				int DiffCount = 0;
 				auto old_idx = idx;
-				for (int i = Settings.Start; i < Settings.End; i = i + Settings.Increment)
+				for (int i = Start; i < End; i = i + Increment)
 				{
-					idx[Settings.Dimension] = i;
+					idx[Dimension] = i;
 					int CurrentVal = BlobImage(idx);
-					int NewVal = min(CurrentVal, PreviousVal);
-					if (PreviousVal == 0)
+					if (PreviousVal != 0 && CurrentVal != 0)
 					{
-						NewVal = CurrentVal;
-					}
-					if (CurrentVal != NewVal)
-					{
-						BlobImage(idx) = NewVal;
-						DiffCount++;
+						BlobImage(idx) = min(CurrentVal, PreviousVal);
 					}
 					PreviousVal = CurrentVal;
 				}
-				DimCheck(old_idx) = DiffCount;
+				DimCheckView(old_idx) = DiffCount;
 			});
-			std::vector<int> CheckSum(ex.size());
-			copy(DimCheck, CheckSum.begin());
-			return CheckSum;
 		}
-		std::vector<Blob> GetBlobs(array<int,2>& BlobImage) {
-			int Rows = BlobImage.extent[0];
-			int Cols = BlobImage.extent[1];
+		std::vector<Blob> GetBlobs(std::vector<int> BlobImageCPU, int Cols, int Rows) {
 			int NumElements = Rows * Cols;
-			std::vector<int> BlobImageCPU(NumElements);
-			std::vector<Blob> Blobs(NumElements);
-			copy(BlobImage, BlobImageCPU.begin());
-			
+			std::vector<Blob> Blobs(NumElements);			
 			for (int i = 0; i < NumElements; i++)
 			{
 				int BlobId = BlobImageCPU[i];
-				Blobs[BlobId].addPixel(i % Cols, i/Cols);
+				if (BlobId > 0 && BlobId < Blobs.size())
+					Blobs[BlobId].addPixel(i % Cols, i/Cols);
 			}
 			// remove blobs with pixelcounts equal to 0 
 			Blobs.erase(std::remove_if(Blobs.begin(), Blobs.end(),
 				[] (Blob item) -> bool {return item.PixelCount == 0; }), Blobs.end());
 			return Blobs;
 		}
-		std::vector<Blob> MakeBlobs(array<int,2>& BW_Image) {
-			auto BlobImage = GetBlobImage(BW_Image);
-			bool ImageFixed = false; // make sure all blobs that are spatially connected  
-			while (ImageFixed == false)
-			{
-				FixBlobImage(BlobImage, ScanType::LeftRight);
-				FixBlobImage(BlobImage, ScanType::UpDown);
-				auto CheckSum_RL = FixBlobImage(BlobImage, ScanType::RightLeft);				
-				auto CheckSum_DU = FixBlobImage(BlobImage, ScanType::DownUp);
-				bool RL_Status = std::any_of(CheckSum_RL.begin(), CheckSum_RL.end(), [] (int Number) -> bool {return Number > 0;});
-				bool DU_Status = std::any_of(CheckSum_DU.begin(), CheckSum_DU.end(), [] (int Number) -> bool {return Number > 0;});
-				if (RL_Status == 0 && DU_Status == 0)
+		std::vector<Blob> MakeBlobs(array<int,2>& SelectedColors, int SelectedColor) {
+			int Length = SelectedColors.extent[0] * SelectedColors.extent[1];
+			std::vector<int> BlobImageCPU(Length);
+			copy(SelectedColors, BlobImageCPU.begin());
+			int Rows = SelectedColors.extent[0];
+			int Cols = SelectedColors.extent[1];
+			parallel_for(0, Rows,
+				[&BlobImageCPU, SelectedColor, Cols](int i) 
 				{
-					ImageFixed = true;
-				}
-			}
-			return GetBlobs(BlobImage);
+					int Index = Cols * i;
+					int BlobId = Index;
+					int PreviousVal = 0;
+					for (int idx = Index; idx < Cols; idx++)
+					{
+						// first compute whether its a one or zero
+						if (BlobImageCPU[idx] == SelectedColor)
+							BlobImageCPU[idx] = 1;
+						else
+							BlobImageCPU[idx] = 0;
+						// now compute a one dimensional blob number
+						int CurrentVal = BlobImageCPU[idx];
+						if (CurrentVal == 1 && PreviousVal != 0)
+						{
+							BlobImageCPU[idx] = PreviousVal;
+						}
+						else if (PreviousVal == 0 && CurrentVal == 1) 
+						{
+							BlobId++; // start a new blob
+							BlobImageCPU[idx] = BlobId;
+						}
+						PreviousVal = CurrentVal;
+					}					
+				});
+
+
+			return GetBlobs(SelectedColors, Cols, Rows);
 		}
 		std::vector<Blob> BlobFinder(unsigned char* ImagePtr, int Rows, int Cols, unsigned char* ColorsPtr, const int* SelectionIndex,  int NumColors, int SelectedColor) {
 			auto SelectionArray = SegmentColors(ImagePtr, Rows, Cols, ColorsPtr, NumColors, SelectionIndex); // Determine Which color each pixel corresponds to
-			ConvertToBW(SelectionArray, SelectedColor); // convert to BW
-			return MakeBlobs(SelectionArray); // Turn BW image into an vector of blobs
+			return MakeBlobs(SelectionArray, SelectedColor); // Turn integer image into an vector of blobs
 		}
 	}
 }

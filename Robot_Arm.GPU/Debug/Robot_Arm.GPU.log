@@ -1,24 +1,25 @@
-﻿Build started 2/27/2015 2:21:48 PM.
-     1>Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" on node 2 (Rebuild target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /analyze- /errorReport:prompt BlobFinder.cpp KNN_Filter.cpp SegmentColors.cpp
-         BlobFinder.cpp
-         KNN_Filter.cpp
-         SegmentColors.cpp
-         Generating Code...
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib Robot_Arm.GPU.cpp
-         Robot_Arm.GPU.cpp
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /analyze- /errorReport:prompt "C:\Users\Jonathan\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cpp"
-         .NETFramework,Version=v4.5.AssemblyAttributes.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\Debug\Robot_Arm.GPU.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\lib\Win32" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\Debug\Robot_Arm.GPU.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\BlobFinder.obj
-         Debug\KNN_Filter.obj
-         Debug\Robot_Arm.GPU.obj
-         Debug\SegmentColors.obj
-         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
-         Robot_Arm.GPU.vcxproj -> C:\Users\Jonathan\Documents\Github\Robotic_Arm\Debug\Robot_Arm.GPU.dll
-     1>Done Building Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" (Rebuild target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:14.69
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V110\Microsoft.CppBuild.targets(346,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  BlobFinder.cpp
+BlobFinder.cpp(110): warning C4018: '<' : signed/unsigned mismatch
+  InterpScattered.cpp
+InterpScattered.cpp(36): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+          InterpScattered.cpp(63) : see reference to function template instantiation 'void native_library::details::InterpScattered<double>(T *,int,int,int,int)' being compiled
+          with
+          [
+              T=double
+          ]
+  KNN_Filter.cpp
+  SegmentColors.cpp
+SegmentColors.cpp(73): warning C4189: 'message' : local variable is initialized but not referenced
+C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xxamp.h(109): warning C4505: 'Concurrency::details::_Const_array_view_projection_helper<_T,_R>::_Project0' : unreferenced local function has been removed
+          with
+          [
+              _T=HSI_Pixel,
+              _R=1
+          ]
+  Generating Code...
+d:\documents\github\robotic_arm\robot_arm.gpu\blobfinder.cpp(65): warning C4701: potentially uninitialized local variable 'Settings' used
+  Robot_Arm.GPU.cpp
+Robot_Arm.GPU.cpp(28): warning C4189: 'NumElements' : local variable is initialized but not referenced
+  .NETFramework,Version=v4.5.AssemblyAttributes.cpp
+  Robot_Arm.GPU.vcxproj -> D:\Documents\GitHub\Robotic_Arm\Robot_Arm.GPU\..\Bin\Robot_Arm.GPU.dll

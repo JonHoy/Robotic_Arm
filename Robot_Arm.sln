@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Video", "Robot_Ar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.Navigation", "Robot_Arm.Navigation\Robot_Arm.Navigation.csproj", "{9CCA42D5-3875-4664-AB16-7782E830BB49}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GPU_Image_Process", "GPU_Image_Process\GPU_Image_Process.vcxproj", "{98F428D3-1612-4AC5-AB3B-951A1D8AE227}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm", "Robot_Arm\Robot_Arm.csproj", "{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robot_Arm.GUI", "Robot_Arm.GUI\Robot_Arm.GUI.csproj", "{F15C7227-500B-4B07-91E6-D3B3024B7F83}"
@@ -16,6 +14,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Robot_Arm.GPU", "Robot_Arm.GPU\Robot_Arm.GPU.vcxproj", "{B3CCD1A3-0430-4637-990E-3B4AEC3BD50B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManualTests", "ManualTests\ManualTests.csproj", "{1EC0B556-B343-46B1-9099-7B71431E8C9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPU_Test", "GPU_Test\GPU_Test.csproj", "{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,18 +65,6 @@ Global
 		{9CCA42D5-3875-4664-AB16-7782E830BB49}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{9CCA42D5-3875-4664-AB16-7782E830BB49}.Release|Win32.ActiveCfg = Release|Any CPU
 		{9CCA42D5-3875-4664-AB16-7782E830BB49}.Release|x64.ActiveCfg = Release|Any CPU
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Debug|Win32.ActiveCfg = Debug|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Debug|Win32.Build.0 = Debug|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Debug|x64.ActiveCfg = Debug|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Release|Any CPU.ActiveCfg = Release|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Release|Win32.ActiveCfg = Release|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Release|Win32.Build.0 = Release|Win32
-		{98F428D3-1612-4AC5-AB3B-951A1D8AE227}.Release|x64.ActiveCfg = Release|Win32
 		{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E9ECBA4-A708-4620-8BB7-B1752A6714C4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -127,6 +115,18 @@ Global
 		{1EC0B556-B343-46B1-9099-7B71431E8C9E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1EC0B556-B343-46B1-9099-7B71431E8C9E}.Release|Win32.ActiveCfg = Release|Any CPU
 		{1EC0B556-B343-46B1-9099-7B71431E8C9E}.Release|x64.ActiveCfg = Release|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Release|Win32.ActiveCfg = Release|Any CPU
+		{936AAB64-D0C7-48D9-98F3-1CAAD96FF421}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

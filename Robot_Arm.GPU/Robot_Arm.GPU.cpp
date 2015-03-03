@@ -25,15 +25,20 @@ namespace Robot_Arm {
 			throw gcnew Exception("Colors and Image must be of RGBA data type");
 		int Rows = Image->GetLength(0);
 		int Cols = Image->GetLength(1);
-		int NumElements = Image->Length;
 		pin_ptr<Byte> ImagePtr = &Image[0,0,0];
 		pin_ptr<Byte> ColorsPtr = &Colors[0,0];
 		pin_ptr<int> SelectionIndexPtr = &SelectionIndex[0];
 		auto Blobs = native_library::details::BlobFinder(ImagePtr, Rows, Cols, ColorsPtr, SelectionIndexPtr, NumColors, SelectedColor);
 		auto Length = Blobs.size();
 		auto ManagedBlobs = gcnew array<Blob>(Length);
-		pin_ptr<Blob> ManagedBlobPtr = &ManagedBlobs[0];
-		memcpy((void*) ManagedBlobPtr, (void*)&Blobs[0], sizeof(Blob)*Length);
+		if (Length > 0) {
+			pin_ptr<Blob> ManagedBlobPtr = &ManagedBlobs[0];
+			memcpy((void*) ManagedBlobPtr, (void*)&Blobs[0], sizeof(Blob)*Length);
+		}
+		Blobs.~vector();
 		return ManagedBlobs;
 	}
+
+
+
 }

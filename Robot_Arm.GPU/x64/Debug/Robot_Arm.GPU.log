@@ -1,25 +1,18 @@
-﻿Build started 2/28/2015 7:56:26 AM.
-     1>Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" on node 2 (Rebuild target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /TP /errorReport:prompt BlobFinder.cpp KNN_Filter.cpp SegmentColors.cpp
-         BlobFinder.cpp
-         KNN_Filter.cpp
-         SegmentColors.cpp
-         Generating Code...
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /errorReport:prompt /clr:nostdlib Robot_Arm.GPU.cpp
-         Robot_Arm.GPU.cpp
-     1>Robot_Arm.GPU.cpp(34): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\include" /Zi /clr /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:fast /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /TP /errorReport:prompt "C:\Users\Jonathan\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cpp"
-         .NETFramework,Version=v4.5.AssemblyAttributes.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v6.5\lib\x64" cudart.lib cuda.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X64 /DLL x64\Debug\BlobFinder.obj
-         x64\Debug\KNN_Filter.obj
-         x64\Debug\Robot_Arm.GPU.obj
-         x64\Debug\SegmentColors.obj
-         "x64\Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
-         Robot_Arm.GPU.vcxproj -> C:\Users\Jonathan\Documents\Github\Robotic_Arm\x64\Debug\Robot_Arm.GPU.dll
-     1>Done Building Project "C:\Users\Jonathan\Documents\Github\Robotic_Arm\Robot_Arm.GPU\Robot_Arm.GPU.vcxproj" (Rebuild target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:15.76
+﻿  BlobFinder.cpp
+BlobFinder.cpp(97): error C3577: concurrency::parallel_for_each kernel argument is illegal: cannot resolve call to member 'void operator()(Concurrency::index<_Rank>) restrict(amp)'
+          with
+          [
+              _Rank=2
+          ]
+          resolution error follows
+C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\amp.h(6429): error C3930: 'native_library::details::FixBlobImage::<lambda_76a4ff7206a856959d5d5545351e67a3>::operator ()' : no overloaded function has restriction specifiers that are compatible with the ambient context 'Concurrency::parallel_for_each'
+  InterpScattered.cpp
+InterpScattered.cpp(36): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+          InterpScattered.cpp(63) : see reference to function template instantiation 'void native_library::details::InterpScattered<double>(T *,int,int,int,int)' being compiled
+          with
+          [
+              T=double
+          ]
+  KNN_Filter.cpp
+  SegmentColors.cpp
+  Generating Code...

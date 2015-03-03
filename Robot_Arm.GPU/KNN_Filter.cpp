@@ -13,6 +13,7 @@ namespace native_library {
 			array<int, 3> KNNCount(Rows, Columns, NumColors);		
 			int RowEnd = Rows - KernelRadius;
 			int ColEnd = Columns - KernelRadius;
+
 			parallel_for_each(NewSelectedColors.extent, [=, &KNNCount, &NewSelectedColors, &SelectedColors](index<2> idx) restrict (amp)
 			{
 				int i = idx[0];
